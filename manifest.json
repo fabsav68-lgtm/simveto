@@ -1,0 +1,28 @@
+{
+  "name": "SimVeto · Suite pédagogique ASV",
+  "short_name": "SimVeto",
+  "description": "Suite pédagogique pour Auxiliaires de Santé Vétérinaire",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0d08",
+  "theme_color": "#0a0d08",
+  "orientation": "portrait",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "SimVeto-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "SimGlyco Canin",
+      "short_name": "Diabète canin",
+      "description": "Glycémie et insulinothérapie du chien",
+      "url": "./SimVeto-Diabete-Canin.html",
+      "icons": [{ "src": "SimVeto-icon.svg", "sizes": "any" }]
+    }
+  ]
+}
