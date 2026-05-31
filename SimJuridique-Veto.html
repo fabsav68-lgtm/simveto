@@ -138,6 +138,39 @@ hr.div{border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes dotB{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
 .fadeup{animation:fadeUp .35s ease forwards}
+
+/* ── BOUTON ACCUEIL FIXE ── */
+.home-btn-fixed {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: rgba(10,13,8,.92);
+  border: 1.5px solid rgba(120,216,64,.3);
+  border-radius: 30px;
+  padding: 10px 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Fira Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #78d840;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,.5);
+  transition: all .2s;
+  white-space: nowrap;
+}
+.home-btn-fixed:hover {
+  background: rgba(120,216,64,.12);
+  border-color: rgba(120,216,64,.5);
+}
+
 </style>
 </head>
 <body>
@@ -421,5 +454,9 @@ async function runIA(){
 }
 render();
 </script>
+
+<!-- Bouton accueil fixe -->
+<a class="home-btn-fixed" href="index.html">⌂ SimVeto</a>
+
 </body>
 </html>
