@@ -176,6 +176,35 @@ hr.div{border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0}
 <body>
 <div id="app"></div>
 <script>
+var ACTES_DELEGUES = [
+  {cat:'✓ AUTORISÉ', col:'var(--em)', actes:[
+    'Mesure des constantes vitales (T°, FC, FR, poids)',
+    'Prélèvements sanguins sur délégation écrite du vétérinaire',
+    'Injections SC et IM sur délégation écrite',
+    'Pose de cathéter IV sur délégation écrite',
+    'Soins infirmiers de base (pansements, toilette de plaie)',
+    'Préparation et dispensation des médicaments prescrits',
+    'Aide à la contention pendant les actes vétérinaires',
+    'Monitoring anesthésique sur délégation',
+  ]},
+  {cat:'✗ INTERDIT', col:'var(--red)', actes:[
+    'Prescrire des médicaments (exclusivité vétérinaire — L.5143-6)',
+    'Poser un diagnostic',
+    'Pratiquer un acte chirurgical',
+    'Délivrer des médicaments sans ordonnance',
+    'Euthanasier un animal',
+    'Signer des documents officiels (CV1/CV2/CV3)',
+    'Donner des conseils médicaux sans supervision',
+  ]},
+];
+
+var CONFIDENTIALITE = [
+  {titre:'Secret professionnel', desc:'L\'ASV est tenue au secret professionnel. Les informations sur les animaux et leurs propriétaires ne peuvent être divulguées à des tiers sans accord.'},
+  {titre:'Accès au dossier', desc:'Seuls les personnels habilités de la clinique accèdent aux dossiers médicaux. Ne jamais communiquer d\'informations par téléphone sans vérifier l\'identité de l\'interlocuteur.'},
+  {titre:'RGPD en clinique vétérinaire', desc:'Les données des propriétaires (coordonnées, historique) sont soumises au RGPD. Droit d\'accès, de rectification et de suppression à respecter.'},
+  {titre:'Signalement de maltraitance', desc:'En cas de suspicion de maltraitance animale, l\'ASV en informe le vétérinaire qui peut saisir les autorités compétentes (DDPP, gendarmerie).'},
+];
+
 var CATEGORIES = [
   { num:'1', couleur:'#e84040',
     label:'Chiens de 1ère catégorie',
@@ -254,7 +283,7 @@ function render(){
   var q=QUIZ[S.qIdx%QUIZ.length];
 
   if(S.view!=='welcome'){
-    h+='<div class="site-header"><div class="badge">⚖️ SimVeto · Juridique · Obligations légales</div>';
+    h+='<div class="site-header"><div class="badge">🐾 SimVeto · UC1 · UC2 · UC4 · CAFASV</div>';
     h+='<h1>Sim<span>Juridique</span></h1>';
     h+='<p>// CV1 · CV2 · CV3 · Catégories · Rôle ASV</p></div>';
     h+='<div class="tabs">';
