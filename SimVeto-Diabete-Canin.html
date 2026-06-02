@@ -338,25 +338,25 @@ var SIGNES_CLINIQUES = [
 ];
 
 var QUIZ = [
-  { q:'La glycémie normale à jeun chez le chien est de :',
-    opts:['0,4-0,7 g/L','0,7-1,2 g/L','1,5-2,5 g/L','2,5-4,0 g/L'], rep:1,
-    expl:'La glycémie normale à jeun chez le chien est **0,7-1,2 g/L** (soit 70-120 mg/dL). En dessous de 0,6 g/L : hypoglycémie. Au-dessus de 1,4 g/L à jeun : hyperglycémie pathologique.' },
-  { q:'L\'insuline de référence chez le chien en France est :',
-    opts:['Lantus® (glargine)','NovoRapid® (analogue rapide)','Caninsulin® (insuline zinc porcine)','Insulatard® (NPH)'], rep:2,
-    expl:'**Caninsulin®** est la seule insuline vétérinaire avec AMM chien en France. Composée de 35% insuline rapide + 65% insuline lente porcine. L\'insuline porcine est très proche de l\'insuline canine.' },
-  { q:'Le principal signe clinique précoce du diabète canin est :',
-    opts:['Vomissements','Polyurie-Polydipsie','Cataracte','Perte de poils'], rep:1,
-    expl:'La **polyurie-polydipsie** (boire et uriner beaucoup) est le signe le plus précoce et constant. Les reins éliminent le glucose en excès dans les urines, entraînant une perte d\'eau compensée par une soif intense.' },
-  { q:'En cas d\'hypoglycémie sévère chez un chien conscient, l\'ASV doit :',
-    opts:['Injecter de l\'insuline supplémentaire','Donner du sucre ou du miel sur les gencives','Appliquer du froid sur l\'abdomen','Attendre que ça passe'], rep:1,
-    expl:'**Sucre ou miel sur les gencives** immédiatement si conscient. Attention : ne JAMAIS donner à manger/boire si l\'animal est inconscient (risque de fausse route). Appeler le vétérinaire dans tous les cas.' },
-  { q:'Le diabète canin est plus fréquent chez :',
-    opts:['Les mâles jeunes','Les femelles non stérilisées entre 6 et 10 ans','Les chiots de moins de 2 ans','Les mâles de grande race'], rep:1,
-    expl:'Le diabète canin touche **2 à 3 fois plus les femelles** non stérilisées. Les hormones reproductives (progestérone) induisent une insulino-résistance. La stérilisation est recommandée chez les chiennes diabétiques.' },
-  { q:'Une odeur d\'acétone dans l\'haleine d\'un chien diabétique évoque :',
-    opts:['Un simple déséquilibre glycémique','Une acidocétose diabétique — urgence vitale','Un problème dentaire','Un surdosage en insuline'], rep:1,
-    expl:'**Acidocétose diabétique** = urgence vitale. Sans insuline, le corps brûle les graisses produisant des corps cétoniques (acétone). Signes : haleine fruitée/acétonique, vomissements, prostration, déshydratation. Hospitalisation immédiate.' },
-];
+  { id:'q1', q:"La glycémie normale à jeun chez le chien est de :",
+    opts:["0,4 - 0,6 g/L","0,7 - 1,2 g/L","1,5 - 2,0 g/L","2,0 - 3,0 g/L"], rep:1,
+    expl:"La glycémie normale à jeun chez le chien est **0,7 - 1,2 g/L** (70-120 mg/dL). En dessous de 0,6 g/L : hypoglycémie. Au-dessus de 1,4 g/L à jeun : hyperglycémie pathologique. Ces valeurs sont légèrement différentes de l'humain (0,7-1,1 g/L)." },
+  { id:'q2', q:"L'insuline vétérinaire de référence chez le chien en France est :",
+    opts:["Lantus® (glargine humaine)","NovoRapid® (analogue rapide)","Caninsulin® (insuline zinc porcine)","Insulatard® (NPH)"], rep:2,
+    expl:"**Caninsulin®** est la seule insuline avec AMM vétérinaire chien en France. Composée de 35% insuline amorphe (rapide) + 65% insuline cristalline (lente) porcine. L'insuline porcine est structurellement très proche de l'insuline canine." },
+  { id:'q3', q:"Quel acte l'ASV peut-elle réaliser en insulinothérapie canine ?",
+    opts:["Décider de la dose d'insuline","Préparer la seringue et réaliser l'injection sur délégation vétérinaire","Modifier le protocole sans consultation","Prescrire le Caninsulin®"], rep:1,
+    expl:"L'ASV peut **préparer la seringue et réaliser l'injection sous-cutanée sur délégation explicite du vétérinaire**. Elle ne peut jamais décider de la dose ni modifier le protocole seule. La prescription appartient exclusivement au vétérinaire (Code rural L.5143-6)." },
+  { id:'q4', q:"En cas d'hypoglycémie sévère chez un chien conscient, l'ASV doit EN PREMIER :",
+    opts:["Injecter du glucagon IM sans appeler","Frotter du sucre ou du miel sur les gencives et appeler le vétérinaire","Attendre que le chien récupère seul","Donner de l'eau sucrée"],rep:1,
+    expl:"**Frotter du sucre ou du miel sur les gencives** = geste immédiat si le chien est conscient. Puis appeler le vétérinaire. Ne jamais donner per os si inconscient (fausse route). Le glucagon IM est un acte médical réservé au vétérinaire." },
+  { id:'q5', q:"Le diabète canin touche plus fréquemment :",
+    opts:["Les mâles jeunes de grande race","Les femelles entières entre 6 et 10 ans","Les chiots de moins de 2 ans","Les mâles castrés de petite race"], rep:1,
+    expl:"Le diabète canin touche **2 à 3 fois plus les femelles entières**. Les hormones reproductives (progestérone) induisent une résistance à l'insuline. La stérilisation est fortement recommandée chez les chiennes diabétiques pour stabiliser l'équilibre glycémique." },
+  { id:'q6', q:"Une odeur d'acétone dans l'haleine d'un chien diabétique évoque :",
+    opts:["Un simple déséquilibre glycémique bénin","Une acidocétose diabétique — urgence vitale","Un problème dentaire","Un surdosage en insuline"],rep:1,
+    expl:"**Acidocétose diabétique = urgence vitale**. Sans insuline suffisante, le corps brûle les graisses en produisant des corps cétoniques (acétone). Signes : haleine fruitée, vomissements, prostration, déshydratation. L'ASV doit alerter immédiatement le vétérinaire." },
+];;
 
 // ═══════════════════════════════════════
 //  ÉTAT
@@ -643,6 +643,50 @@ function render(){
     h += '</div></div>';
 
   // ── QUIZ ───────────────────────────────────────────────
+  } else if(S.onglet === 'role'){
+    h += '<div class="fadeup"><div class="card em">';
+    h += '<div class="card-title" style="color:var(--em)">👩‍⚕️ Rôle de l\'ASV — UC4 Assistance aux soins</div>';
+    h += '<div class="card-sub">CAFASV · Ce que l\'ASV fait, ce qu\'elle ne peut pas faire, et quand appeler le vétérinaire.</div>';
+    
+    // Tableau ASV vs Vétérinaire
+    h += '<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:10px">Périmètre de compétences en insulinothérapie canine</div>';
+    h += '<div style="background:rgba(0,0,0,.2);border-radius:8px;overflow:hidden;margin-bottom:14px">';
+    h += '<div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(255,255,255,.06)">';
+    h += '<div style="padding:10px 12px;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--em)">✓ ASV PEUT</div>';
+    h += '<div style="padding:10px 12px;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--red)">✗ ASV NE PEUT PAS</div>';
+    h += '</div>';
+    [
+      ["Mesurer la glycémie capillaire", "Décider de la dose d'insuline"],
+      ["Préparer la seringue selon prescription", "Modifier le protocole seul(e)"],
+      ["Réaliser l'injection SC sur délégation", "Prescrire le Caninsulin®"],
+      ["Surveiller les signes cliniques", "Interpréter les résultats sans le véto"],
+      ["Éduquer le propriétaire (sur instruction)", "Autoriser la sortie d'un animal"],
+      ["Signaler toute anomalie au vétérinaire", "Stopper un traitement en cours"],
+    ].forEach(function(row){
+      h += '<div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(255,255,255,.04)">';
+      h += '<div style="padding:9px 12px;font-size:12px;color:var(--em);border-right:1px solid rgba(255,255,255,.04)">✓ ' + row[0] + '</div>';
+      h += '<div style="padding:9px 12px;font-size:12px;color:var(--red)">✗ ' + row[1] + '</div>';
+      h += '</div>';
+    });
+    h += '</div>';
+    
+    h += '<div class="info info-em">📋 <strong>Référence réglementaire :</strong> Code rural et de la pêche maritime, art. L.5143-6. Seul le vétérinaire peut prescrire des médicaments vétérinaires. L\'ASV agit sous sa responsabilité et dans le cadre défini par lui.</div>';
+    h += '<div class="info info-warn">⚠️ <strong>Délégation :</strong> L\'injection d\'insuline SC par l\'ASV n\'est possible que sur délégation EXPLICITE et ÉCRITE du vétérinaire, avec une prescription en cours de validité et après formation spécifique.</div>';
+    
+    h += '<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin:14px 0 10px">Quand appeler le vétérinaire EN URGENCE</div>';
+    [
+      {s:"⚠️", t:"Glycémie < 0,6 g/L", d:"Hypoglycémie sévère — ne jamais attendre"},
+      {s:"🚨", t:"Glycémie > 4,0 g/L + vomissements", d:"Suspicion acidocétose — urgence vitale"},
+      {s:"😵", t:"Animal inconscient ou convulsif", d:"Appel immédiat — ne pas manipuler seul"},
+      {s:"💧", t:"Polyurie-polydipsie brutale", d:"Déséquilibre glycémique aigu"},
+    ].forEach(function(u){
+      h += '<div style="display:flex;gap:12px;padding:10px;border-radius:6px;background:rgba(0,0,0,.2);margin-bottom:6px;border-left:3px solid rgba(232,64,64,.4)">';
+      h += '<span style="font-size:18px;flex-shrink:0">' + u.s + '</span>';
+      h += '<div><div style="font-size:13px;font-weight:600;color:var(--txt)">' + u.t + '</div>';
+      h += '<div style="font-size:12px;color:var(--txt2)">' + u.d + '</div></div></div>';
+    });
+    h += '</div></div>';
+
   } else if(S.onglet === 'quiz'){
     var pct = Math.round(S.qIdx / QUIZ.length * 100);
     h += '<div class="fadeup">';
