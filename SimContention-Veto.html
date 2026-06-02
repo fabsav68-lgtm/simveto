@@ -214,6 +214,14 @@ var SIGNAUX = [
     desc:'Peur sans agressivité directe. Ne pas forcer. Laisser l\'animal explorer à son rythme. La fuite peut se transformer en agressivité défensive si l\'animal est coincé.' },
 ];
 
+// Note CAFASV UC1 : L'ASV identifie le niveau d'alerte et EN RÉFÈRE au vétérinaire.
+// Elle ne décide jamais seule de la contention forcée ou de la sédation.
+var ROLE_ASV_CONTENTION = [
+  {niveau:'VIGILANCE', asv:'Ralentir l\'approche, informer le vétérinaire, proposer un délai', veto:'Évalue et décide de la suite'},
+  {niveau:'ATTENTION', asv:'Stopper toute manipulation, préparer le matériel, alerter le vétérinaire', veto:'Décide : muselière, sédation ou report'},
+  {niveau:'DANGER', asv:'Sécuriser la zone, éloigner le propriétaire, ne pas manipuler', veto:'Décide de la sédation ou du report de consultation'},
+];
+
 var MATERIELS = [
   { id:'museliere', icon:'😷', nom:'Muselière', desc:'Chien uniquement. Choisir la taille adaptée à la race — jamais trop serrée. Ne pas laisser plus de 15 min. Contre-indiquée si détresse respiratoire.' },
   { id:'gants', icon:'🧤', nom:'Gants de contention', desc:'Cuir épais pour chat agressif. Attention : les gants réduisent la sensibilité et peuvent augmenter la force appliquée — utiliser avec précaution.' },
@@ -492,5 +500,7 @@ render();
 <!-- Bouton accueil fixe -->
 <a class="home-btn-fixed" href="index.html">⌂ SimVeto</a>
 
+
+<!-- Références légales : Arrêté du 21 avril 1997 · Code rural L.211-11 · Loi 2008 chiens dangereux -->
 </body>
 </html>
