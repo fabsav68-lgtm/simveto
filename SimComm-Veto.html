@@ -226,6 +226,15 @@ var LANGAGE = {
   }
 };
 
+var URGENCES_TEL = [
+  {icone:'🚨', titre:'Détresse respiratoire', signes:'Animal qui suffoque, gueule ouverte, langue bleue', action:'Venir IMMÉDIATEMENT — prévenir le vétérinaire en arrivant'},
+  {icone:'🩸', titre:'Hémorragie importante', signes:'Saignement qui ne s\'arrête pas, plaie profonde', action:'Comprimer avec tissu propre, venir en urgence'},
+  {icone:'😵', titre:'Animal inconscient', signes:'Ne répond plus, ne se lève plus', action:'Ne pas donner à boire, venir immédiatement allongé'},
+  {icone:'⚠️', titre:'Intoxication suspectée', signes:'Vomissements répétés, convulsions, ingestion produit', action:'Garder l\'emballage du produit, venir en urgence'},
+  {icone:'🤕', titre:'Traumatisme/Accident', signes:'Choc, chute, morsure profonde', action:'Minimiser les manipulations, venir rapidement'},
+  {icone:'💧', titre:'Non-urgence', signes:'Boite légèrement, mange moins, gratte une oreille', action:'Proposer un RDV dans les 24-48h, conseiller surveillance'},
+];
+
 var APPROCHE_STEPS = [
   {n:'1',titre:'Se présenter à l\'animal avant de toucher',
    do:'Se baisser légèrement, corps de côté, voix calme',
@@ -298,7 +307,7 @@ function render(){
   var lang=LANGAGE[S.espece];
 
   if(S.view!=='welcome'){
-    h+='<div class="site-header"><div class="badge">🐾 SimVeto · Communication · Comportement</div>';
+    h+='<div class="site-header"><div class="badge">🐾 SimVeto · Communication · Comportement · UC1 CAFASV</div>';
     h+='<h1>Sim<span>Comm</span></h1>';
     h+='<p>// Premiers contacts · Langage animal · Propriétaire</p></div>';
     h+='<div class="tabs">';
@@ -382,6 +391,15 @@ function render(){
       h+='</div>';
     });
     h+='</div>';
+    h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin:14px 0 10px">Annonce de mauvaises nouvelles — UC1</div>';
+    h+='<div style="background:rgba(0,0,0,.2);border-radius:8px;padding:14px;margin-bottom:12px">';
+    [{etape:'1. Préparer', desc:'S\'assurer d\'un espace calme et privé. Ne jamais annoncer dans le couloir ou à la caisse.'},{etape:'2. Vérifier', desc:'Confirmer que c\'est bien le bon propriétaire. S\'assurer qu\'il n\'est pas seul si possible.'},{etape:'3. Laisser le vétérinaire parler', desc:'L\'ASV ne doit pas annoncer un diagnostic grave ou un décès — c\'est le rôle du vétérinaire.'},{etape:'4. Soutenir', desc:'Proposer un verre d\'eau, du temps, écouter sans jugement. Ne pas brusquer.'},{etape:'5. Orienter', desc:'Vers un soutien (association deuil animalier) si nécessaire. Noter dans le dossier.'}].forEach(function(e){
+      h += '<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.04)">';
+      h += '<span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--em);flex-shrink:0;min-width:100px">' + e.etape + '</span>';
+      h += '<span style="font-size:12px;color:var(--txt2)">' + e.desc + '</span>';
+      h += '</div>';
+    });
+    h += '</div>';
     h+='<div class="info info-warn">⚠️ <strong>À retenir :</strong> Le propriétaire est le meilleur allié de l\'ASV. Le braquer ou le contredire frontalement augmente le stress global. Toujours reformuler, jamais contredire.</div>';
     h+='</div>';
 
@@ -465,5 +483,7 @@ render();
 <!-- Bouton accueil fixe -->
 <a class="home-btn-fixed" href="index.html">⌂ SimVeto</a>
 
+
+<!-- Références légales : CAFASV UC1 · Code rural L.241-1 · Convention Collective Nationale vétérinaire -->
 </body>
 </html>
