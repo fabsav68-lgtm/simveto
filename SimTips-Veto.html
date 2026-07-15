@@ -323,6 +323,12 @@ function toggleListe(){
   });
   liste.classList.add('show');
 }
+  document.addEventListener('click', function(){
+  window.parent.postMessage({type:'activite'}, '*');
+});
+document.addEventListener('keypress', function(){
+  window.parent.postMessage({type:'activite'}, '*');
+});
 </script>
 </body>
 </html>
