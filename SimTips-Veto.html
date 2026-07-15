@@ -12,131 +12,297 @@ html,body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--txt);padding:16px;}
 h1{font-family:Georgia,serif;font-size:22px;color:var(--em);margin-bottom:4px;}
 .sub{font-size:11px;color:var(--txt2);margin-bottom:20px;font-family:monospace;}
+ 
+/* LOTERIE */
 .loterie{text-align:center;padding:24px 16px;background:var(--card);border:1.5px solid var(--bdr);border-radius:16px;margin-bottom:16px;}
 .loterie h2{font-size:16px;color:var(--txt);margin-bottom:6px;}
 .loterie p{font-size:12px;color:var(--txt2);margin-bottom:16px;}
 .btn-loterie{display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#50a820,#78d840);color:#0a0d08;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;}
 .btn-small{display:inline-block;padding:7px 14px;background:rgba(255,255,255,.06);color:var(--txt2);border:1px solid var(--bdr);border-radius:8px;font-size:11px;cursor:pointer;margin:3px;}
-.compteur{text-align:center;font-family:monospace;font-size:11px;color:var(--txt2);margin-bottom:12px;}
-.tip-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:16px;padding:16px;margin-bottom:16px;}
+ 
+/* CHRONO */
+.chrono-wrap{text-align:center;margin-bottom:12px;}
+.chrono{font-size:32px;font-weight:700;font-family:monospace;color:var(--em);}
+.chrono.urgent{color:var(--red);}
+.chrono-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin-bottom:16px;overflow:hidden;}
+.chrono-fill{height:100%;background:var(--em);border-radius:2px;transition:width .5s linear;}
+.chrono-fill.urgent{background:var(--red);}
+ 
+/* SUJET */
+.sujet-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:16px;padding:16px;margin-bottom:16px;display:none;}
+.sujet-card.show{display:block;}
 .tip-type{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-family:monospace;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
 .tip-type.role{background:rgba(160,96,255,.1);color:var(--purple);border:1px solid rgba(160,96,255,.2);}
 .tip-type.cas{background:rgba(232,160,48,.1);color:var(--amber);border:1px solid rgba(232,160,48,.2);}
 .tip-type.tip{background:rgba(120,216,64,.1);color:var(--em);border:1px solid rgba(120,216,64,.2);}
-.tip-title{font-size:16px;font-weight:700;margin-bottom:10px;line-height:1.3;}
-.tip-situation{background:rgba(255,255,255,.03);border-left:3px solid var(--bdr);padding:10px;border-radius:0 8px 8px 0;font-size:12px;color:var(--txt2);margin-bottom:14px;line-height:1.6;}
-.tip-etapes{list-style:none;margin-bottom:14px;}
-.tip-etapes li{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;display:flex;gap:8px;align-items:flex-start;}
-.tip-etapes li:last-child{border-bottom:none;}
+.tip-title{font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.3;}
+.tip-situation{background:rgba(255,255,255,.03);border-left:3px solid var(--amber);padding:10px;border-radius:0 8px 8px 0;font-size:13px;color:var(--txt);margin-bottom:16px;line-height:1.6;}
+ 
+/* REPONSE */
+.reponse-wrap{display:none;}
+.reponse-wrap.show{display:block;}
+textarea{width:100%;padding:12px;background:rgba(255,255,255,.06);border:1.5px solid var(--bdr);border-radius:10px;color:var(--txt);font-size:13px;font-family:system-ui,sans-serif;line-height:1.6;resize:vertical;min-height:120px;outline:none;}
+textarea:focus{border-color:rgba(120,216,64,.4);}
+.btn-correction{width:100%;padding:12px;background:linear-gradient(135deg,#50a820,#78d840);color:#0a0d08;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;}
+.btn-passer{width:100%;padding:10px;background:rgba(255,255,255,.04);color:var(--txt2);border:1px solid var(--bdr);border-radius:10px;font-size:13px;cursor:pointer;margin-top:8px;}
+ 
+/* CORRECTION IA */
+.correction-wrap{display:none;margin-top:16px;}
+.correction-wrap.show{display:block;}
+.correction-card{border-radius:12px;padding:14px;margin-bottom:12px;}
+.correction-card.ia{background:rgba(120,216,64,.06);border:1px solid rgba(120,216,64,.2);}
+.correction-card.etapes{background:rgba(255,255,255,.03);border:1px solid var(--bdr);}
+.correction-card h3{font-size:13px;font-weight:700;margin-bottom:8px;}
+.correction-card.ia h3{color:var(--em);}
+.correction-card.etapes h3{color:var(--txt2);}
+.correction-texte{font-size:13px;line-height:1.7;color:var(--txt);}
+.etape-item{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;display:flex;gap:8px;align-items:flex-start;}
+.etape-item:last-child{border-bottom:none;}
 .etape-num{background:rgba(120,216,64,.15);color:var(--em);border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;margin-top:1px;}
-.etape-num.amber{background:rgba(232,160,48,.15);color:var(--amber);}
-.etape-num.purple{background:rgba(160,96,255,.15);color:var(--purple);}
-.tip-alert{background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.2);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--red);margin-bottom:10px;}
-.tip-memo{background:rgba(120,216,64,.06);border:1px solid rgba(120,216,64,.15);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--em);margin-top:10px;}
-.liste-item{padding:10px 14px;border-bottom:1px solid var(--bdr);cursor:pointer;display:flex;align-items:center;gap:10px;font-size:12px;}
-.liste-item:active{background:rgba(255,255,255,.05);}
-.liste-item:last-child{border-bottom:none;}
+.tip-alert{background:rgba(232,64,64,.06);border:1px solid rgba(232,64,64,.2);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--red);margin-top:10px;}
+.tip-memo{background:rgba(120,216,64,.06);border:1px solid rgba(120,216,64,.15);border-radius:8px;padding:8px 12px;font-size:11px;color:var(--em);margin-top:8px;}
+.btn-nouveau{width:100%;padding:10px;background:linear-gradient(135deg,#50a820,#78d840);color:#0a0d08;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:12px;}
+.loading{text-align:center;padding:20px;color:var(--txt2);font-size:13px;}
+.loading span{display:inline-block;animation:pulse 1.2s infinite;}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+ 
+/* LISTE */
 .liste-wrap{background:var(--card);border:1px solid var(--bdr);border-radius:12px;margin-bottom:16px;overflow:hidden;display:none;}
 .liste-wrap.show{display:block;}
-#tip-display{display:none;}
-#tip-display.show{display:block;}
-.btn-nouveau{width:100%;padding:10px;background:linear-gradient(135deg,#50a820,#78d840);color:#0a0d08;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:12px;}
+.liste-item{padding:10px 14px;border-bottom:1px solid var(--bdr);cursor:pointer;display:flex;align-items:center;gap:10px;font-size:12px;}
+.liste-item:last-child{border-bottom:none;}
 </style>
 </head>
 <body>
  
 <h1>SimTips ASV</h1>
-<p class="sub">Preparation a l'examen oral · Tirage aleatoire · Jeux de role · Etudes de cas · Gestes pratiques</p>
+<p class="sub">Preparation a l'examen oral · Tirage aleatoire · Analyse IA de votre reponse</p>
  
-<div class="loterie">
+<!-- LOTERIE -->
+<div class="loterie" id="loterie-screen">
   <h2>Tirage au sort</h2>
-  <p>Comme a l'examen — un sujet au hasard.</p>
+  <p>Comme a l'examen — un sujet au hasard, puis vous repondez avant de voir la correction.</p>
   <button class="btn-loterie" onclick="tirerAuSort(null)">🎲 Tirer un sujet</button>
   <br><br>
   <button class="btn-small" onclick="tirerAuSort('role')">🎭 Jeu de role</button>
   <button class="btn-small" onclick="tirerAuSort('cas')">📋 Etude de cas</button>
   <button class="btn-small" onclick="tirerAuSort('tip')">⚡ Geste pratique</button>
+  <br><br>
+  <button class="btn-small" onclick="toggleListe()">📚 Choisir un sujet</button>
 </div>
  
-<div class="compteur" id="compteur"></div>
- 
-<div id="tip-display">
-  <div class="tip-card">
-    <span class="tip-type" id="tip-type-badge"></span>
-    <div class="tip-title" id="tip-title"></div>
-    <div class="tip-situation" id="tip-situation"></div>
-    <ul class="tip-etapes" id="tip-etapes"></ul>
-    <div class="tip-alert" id="tip-alert"></div>
-    <div class="tip-memo" id="tip-memo"></div>
-    <button class="btn-nouveau" onclick="tirerAuSort(null)">🎲 Nouveau tirage</button>
-  </div>
-</div>
- 
-<div style="text-align:center;margin:8px 0">
-  <button class="btn-small" onclick="toggleListe()">📚 Voir tous les tips</button>
-</div>
- 
+<!-- LISTE -->
 <div class="liste-wrap" id="tips-liste"></div>
+ 
+<!-- CHRONO -->
+<div class="chrono-wrap" id="chrono-wrap" style="display:none">
+  <div class="chrono" id="chrono-display">3:00</div>
+  <div class="chrono-bar"><div class="chrono-fill" id="chrono-fill" style="width:100%"></div></div>
+</div>
+ 
+<!-- SUJET -->
+<div class="sujet-card" id="sujet-card">
+  <span class="tip-type" id="tip-type-badge"></span>
+  <div class="tip-title" id="tip-title"></div>
+  <div class="tip-situation" id="tip-situation"></div>
+</div>
+ 
+<!-- REPONSE ETUDIANT -->
+<div class="reponse-wrap" id="reponse-wrap">
+  <textarea id="reponse-etudiant" placeholder="Ecrivez votre reponse ici... Decrivez les etapes que vous feriez, ce que vous diriez, comment vous reagiriez."></textarea>
+  <button class="btn-correction" onclick="voirCorrection()">✅ Voir la correction et l'analyse</button>
+  <button class="btn-passer" onclick="passerDirectement()">Passer sans repondre</button>
+</div>
+ 
+<!-- CORRECTION -->
+<div class="correction-wrap" id="correction-wrap">
+  <div class="correction-card ia" id="analyse-ia">
+    <h3>🤖 Analyse de votre reponse</h3>
+    <div class="correction-texte" id="analyse-texte"><div class="loading"><span>Analyse en cours...</span></div></div>
+  </div>
+  <div class="correction-card etapes">
+    <h3>📋 Correction complete</h3>
+    <div id="etapes-correction"></div>
+    <div class="tip-alert" id="correction-alert" style="display:none"></div>
+    <div class="tip-memo" id="correction-memo" style="display:none"></div>
+  </div>
+  <button class="btn-nouveau" onclick="nouveauTirage()">🎲 Nouveau sujet</button>
+</div>
  
 <script>
 var TIPS = [
-  {type:"role",titre:"Client en urgence - chien qui convulse",situation:"Il est 14h. Un client appelle, panique : son labrador de 5 ans convulse depuis 2 minutes.",etapes:["Garder son calme et rassurer le client","Relever le nom et l'age du chien","L'inviter a venir immediatement en clinique","Lui dire de NE PAS mettre les doigts dans la gueule","Preparer la salle d'urgence","Prevenir le veterinaire immediatement"],alerte:"Ne jamais minimiser une convulsion - toujours urgence immediate.",memo:"Mots cles : calme, rapide, prevenir le veto, preparer la salle."},
-  {type:"role",titre:"Client mecontent du devis",situation:"Un client decouvre une facture plus elevee que prevu apres une sterilisation et monte le ton.",etapes:["Accueillir avec calme, ne pas hausser le ton","Laisser le client s'exprimer completement","Reconnaitre son ressenti : 'Je comprends que ca vous surprend'","Expliquer poste par poste les elements du devis","Si desaccord persistant, appeler le veterinaire","Proposer si possible une solution"],alerte:"Ne jamais critiquer le veterinaire devant le client.",memo:"CNV : ecoute active, reformulation, solution."},
-  {type:"role",titre:"Annonce d'un deces a un proprietaire",situation:"Le chat d'une cliente agee est decede pendant une intervention. Le veterinaire vous demande d'accompagner la cliente.",etapes:["Guider la cliente dans un espace prive et calme","S'asseoir a son niveau, contact visuel","Annonce claire et douce : 'Votre chat n'a pas survecu'","Laisser le silence - ne pas meubler","Proposer un mouchoir, un verre d'eau","Informer sur les options : cremation, retour du corps"],alerte:"Ne jamais dire 'il est parti' ou 'vous en aurez un autre'.",memo:"Presence, silence, empathie - pas de solutions immediates."},
-  {type:"role",titre:"Proprietaire d'un animal mordeur",situation:"Un client arrive avec son chien de categorie 1. Il dit que le chien 'ne mord jamais'.",etapes:["Verifier carnet de vaccination et permis de detention","Demander si le chien a deja mordu","Informer des obligations : museliere, laisse courte","Preparer la salle avec museliere adaptee","Alerter le veterinaire avant introduction","Documenter dans le dossier : categorie, comportement"],alerte:"CV1 ou CV2 = museliere et laisse obligatoires. Responsabilite civile du proprietaire engagee.",memo:"Verification documents + securisation = priorite absolue."},
-  {type:"role",titre:"Explication d'un traitement antiparasitaire",situation:"Un client achete un antiparasitaire pour son chien. Il vous demande comment l'utiliser.",etapes:["Verifier que le produit est adapte au poids du chien","Expliquer la zone d'application : entre les omoplates, sur la peau","Preciser : ne pas toucher le produit, laisser secher 24h","Conseiller de ne pas baigner l'animal 48h avant et apres","Rappeler la frequence : generalement tous les mois","Proposer un rappel dans le logiciel"],memo:"Adapter le produit au poids + espece + age du chien."},
-  {type:"role",titre:"Gestion d'un animal agressif a l'accueil",situation:"Un chat arrive dans un transport ouvert. Il siffle et griffe. La salle d'attente est pleine.",etapes:["Rester calme, pas de gestes brusques","Demander au proprietaire de fermer le transport","Orienter vers salle d'attente separee chats/chiens","Prevenir le veterinaire avant entree en salle","Preparer gants de contention et serviette epaisse","Ne jamais forcer l'extraction - laisser le veto decider"],alerte:"Un chat stresse peut infliger des morsures profondes. Ne pas agir seul sans protection.",memo:"Separation, protection, prevenir le veto - jamais de force."},
-  {type:"cas",titre:"Chien avec FC a 180 bpm",situation:"Vous prenez les constantes d'un berger allemand adulte. La frequence cardiaque est de 180 bpm. Norme : 60-140 bpm.",etapes:["Verifier la mesure : reprendre la prise de pouls femorale","Verifier si l'animal est stresse - repositionner","Constater l'anomalie sans minimiser","Alerter immediatement le veterinaire avec les valeurs exactes","Preparer le dossier et noter l'heure","Ne jamais diagnostiquer - role du veterinaire"],alerte:"FC > 160 bpm chez un chien adulte calme = anomalie cardiaque possible.",memo:"Norme chien adulte : 60-140 bpm · Chiot : jusqu'a 180 · Chat : 120-200 bpm"},
-  {type:"cas",titre:"Chat avec temperature a 40,5 degres",situation:"Vous prenez la temperature rectale d'un chat de 3 ans. Le thermometre affiche 40,5 degres. Norme : 38-39,5 degres.",etapes:["Verifier la mesure - repositionner si doute","Evaluer l'etat general : abattement, prostration","Prendre les autres constantes : FC, FR, hydratation","Transmettre au veterinaire avec valeurs precises","Preparer une salle de consultation","Proposer de l'eau fraiche si le veterinaire valide"],alerte:"Hyperthermie > 40 degres chez le chat = urgence.",memo:"Norme chat : 38-39,5 · Chien : 38-39 · Lapin : 38,5-40"},
-  {type:"cas",titre:"Erreur de medication suspectee",situation:"Un client rappelle 2h apres avoir achete un vermifuge pour chien. Il l'a donne a son chat de 2 kg.",etapes:["Ecouter sans paniquer et noter toutes les informations","Relever : produit, dose, poids du chat, heure","Transferer immediatement au veterinaire","Le veterinaire decide si urgence ou non","Ne jamais donner de conseils medicaux","Documenter l'incident"],alerte:"Certains produits pour chiens sont MORTELS pour les chats (permethrine). Urgence absolue.",memo:"TOUJOURS verifier l'espece et le poids avant de vendre un antiparasitaire."},
-  {type:"cas",titre:"Aiguilles usagees dans la mauvaise poubelle",situation:"En fin de journee, un collegue met des aiguilles usagees dans la poubelle ordinaire.",etapes:["Intervenir immediatement avec tact","Retirer les aiguilles avec une pince - jamais a mains nues","Placer dans le conteneur DASRI jaune ferme","Rappeler la reglementation : aiguilles = DASRI obligatoire","Signaler au responsable si necessaire","Verifier que le conteneur est aux 3/4 plein maximum"],alerte:"Aiguilles dans poubelle ordinaire = infraction legale + risque AES pour les agents de collecte.",memo:"DASRI = Dechets d'Activite de Soins a Risques Infectieux · Conteneur jaune."},
-  {type:"cas",titre:"Animal inconscient en urgence",situation:"Une cliente entre en courant avec son golden retriever inconscient dans les bras. Il ne reagit pas.",etapes:["Appeler immediatement le veterinaire","Guider vers la salle d'urgence preparee","Ne pas bloquer pour les formalites administratives","Preparer : oxygene, table, materiel IV","Prendre les informations pendant que le veto agit","Garder la cliente informee dans la salle d'attente"],alerte:"En urgence vitale : l'animal d'abord, les formalites ensuite.",memo:"Preparer la salle avant l'arrivee si appel telephonique prealable."},
+  {type:"role",titre:"Client en urgence - chien qui convulse",situation:"Il est 14h. Un client appelle, panique : son labrador de 5 ans convulse depuis 2 minutes. Il ne sait pas quoi faire.",etapes:["Garder son calme et rassurer le client immediatement","Relever le nom et l'age du chien","L'inviter a venir immediatement en clinique - ne pas attendre","Lui dire de NE PAS mettre les doigts dans la gueule du chien","Preparer la salle d'urgence avant son arrivee","Prevenir le veterinaire immediatement"],alerte:"Ne jamais minimiser une convulsion - toujours urgence immediate.",memo:"Mots cles : calme, rapide, prevenir le veto, preparer la salle."},
+  {type:"role",titre:"Client mecontent du devis",situation:"Un client vient chercher son chat apres une sterilisation. Il decouvre une facture plus elevee que prevu et monte le ton.",etapes:["Accueillir avec calme, ne jamais hausser le ton","Laisser le client s'exprimer completement sans interrompre","Reconnaitre son ressenti : 'Je comprends que ca vous surprend'","Expliquer poste par poste les elements du devis","Si desaccord persistant, appeler le veterinaire","Proposer si possible une solution"],alerte:"Ne jamais critiquer le veterinaire devant le client.",memo:"CNV : ecoute active, reformulation, solution."},
+  {type:"role",titre:"Annonce d'un deces a un proprietaire",situation:"Le chat d'une cliente agee est decede pendant une intervention. Le veterinaire vous demande d'accompagner la cliente.",etapes:["Guider la cliente dans un espace prive et calme","S'asseoir a son niveau, etablir un contact visuel","Annonce claire et douce : 'Votre chat n'a pas survecu'","Laisser le silence - ne pas meubler","Proposer un mouchoir, un verre d'eau","Informer sur les options : cremation, retour du corps"],alerte:"Ne jamais dire 'il est parti' ou 'vous en aurez un autre'.",memo:"Presence, silence, empathie - pas de solutions immediates."},
+  {type:"role",titre:"Proprietaire d'un animal mordeur",situation:"Un client arrive avec son chien de categorie 1. Il dit que le chien ne mord jamais. Vous devez l'accueillir.",etapes:["Verifier le carnet de vaccination et le permis de detention","Demander si le chien a deja mordu quelqu'un","Informer des obligations : museliere, laisse courte","Preparer la salle avec une museliere adaptee","Alerter le veterinaire avant introduction de l'animal","Documenter dans le dossier : categorie, comportement"],alerte:"CV1 ou CV2 = museliere et laisse obligatoires. Responsabilite civile du proprietaire engagee.",memo:"Verification documents + securisation = priorite absolue."},
+  {type:"role",titre:"Explication d'un traitement antiparasitaire",situation:"Un client achete un antiparasitaire pour son chien. Il vous demande comment l'utiliser correctement.",etapes:["Verifier que le produit est adapte au poids du chien","Expliquer la zone d'application : entre les omoplates, sur la peau","Preciser : ne pas toucher le produit, laisser secher 24h","Conseiller de ne pas baigner l'animal 48h avant et apres","Rappeler la frequence : tous les mois generalement","Proposer un rappel dans le logiciel"],memo:"Adapter le produit au poids + espece + age du chien."},
+  {type:"role",titre:"Gestion d'un animal agressif a l'accueil",situation:"Un chat arrive dans un transport ouvert. Il siffle et griffe. La salle d'attente est pleine.",etapes:["Rester calme, pas de gestes brusques","Demander au proprietaire de fermer le transport","Orienter vers salle d'attente separee chats/chiens si possible","Prevenir le veterinaire avant entree en salle","Preparer gants de contention et serviette epaisse","Ne jamais forcer l'extraction - laisser le veto decider"],alerte:"Un chat stresse peut infliger des morsures profondes. Ne pas agir seul sans protection.",memo:"Separation, protection, prevenir le veto - jamais de force."},
+  {type:"cas",titre:"Chien avec FC a 180 bpm",situation:"Vous prenez les constantes d'un berger allemand adulte. La frequence cardiaque est de 180 bpm. La norme chez le chien adulte est 60 a 140 bpm.",etapes:["Verifier la mesure : reprendre la prise de pouls femorale","Verifier si l'animal est stresse - repositionner","Constater l'anomalie sans minimiser","Alerter immediatement le veterinaire avec les valeurs exactes","Preparer le dossier et noter l'heure","Ne jamais diagnostiquer - role exclusif du veterinaire"],alerte:"FC > 160 bpm chez un chien adulte calme = anomalie cardiaque possible.",memo:"Norme chien adulte : 60-140 bpm · Chiot : jusqu'a 180 · Chat : 120-200 bpm"},
+  {type:"cas",titre:"Chat avec temperature a 40,5 degres",situation:"Vous prenez la temperature rectale d'un chat de 3 ans. Le thermometre affiche 40,5 degres. La norme est de 38 a 39,5 degres.",etapes:["Verifier la mesure - repositionner le thermometre si doute","Evaluer l'etat general : abattement, prostration","Prendre les autres constantes : FC, FR, hydratation","Transmettre au veterinaire avec valeurs precises","Preparer une salle de consultation","Proposer de l'eau fraiche si le veterinaire le valide"],alerte:"Hyperthermie > 40 degres chez le chat = urgence.",memo:"Norme chat : 38-39,5 · Chien : 38-39 · Lapin : 38,5-40"},
+  {type:"cas",titre:"Erreur de medication suspectee",situation:"Un client rappelle 2h apres avoir achete un vermifuge pour chien. Il dit avoir donne le comprime a son chat de 2 kg.",etapes:["Ecouter sans paniquer et noter toutes les informations","Relever : produit, dose, poids du chat, heure d'administration","Transferer immediatement au veterinaire","Le veterinaire decide si urgence ou non","Ne jamais donner de conseils medicaux - risque vital","Documenter l'incident dans le logiciel"],alerte:"Certains produits pour chiens sont MORTELS pour les chats (permethrine). Urgence absolue.",memo:"TOUJOURS verifier l'espece et le poids avant de vendre un antiparasitaire."},
+  {type:"cas",titre:"Aiguilles usagees dans la mauvaise poubelle",situation:"En fin de journee, vous constatez qu'un collegue a mis des aiguilles usagees dans la poubelle ordinaire.",etapes:["Intervenir immediatement avec tact","Retirer les aiguilles avec une pince - jamais a mains nues","Placer dans le conteneur DASRI jaune ferme","Rappeler la reglementation : aiguilles = DASRI obligatoire","Signaler au responsable si necessaire","Verifier que le conteneur est aux 3/4 plein maximum"],alerte:"Aiguilles dans poubelle ordinaire = infraction legale + risque AES pour les agents de collecte.",memo:"DASRI = Dechets d'Activite de Soins a Risques Infectieux · Conteneur jaune."},
+  {type:"cas",titre:"Animal inconscient en urgence",situation:"Une cliente entre en courant avec son golden retriever inconscient dans les bras. Il ne reagit pas.",etapes:["Appeler immediatement le veterinaire - crier si necessaire","Guider vers la salle d'urgence preparee","Ne pas bloquer pour les formalites administratives","Preparer : oxygene, table, materiel IV","Prendre les informations pendant que le veto agit","Garder la cliente informee dans la salle d'attente"],alerte:"En urgence vitale : l'animal d'abord, les formalites ensuite.",memo:"Preparer la salle avant l'arrivee si appel telephonique prealable."},
   {type:"cas",titre:"Demande de medicament sans ordonnance",situation:"Un client demande du Metacam pour son chien sans ordonnance. Il dit en avoir deja eu.",etapes:["Expliquer calmement que le Metacam est sur ordonnance","Verifier si une ordonnance recente existe dans le dossier","Si oui : valider avec le veterinaire avant de delivrer","Si non : proposer une consultation","Ne jamais delivrer sans ordonnance valide","Documenter le refus si necessaire"],alerte:"Delivrer un medicament sur ordonnance sans prescription = infraction penale.",memo:"POM = Prescription Only Medicine = ordonnance obligatoire."},
   {type:"tip",titre:"Prise du pouls femoral chez le chien",situation:"Le veterinaire vous demande de prendre la frequence cardiaque d'un labrador avant la consultation.",etapes:["Positionner le chien en decubitus lateral","Localiser l'artere femorale dans le triangle de scarpa (face interne de la cuisse)","Poser 2 doigts (index + majeur) sur l'artere - jamais le pouce","Compter les pulsations pendant 15 secondes","Multiplier par 4 pour obtenir la FC en bpm","Noter et transmettre au veterinaire"],alerte:"Ne pas utiliser le pouce - il a son propre pouls et fausse la mesure.",memo:"Norme chien adulte : 60-140 bpm · Compter 15 sec x4."},
-  {type:"tip",titre:"Prise de temperature rectale chez le chat",situation:"Preparez et realisez la prise de temperature d'un chat adulte en consultation.",etapes:["Preparer le thermometre digital et du gel lubrifiant","Positionner le chat en decubitus sternal ou lateral","Un assistant maintient la tete et les pattes avant","Introduire le thermometre a 2-3 cm dans le rectum","Attendre le bip et retirer doucement","Nettoyer le thermometre avec alcool 70°"],alerte:"Ne jamais forcer si le chat resiste - risque de perforation rectale.",memo:"Norme chat : 38-39,5 degres · Gel lubrifiant obligatoire · Profondeur : 2-3 cm."},
+  {type:"tip",titre:"Prise de temperature rectale chez le chat",situation:"Preparez et realisez la prise de temperature d'un chat adulte en consultation.",etapes:["Preparer le thermometre digital et du gel lubrifiant","Positionner le chat en decubitus sternal ou lateral","Un assistant maintient la tete et les pattes avant","Introduire le thermometre a 2-3 cm dans le rectum","Attendre le bip et retirer doucement","Nettoyer le thermometre avec alcool 70 degres"],alerte:"Ne jamais forcer si le chat resiste - risque de perforation rectale.",memo:"Norme chat : 38-39,5 degres · Gel lubrifiant obligatoire · Profondeur : 2-3 cm."},
   {type:"tip",titre:"Pose d'une collerette elizabethaine",situation:"Suite a une suture, le veterinaire vous demande de poser une collerette sur un beagle de 12 kg.",etapes:["Choisir la bonne taille : depasse le museau de 2-3 cm","Passer autour du cou, attaches vers l'arriere","Glisser 2 doigts entre la collerette et le cou","Fixer avec les lacets ou le systeme de fermeture","Verifier que le chien peut manger et boire","Observer la deambulation"],alerte:"Trop serre = trouble respiratoire. Trop lache = le chien l'enleve et leche la plaie.",memo:"2 doigts d'espace = regle universelle."},
   {type:"tip",titre:"Preparation de la salle de chirurgie",situation:"Une sterilisation de chatte est prevue dans 30 minutes. Preparez la salle.",etapes:["Nettoyer et desinfecter toutes les surfaces","Verifier et preparer la table chauffante","Sortir le materiel sterile : champ operatoire, instruments, fils","Preparer le monitoring : ECG, SpO2, capnographe","Verifier les gaz anesthesiques et le circuit","Preparer les medicaments selon le protocole du veterinaire"],alerte:"Ne jamais ouvrir un emballage sterile sans verifier date et integrite.",memo:"Check-list obligatoire avant toute chirurgie."},
-  {type:"tip",titre:"Mesure du TRC",situation:"Le veterinaire vous demande d'evaluer l'etat circulatoire d'un chien en choc.",etapes:["Relever la levre superieure du chien","Appuyer fermement avec le pouce sur la gencive 2 secondes","Relacher et chronometrer jusqu'au retour de la couleur rose","Normal : retour en moins de 2 secondes","Anormal : > 2 secondes = signe de choc ou deshydratation","Transmettre immediatement au veterinaire"],alerte:"TRC > 2 sec = urgence circulatoire. Alerter sans delai.",memo:"TRC normal < 2 sec · Gencive rose = bonne perfusion · Blanche/bleue = urgence."},
+  {type:"tip",titre:"Mesure du TRC",situation:"Le veterinaire vous demande d'evaluer l'etat circulatoire d'un chien en choc.",etapes:["Relever la levre superieure du chien","Appuyer fermement avec le pouce sur la gencive 2 secondes","Relacher et chronometrer jusqu'au retour de la couleur rose","Normal : retour en moins de 2 secondes","Anormal : plus de 2 secondes = signe de choc ou deshydratation","Transmettre immediatement au veterinaire"],alerte:"TRC > 2 sec = urgence circulatoire. Alerter sans delai.",memo:"TRC normal < 2 sec · Gencive rose = bonne perfusion · Blanche ou bleue = urgence."},
   {type:"tip",titre:"Nettoyage d'une cage d'hospitalisation",situation:"Un chien vient de quitter la cage. Vous devez la preparer pour le suivant.",etapes:["Enfiler les EPI : gants, tablier","Retirer tous les residus : litiere, gamelles, poils","Nettoyer avec detergent : eliminer toute matiere organique","Rincer abondamment - le detergent inactive les desinfectants","Appliquer le desinfectant : respecter le temps de contact (5 min minimum)","Laisser secher completement avant introduction d'un nouvel animal"],alerte:"Desinfection sans nettoyage prealable = INEFFICACE.",memo:"Nettoyer + Rincer + Desinfecter + Rincer + Secher = protocole complet."},
 ];
  
-var nbTires = 0;
+var currentTip = null;
+var chronoInterval = null;
+var chronoTotal = 180;
+var chronoRestant = 180;
  
 function tirerAuSort(filtre){
   var pool = filtre ? TIPS.filter(function(t){ return t.type === filtre; }) : TIPS;
   var tip = pool[Math.floor(Math.random() * pool.length)];
-  nbTires++;
-  document.getElementById('compteur').textContent = 'Sujet ' + nbTires + ' · ' + pool.length + ' disponibles';
-  afficherTip(tip);
+  afficherSujet(tip);
+  document.getElementById('tips-liste').classList.remove('show');
 }
  
-function afficherTip(tip){
-  var display = document.getElementById('tip-display');
-  var typeLabel = tip.type === 'role' ? '🎭 Jeu de role' : tip.type === 'cas' ? '📋 Etude de cas' : '⚡ Geste pratique';
-  var color = tip.type === 'role' ? 'purple' : tip.type === 'cas' ? 'amber' : '';
+function afficherSujet(tip){
+  currentTip = tip;
+  stopChrono();
  
+  // Afficher le sujet
+  var typeLabel = tip.type === 'role' ? '🎭 Jeu de role' : tip.type === 'cas' ? '📋 Etude de cas' : '⚡ Geste pratique';
   document.getElementById('tip-type-badge').textContent = typeLabel;
   document.getElementById('tip-type-badge').className = 'tip-type ' + tip.type;
   document.getElementById('tip-title').textContent = tip.titre;
   document.getElementById('tip-situation').textContent = tip.situation;
+  document.getElementById('reponse-etudiant').value = '';
  
-  var etapesEl = document.getElementById('tip-etapes');
+  // Afficher les elements
+  document.getElementById('loterie-screen').style.display = 'none';
+  document.getElementById('sujet-card').className = 'sujet-card show';
+  document.getElementById('reponse-wrap').className = 'reponse-wrap show';
+  document.getElementById('correction-wrap').className = 'correction-wrap';
+  document.getElementById('chrono-wrap').style.display = 'block';
+ 
+  // Demarrer le chrono
+  demarrerChrono();
+  window.scrollTo(0, 0);
+}
+ 
+function demarrerChrono(){
+  chronoRestant = chronoTotal;
+  updateChronoDisplay();
+  chronoInterval = setInterval(function(){
+    chronoRestant--;
+    updateChronoDisplay();
+    if(chronoRestant <= 0){
+      stopChrono();
+    }
+  }, 1000);
+}
+ 
+function stopChrono(){
+  if(chronoInterval) clearInterval(chronoInterval);
+  chronoInterval = null;
+}
+ 
+function updateChronoDisplay(){
+  var min = Math.floor(chronoRestant / 60);
+  var sec = chronoRestant % 60;
+  var display = min + ':' + (sec < 10 ? '0' : '') + sec;
+  var el = document.getElementById('chrono-display');
+  var fill = document.getElementById('chrono-fill');
+  el.textContent = display;
+  el.className = 'chrono' + (chronoRestant <= 30 ? ' urgent' : '');
+  var pct = Math.round(chronoRestant / chronoTotal * 100);
+  fill.style.width = pct + '%';
+  fill.className = 'chrono-fill' + (chronoRestant <= 30 ? ' urgent' : '');
+}
+ 
+async function voirCorrection(){
+  stopChrono();
+  var reponse = document.getElementById('reponse-etudiant').value.trim();
+  document.getElementById('correction-wrap').className = 'correction-wrap show';
+  document.getElementById('reponse-wrap').className = 'reponse-wrap';
+  document.getElementById('chrono-wrap').style.display = 'none';
+ 
+  // Afficher les etapes de correction
+  afficherEtapes();
+ 
+  // Analyse IA
+  document.getElementById('analyse-texte').innerHTML = '<div class="loading"><span>Analyse de votre reponse en cours...</span></div>';
+ 
+  if(!reponse){
+    document.getElementById('analyse-texte').textContent = "Vous n'avez pas fourni de reponse. Consultez la correction ci-dessous pour vous entrainer.";
+    return;
+  }
+ 
+  try {
+    var prompt = "Tu es un formateur expert en formation d'Auxiliaires de Sante Veterinaire (ASV). " +
+      "Un etudiant ASV vient de repondre a un sujet d'entrainement pour son examen oral de certification. " +
+      "\n\nSujet : " + currentTip.titre +
+      "\nSituation : " + currentTip.situation +
+      "\nReponse attendue (etapes) : " + currentTip.etapes.join(' / ') +
+      "\n\nReponse de l'etudiant : " + reponse +
+      "\n\nDonne un retour pedagogique en 3 parties :" +
+      "\n1. Ce que l'etudiant a bien identifie (points positifs)" +
+      "\n2. Ce qui manque ou est incorrect (points a ameliorer)" +
+      "\n3. Un conseil pratique pour l'examen oral" +
+      "\nSois bienveillant, precis et concis. Maximum 200 mots. Ecris en francais simple.";
+ 
+    var response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        messages: [{role: "user", content: prompt}]
+      })
+    });
+ 
+    var data = await response.json();
+    var texte = data.content && data.content[0] ? data.content[0].text : "Analyse indisponible.";
+    document.getElementById('analyse-texte').textContent = texte;
+  } catch(err) {
+    document.getElementById('analyse-texte').textContent = "Analyse indisponible pour le moment. Consultez la correction ci-dessous.";
+  }
+ 
+  window.scrollTo(0, 0);
+}
+ 
+function passerDirectement(){
+  stopChrono();
+  document.getElementById('correction-wrap').className = 'correction-wrap show';
+  document.getElementById('reponse-wrap').className = 'reponse-wrap';
+  document.getElementById('chrono-wrap').style.display = 'none';
+  document.getElementById('analyse-texte').textContent = "Vous avez choisi de voir directement la correction. Etudiez les etapes et reessayez ce sujet plus tard.";
+  afficherEtapes();
+  window.scrollTo(0, 0);
+}
+ 
+function afficherEtapes(){
+  var etapesEl = document.getElementById('etapes-correction');
   etapesEl.innerHTML = '';
-  tip.etapes.forEach(function(e, i){
-    var li = document.createElement('li');
-    li.innerHTML = '<span class="etape-num ' + color + '">' + (i+1) + '</span><span>' + e + '</span>';
-    etapesEl.appendChild(li);
+  var color = currentTip.type === 'role' ? 'purple' : currentTip.type === 'cas' ? 'amber' : '';
+  currentTip.etapes.forEach(function(e, i){
+    var div = document.createElement('div');
+    div.className = 'etape-item';
+    div.innerHTML = '<span class="etape-num ' + color + '">' + (i+1) + '</span><span>' + e + '</span>';
+    etapesEl.appendChild(div);
   });
+  var alertEl = document.getElementById('correction-alert');
+  alertEl.textContent = currentTip.alerte ? '⚠️ ' + currentTip.alerte : '';
+  alertEl.style.display = currentTip.alerte ? 'block' : 'none';
+  var memoEl = document.getElementById('correction-memo');
+  memoEl.textContent = currentTip.memo ? '💡 ' + currentTip.memo : '';
+  memoEl.style.display = currentTip.memo ? 'block' : 'none';
+}
  
-  var alertEl = document.getElementById('tip-alert');
-  alertEl.textContent = tip.alerte ? '⚠️ ' + tip.alerte : '';
-  alertEl.style.display = tip.alerte ? 'block' : 'none';
- 
-  var memoEl = document.getElementById('tip-memo');
-  memoEl.textContent = tip.memo ? '💡 ' + tip.memo : '';
-  memoEl.style.display = tip.memo ? 'block' : 'none';
- 
-  display.className = 'show';
+function nouveauTirage(){
+  stopChrono();
+  document.getElementById('loterie-screen').style.display = 'block';
+  document.getElementById('sujet-card').className = 'sujet-card';
+  document.getElementById('reponse-wrap').className = 'reponse-wrap';
+  document.getElementById('correction-wrap').className = 'correction-wrap';
+  document.getElementById('chrono-wrap').style.display = 'none';
   window.scrollTo(0, 0);
 }
  
@@ -152,7 +318,7 @@ function toggleListe(){
     var item = document.createElement('div');
     item.className = 'liste-item';
     item.innerHTML = '<span style="font-size:16px">' + typeLabel + '</span><span>' + tip.titre + '</span>';
-    item.onclick = function(){ afficherTip(tip); liste.classList.remove('show'); window.scrollTo(0,0); };
+    item.onclick = function(){ afficherSujet(tip); };
     liste.appendChild(item);
   });
   liste.classList.add('show');
@@ -160,4 +326,3 @@ function toggleListe(){
 </script>
 </body>
 </html>
-
