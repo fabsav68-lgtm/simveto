@@ -2,424 +2,387 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SimVeto · Suite pédagogique ASV</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0d08">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PraxisVeto · Suite pedagogique ASV</title>
+<link rel="apple-touch-icon" href="SimVeto-icon.svg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="SimVeto">
-<link rel="apple-touch-icon" href="SimVeto-icon.svg">
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Karla:wght@300;400;500;600&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="apple-mobile-web-app-title" content="PraxisVeto">
+<meta name="theme-color" content="#0a0d08">
 <style>
-:root{
-  --bg:#0a0d08;--bg2:#121810;--card:rgba(255,255,255,.04);--bdr:rgba(255,255,255,.08);
-  --txt:#d8e8d0;--txt2:#4a6840;--em:#78d840;--em2:#50a820;
-  --amber:#e8a030;--red:#e84040;
-  --head:'Unbounded',sans-serif;--sans:'Karla',sans-serif;--mono:'Fira Mono',monospace;
-}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:var(--sans);background:var(--bg);color:var(--txt);
-  min-height:100vh;overflow-x:hidden;position:relative;
-}
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 70% 40% at 20% 0%,rgba(120,216,64,.06) 0%,transparent 55%),
-    radial-gradient(ellipse 40% 30% at 80% 90%,rgba(64,168,224,.04) 0%,transparent 50%);
-  background-image:
-    repeating-linear-gradient(0deg,rgba(120,216,64,.02) 0px,rgba(120,216,64,.02) 1px,transparent 1px,transparent 60px),
-    repeating-linear-gradient(90deg,rgba(120,216,64,.02) 0px,rgba(120,216,64,.02) 1px,transparent 1px,transparent 60px);
-}
-.wrap{max-width:720px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
-
-/* ── HEADER ── */
-.site-header{
-  padding:48px 24px 36px;text-align:center;
-  border-bottom:1px solid var(--bdr);margin-bottom:32px;
-}
-.badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(120,216,64,.08);border:1px solid rgba(120,216,64,.22);
-  color:var(--em);padding:4px 16px;border-radius:20px;
-  font-family:var(--mono);font-size:10px;letter-spacing:2px;
-  text-transform:uppercase;margin-bottom:16px;
-}
-.logo{
-  font-family:var(--head);font-size:clamp(42px,8vw,80px);
-  font-weight:800;letter-spacing:-3px;line-height:1;margin-bottom:10px;
-}
-.logo span{color:var(--em)}
-.tagline{
-  font-family:var(--mono);font-size:11px;letter-spacing:2px;
-  color:var(--txt2);text-transform:uppercase;margin-bottom:24px;
-}
-
-/* ── STATS ── */
-.stats{
-  display:flex;justify-content:center;gap:32px;flex-wrap:wrap;
-  margin-bottom:32px;
-}
-.stat-item{text-align:center}
-.stat-v{
-  font-family:var(--head);font-size:32px;font-weight:800;
-  color:var(--em);display:block;line-height:1;letter-spacing:-1px;
-}
-.stat-l{
-  font-family:var(--mono);font-size:9px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--txt2);display:block;margin-top:4px;
-}
-
-/* ── MODULES GRID ── */
-.section-title{
-  font-family:var(--mono);font-size:10px;letter-spacing:3px;
-  text-transform:uppercase;color:var(--txt2);
-  margin-bottom:16px;
-  display:flex;align-items:center;gap:12px;
-}
-.section-title::after{
-  content:'';flex:1;height:1px;background:var(--bdr);
-}
-.modules-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px;
-}
-.module-card{
-  background:var(--card);border:1.5px solid var(--bdr);border-radius:10px;
-  padding:18px;cursor:pointer;transition:all .2s;
-  text-decoration:none;color:inherit;display:block;
-  position:relative;overflow:hidden;
-  -webkit-tap-highlight-color:transparent;
-}
-.module-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:var(--em);opacity:.5;
-}
-.module-card:hover{
-  background:rgba(120,216,64,.06);
-  border-color:rgba(120,216,64,.3);
-  transform:translateY(-2px);
-}
-.module-card.featured{
-  grid-column:span 2;
-  background:rgba(120,216,64,.05);
-  border-color:rgba(120,216,64,.25);
-}
-.module-card.featured::before{opacity:1}
-.module-card.coming{opacity:.4;cursor:default}
-.module-card.coming:hover{transform:none;background:var(--card);border-color:var(--bdr)}
-.mod-num{
-  font-family:var(--mono);font-size:9px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--txt2);margin-bottom:8px;
-}
-.mod-icon{font-size:24px;display:block;margin-bottom:8px}
-.mod-name{
-  font-family:var(--head);font-size:16px;font-weight:700;
-  letter-spacing:-0.5px;margin-bottom:4px;color:var(--em);
-}
-.mod-ue{
-  font-family:var(--mono);font-size:9px;letter-spacing:1.5px;
-  text-transform:uppercase;color:var(--txt2);margin-bottom:8px;
-}
-.mod-desc{font-size:12px;color:var(--txt2);line-height:1.55}
-.mod-tag{
-  display:inline-block;margin-top:8px;
-  padding:2px 8px;border-radius:20px;
-  font-family:var(--mono);font-size:9px;letter-spacing:1px;
-  background:rgba(120,216,64,.1);color:var(--em);
-  border:1px solid rgba(120,216,64,.2);
-}
-.mod-tag.soon{
-  background:rgba(255,255,255,.04);color:var(--txt2);
-  border-color:var(--bdr);
-}
-
-/* ── ESPECES ── */
-.especes{
-  display:flex;gap:8px;flex-wrap:wrap;
-  justify-content:center;margin-bottom:32px;
-}
-.espece{
-  padding:8px 16px;border-radius:20px;
-  border:1.5px solid var(--bdr);background:rgba(255,255,255,.02);
-  font-size:13px;color:var(--txt2);
-  display:flex;align-items:center;gap:6px;
-}
-.espece.active{
-  border-color:rgba(120,216,64,.35);
-  background:rgba(120,216,64,.08);
-  color:var(--em);
-}
-
-/* ── INSTALL PWA ── */
-.install-banner{
-  background:rgba(120,216,64,.06);
-  border:1px solid rgba(120,216,64,.2);
-  border-radius:10px;padding:16px 20px;
-  display:flex;align-items:center;gap:14px;
-  margin-bottom:24px;
-  -webkit-tap-highlight-color:transparent;
-  cursor:pointer;
-  transition:background .2s;
-}
-.install-banner:hover{background:rgba(120,216,64,.1)}
-.install-icon{font-size:28px;flex-shrink:0}
-.install-txt{flex:1}
-.install-txt strong{
-  display:block;font-size:14px;font-weight:600;
-  color:var(--em);margin-bottom:3px;
-}
-.install-txt span{font-size:12px;color:var(--txt2);line-height:1.5}
-.install-arrow{
-  font-family:var(--mono);font-size:16px;color:var(--em);flex-shrink:0;
-}
-
-/* ── FOOTER ── */
-footer{
-  border-top:1px solid var(--bdr);
-  padding:24px 0;margin-top:40px;
-  text-align:center;
-}
-.footer-logo{
-  font-family:var(--head);font-size:20px;font-weight:800;
-  letter-spacing:-1px;color:var(--txt2);margin-bottom:6px;
-}
-.footer-logo span{color:var(--em)}
-.footer-txt{
-  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;
-  color:var(--txt2);text-transform:uppercase;
-}
-.pilot-banner{
-  background:rgba(232,160,48,.06);border:1px solid rgba(232,160,48,.2);
-  border-radius:8px;padding:10px 14px;margin-bottom:20px;
-  font-family:var(--mono);font-size:10px;letter-spacing:1.5px;
-  text-transform:uppercase;color:var(--amber);text-align:center;
-}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.fadeup{animation:fadeUp .4s ease forwards}
-@media(max-width:480px){
-  .modules-grid{grid-template-columns:1fr}
-  .module-card.featured{grid-column:span 1}
-  .stats{gap:20px}
-}
+html,body{height:100%;overflow:hidden;background:#0a0d08}
+#home{position:fixed;inset:0;background:linear-gradient(160deg,#0a0d08 0%,#121810 55%,#0a0d08 100%);color:#d8e8d0;overflow-y:auto;-webkit-overflow-scrolling:touch;font-family:system-ui,sans-serif;display:flex;flex-direction:column;}
+#module-frame{position:fixed;inset:0;width:100%;height:100%;border:none;display:none;background:#0a0d08;z-index:100;}
+#btn-retour{position:fixed;top:env(safe-area-inset-top, 12px);left:16px;z-index:200;display:none;background:rgba(10,13,8,.9);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:8px 16px;color:#d8e8d0;font-size:14px;font-weight:600;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-family:system-ui,sans-serif;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(10,13,8,.9);position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.nav-logo{font-size:22px;font-weight:700;color:#d8e8d0;font-family:Georgia,serif}
+.nav-logo span{color:#78d840}
+.nav-tag{font-size:10px;letter-spacing:2px;color:#4a6840;border:1px solid rgba(255,255,255,.07);padding:3px 10px;border-radius:20px;font-family:monospace}
+.hero{text-align:center;padding:48px 24px 36px}
+.hero-badge{display:inline-block;background:rgba(120,216,64,.1);border:1px solid rgba(120,216,64,.25);color:#78d840;padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:2px;font-family:monospace;margin-bottom:18px}
+.hero h1{font-family:Georgia,serif;font-size:clamp(32px,7vw,60px);font-weight:300;line-height:1.1;letter-spacing:-1px;margin-bottom:14px}
+.hero h1 em{font-style:italic;color:#78d840}
+.hero h1 strong{font-weight:700}
+.hero p{font-size:15px;color:#4a6840;line-height:1.75;max-width:440px;margin:0 auto}
+.modules-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 40px;max-width:680px;margin:0 auto;width:100%;}
+@media(max-width:380px){.modules-grid{grid-template-columns:1fr}}
+.module-card{border-radius:16px;padding:18px 16px;border:1.5px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);display:flex;flex-direction:column;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,opacity .15s;user-select:none;-webkit-user-select:none;}
+.module-card:active{transform:scale(.97);opacity:.85}
+.module-num{font-family:monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.2);margin-bottom:10px}
+.module-icon{font-size:28px;margin-bottom:8px}
+.module-name{font-size:20px;font-weight:700;letter-spacing:-0.5px;margin-bottom:3px;line-height:1}
+.module-sub{font-size:11px;color:#4a6840;margin-bottom:8px}
+.module-desc{font-size:12px;color:#4a6840;line-height:1.6;flex:1;margin-bottom:12px}
+.module-btn{display:block;text-align:center;padding:9px;border-radius:8px;font-size:12px;font-weight:700;border:1.5px solid transparent;}
+footer{border-top:1px solid rgba(255,255,255,.07);padding:24px 20px;text-align:center;font-size:11px;color:#4a6840;font-family:monospace;}
 </style>
+<script>
+(function(){
+  var CODES = ['PRAXIS-ASV-001','PRAXIS-ASV-002','PRAXIS-ASV-003','PRAXIS-ASV-004','PRAXIS-ASV-005',
+    'PRAXIS-ASV-006','PRAXIS-ASV-007','PRAXIS-ASV-008','PRAXIS-ASV-009','PRAXIS-ASV-010',
+    'PRAXIS-ASV-011','PRAXIS-ASV-012','PRAXIS-ASV-013','PRAXIS-ASV-014','PRAXIS-ASV-015',
+    'PRAXIS-ASV-016','PRAXIS-ASV-017','PRAXIS-ASV-018','PRAXIS-ASV-019','PRAXIS-ASV-020',
+    'PRAXIS-ASV-021','PRAXIS-ASV-022','PRAXIS-ASV-023','PRAXIS-ASV-024','PRAXIS-ASV-025',
+    'PRAXIS-ASV-026','PRAXIS-ASV-027','PRAXIS-ASV-028','PRAXIS-ASV-029','PRAXIS-ASV-030',
+    'PRAXIS-ASV-031','PRAXIS-ASV-032','PRAXIS-ASV-033','PRAXIS-ASV-034','PRAXIS-ASV-035',
+    'PRAXIS-ASV-036','PRAXIS-ASV-037','PRAXIS-ASV-038','PRAXIS-ASV-039','PRAXIS-ASV-040',
+    'PRAXIS-ASV-041','PRAXIS-ASV-042','PRAXIS-ASV-043','PRAXIS-ASV-044','PRAXIS-ASV-045',
+    'PRAXIS-ASV-046','PRAXIS-ASV-047','PRAXIS-ASV-048','PRAXIS-ASV-049','PRAXIS-ASV-050',
+    'PRAXIS-VETO-FORM-01'];
+  var code = sessionStorage.getItem('praxisveto_code');
+  if(!code || CODES.indexOf(code) === -1){
+    window.location.replace('acces-veto.html');
+  }
+})();
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState === 'hidden'){
+    sessionStorage.removeItem('praxisveto_code');
+    sessionStorage.removeItem('praxisveto_promo');
+  }
+});
+</script>
 </head>
 <body>
-<div class="wrap">
 
-  <!-- HEADER -->
-  <div class="site-header fadeup">
-    <div class="badge">🐾 Suite pédagogique ASV · Version pilote</div>
-    <div class="logo">Sim<span>Veto</span></div>
-    <div class="tagline">Auxiliaire de Santé Vétérinaire · Référentiel BTS ASV</div>
+<button id="btn-retour" onclick="retourAccueil()">PraxisVeto</button>
+<iframe id="module-frame" src="" allowfullscreen></iframe>
 
-    <!-- Stats -->
-    <div class="stats">
-      <div class="stat-item">
-        <span class="stat-v" id="nb-modules">4</span>
-        <span class="stat-l">Modules pilotes</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-v">4</span>
-        <span class="stat-l">Espèces</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-v">PWA</span>
-        <span class="stat-l">iPhone · Android</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-v">IA</span>
-        <span class="stat-l">Analyse clinique</span>
-      </div>
-    </div>
+<div id="home">
+  <nav>
+    <div class="nav-logo">Praxis<span>Veto</span></div>
+    <div class="nav-tag">ASV 2026</div>
+  </nav>
 
-    <!-- Espèces -->
-    <div class="especes">
-      <div class="espece active">🐕 Chien</div>
-      <div class="espece">🐈 Chat</div>
-      <div class="espece">🐇 NAC</div>
-      <div class="espece">🐴 Équin</div>
-    </div>
+  <div class="hero">
+    <div class="hero-badge">Suite pedagogique ASV - 9 modules</div>
+    <h1><em>Le soin animal</em><br><strong>s'apprend</strong><br>par la pratique</h1>
+    <p>Referentiel CAFASV RNCP40344 - UC1 a UC4</p>
   </div>
 
-  <!-- BANNIÈRE PILOTE -->
-  <div class="pilot-banner fadeup">
-    🧪 Version pilote · En collaboration avec référent vétérinaire · Contenu en cours de validation
-  </div>
+  <div class="modules-grid">
 
-  <!-- INSTALL PWA -->
-  <div class="install-banner fadeup" onclick="installPWA()">
-    <div class="install-icon">📲</div>
-    <div class="install-txt">
-      <strong>Installer SimVeto sur votre écran d'accueil</strong>
-      <span>Fonctionne hors connexion · iPhone et Android · Partager → Sur l'écran d'accueil</span>
+    <div class="module-card" onclick="ouvrirModule('SimAccueil-Veto.html')" style="border-color:rgba(120,216,64,.3);grid-column:span 2">
+      <div class="module-num">UC1 - MODULE COMPLET</div>
+      <div class="module-icon">🏥</div>
+      <div class="module-name" style="color:#78d840">SimAccueil</div>
+      <div class="module-sub">UC1 - Conseiller la clientele - CAFASV RNCP40344</div>
+      <div class="module-desc">Les 8 competences UC1 : accueil, triage urgences, nutrition, antiparasitaires, reglementation, conflits CNV, devis, communication.</div>
+      <div class="module-btn" style="background:rgba(120,216,64,.1);color:#78d840;border-color:rgba(120,216,64,.3)">Ouvrir</div>
     </div>
-    <div class="install-arrow">→</div>
-  </div>
 
-  <!-- MODULES -->
-  <div class="section-title fadeup">Modules disponibles</div>
+    <div class="module-card" onclick="ouvrirModule('SimVeto-Diabete-Canin.html')" style="border-color:rgba(232,48,48,.3);grid-column:span 2">
+      <div class="module-num">MODULE PILOTE</div>
+      <div class="module-icon">🩸</div>
+      <div class="module-name" style="color:#e83030">SimGlyco Canin</div>
+      <div class="module-sub">Diabete - Insulinotherapie - BTS ASV</div>
+      <div class="module-desc">Glycemie du chien diabetique, Caninsulin, reconnaissance des urgences hypoglycemiques et cetoacidosiques.</div>
+      <div class="module-btn" style="background:rgba(232,48,48,.1);color:#e83030;border-color:rgba(232,48,48,.3)">Ouvrir</div>
+    </div>
 
-  <div class="modules-grid fadeup">
+    <div class="module-card" onclick="ouvrirModule('SimContention-Veto.html')" style="border-color:rgba(232,160,48,.3)">
+      <div class="module-num">MODULE 02</div>
+      <div class="module-icon">⚠️</div>
+      <div class="module-name" style="color:#e8a030">SimContention</div>
+      <div class="module-sub">Animal hostile - Protocoles - Securite</div>
+      <div class="module-desc">Signaux d'alerte, protocole de contention, materiel adapte, obligations legales animal mordeur.</div>
+      <div class="module-btn" style="background:rgba(232,160,48,.1);color:#e8a030;border-color:rgba(232,160,48,.3)">Ouvrir</div>
+    </div>
 
-    <!-- Module UC1 Accueil — featured -->
-    <a class="module-card featured" href="SimAccueil-Veto.html">
-      <div class="mod-num">UC1 · MODULE COMPLET</div>
-      <span class="mod-icon">🏥</span>
-      <div class="mod-name">SimAccueil</div>
-      <div class="mod-ue">UC1 · Conseiller la clientèle · CAFASV RNCP40344</div>
-      <div class="mod-desc">Les 8 compétences UC1 : accueil, triage urgences, nutrition, antiparasitaires, réglementation, conflits CNV, devis, communication.</div>
-      <span class="mod-tag">8 compétences · 6 quiz · 3 cas conflits</span>
-    </a>
+    <div class="module-card" onclick="ouvrirModule('SimComm-Veto.html')" style="border-color:rgba(120,216,64,.3)">
+      <div class="module-num">MODULE 03</div>
+      <div class="module-icon">🐾</div>
+      <div class="module-name" style="color:#78d840">SimComm</div>
+      <div class="module-sub">Langage animal - Premiers contacts</div>
+      <div class="module-desc">Lire le langage corporel du chien, chat et NAC. Protocole d'approche. Gerer le proprietaire anxieux.</div>
+      <div class="module-btn" style="background:rgba(120,216,64,.1);color:#78d840;border-color:rgba(120,216,64,.3)">Ouvrir</div>
+    </div>
 
-    <!-- Module pilote — FEATURED -->
-    <a class="module-card featured" href="SimVeto-Diabete-Canin.html">
-      <div class="mod-num">MODULE PILOTE</div>
-      <span class="mod-icon">🩸</span>
-      <div class="mod-name">SimGlyco Canin</div>
-      <div class="mod-ue">Diabète · Insulinothérapie · BTS ASV</div>
-      <div class="mod-desc">Glycémie du chien diabétique, Caninsulin®, reconnaissance des urgences hypoglycémiques et cétoacidosiques.</div>
-      <span class="mod-tag">3 cas cliniques · 6 questions</span>
-    </a>
+    <div class="module-card" onclick="ouvrirModule('SimJuridique-Veto.html')" style="border-color:rgba(160,96,255,.3)">
+      <div class="module-num">MODULE 04</div>
+      <div class="module-icon">⚖️</div>
+      <div class="module-name" style="color:#a060ff">SimJuridique</div>
+      <div class="module-sub">CV1 - CV2 - CV3 - Categories</div>
+      <div class="module-desc">Procedure animal mordeur, categories 1 et 2, role de l'ASV vs veterinaire, cas pratiques legaux.</div>
+      <div class="module-btn" style="background:rgba(160,96,255,.1);color:#a060ff;border-color:rgba(160,96,255,.3)">Ouvrir</div>
+    </div>
 
-    <!-- Nouveaux modules -->
-    <a class="module-card" href="SimContention-Veto.html">
-      <div class="mod-num">MODULE 02</div>
-      <span class="mod-icon">⚠️</span>
-      <div class="mod-name">SimContention</div>
-      <div class="mod-ue">Animal hostile · Protocoles · Sécurité</div>
-      <div class="mod-desc">Signaux d'alerte, protocole de contention, matériel adapté, obligations légales animal mordeur.</div>
-      <span class="mod-tag">7 signaux · 3 cas · 6 questions</span>
-    </a>
+    <div class="module-card" onclick="ouvrirModule('SimAdmin-Veto.html')" style="border-color:rgba(56,189,248,.3)">
+      <div class="module-num">MODULE 05</div>
+      <div class="module-icon">📋</div>
+      <div class="module-name" style="color:#38bdf8">SimAdmin</div>
+      <div class="module-sub">UC2 - Gestion administrative - CAFASV</div>
+      <div class="module-desc">Dossier patient, caisse, stocks, logiciel veterinaire, RGPD, ordonnances.</div>
+      <div class="module-btn" style="background:rgba(56,189,248,.1);color:#38bdf8;border-color:rgba(56,189,248,.3)">Ouvrir</div>
+    </div>
 
-    <a class="module-card" href="SimComm-Veto.html">
-      <div class="mod-num">MODULE 03</div>
-      <span class="mod-icon">🐾</span>
-      <div class="mod-name">SimComm</div>
-      <div class="mod-ue">Langage animal · Premiers contacts</div>
-      <div class="mod-desc">Lire le langage corporel du chien, chat et NAC. Protocole d'approche. Gérer le propriétaire anxieux.</div>
-      <span class="mod-tag">3 espèces · 5 étapes · 5 questions</span>
-    </a>
+    <div class="module-card" onclick="ouvrirModule('SimHygiene-Veto.html')" style="border-color:rgba(64,200,120,.3)">
+      <div class="module-num">MODULE 06</div>
+      <div class="module-icon">🧹</div>
+      <div class="module-name" style="color:#40c878">SimHygiene</div>
+      <div class="module-sub">UC3 - Hygiene et securite - CAFASV</div>
+      <div class="module-desc">Nettoyage, desinfection, sterilisation, DASRI, risques professionnels, EPI.</div>
+      <div class="module-btn" style="background:rgba(64,200,120,.1);color:#40c878;border-color:rgba(64,200,120,.3)">Ouvrir</div>
+    </div>
 
-    <a class="module-card" href="SimJuridique-Veto.html">
-      <div class="mod-num">MODULE 04</div>
-      <span class="mod-icon">⚖️</span>
-      <div class="mod-name">SimJuridique</div>
-      <div class="mod-ue">CV1 · CV2 · CV3 · Catégories</div>
-      <div class="mod-desc">Procédure animal mordeur, catégories 1 et 2, rôle de l'ASV vs vétérinaire, cas pratiques légaux.</div>
-      <span class="mod-tag">⚠️ À valider · 3 cas · 5 questions</span>
-    </a>
+    <div class="module-card" onclick="ouvrirModule('SimVitaux-Veto.html')" style="border-color:rgba(240,192,64,.3);grid-column:span 2">
+      <div class="module-num">MODULE 08 - UC4</div>
+      <div class="module-icon">📊</div>
+      <div class="module-name" style="color:#f0c040">SimVitaux</div>
+      <div class="module-sub">UC4 - Constantes vitales - CAFASV</div>
+      <div class="module-desc">FC, FR, T, TRC, PA - normes par espece, techniques de mesure, signes d'urgence chien/chat/lapin/NAC.</div>
+      <div class="module-btn" style="background:rgba(240,192,64,.1);color:#f0c040;border-color:rgba(240,192,64,.3)">Ouvrir</div>
+    </div>
 
-    <!-- Module Contention -->
-    <a class="module-card" href="SimContention-Veto.html">
-      <div class="mod-num">MODULE 02</div>
-      <span class="mod-icon">⚠️</span>
-      <div class="mod-name">SimContention</div>
-      <div class="mod-ue">Animal hostile · Signaux · Obligations légales</div>
-      <div class="mod-desc">Reconnaître les signaux d'alerte chien/chat, protocoles de contention, CV1/CV2/CV3 animal mordeur.</div>
-      <span class="mod-tag">5 signaux · 5 quiz · Légal</span>
-    </a>
-
-    <!-- Module Communication -->
-    <a class="module-card" href="SimComm-Veto.html">
-      <div class="mod-num">MODULE 03</div>
-      <span class="mod-icon">🤝</span>
-      <div class="mod-name">SimComm</div>
-      <div class="mod-ue">Communication animal · Approche · Stress</div>
-      <div class="mod-desc">Premiers contacts avec un animal inconnu, langage corporel, approche progressive, gestion du stress.</div>
-      <span class="mod-tag">Chien · Chat · NAC</span>
-    </a>
-
-    <!-- Module Juridique -->
-    <a class="module-card" href="SimJuridique-Veto.html">
-      <div class="mod-num">MODULE 04</div>
-      <span class="mod-icon">⚖️</span>
-      <div class="mod-name">SimJuridique</div>
-      <div class="mod-ue">Droit vétérinaire · Rôle ASV · Responsabilités</div>
-      <div class="mod-desc">Obligations légales ASV, responsabilité civile, confidentialité, actes autorisés et délégation vétérinaire.</div>
-      <span class="mod-tag">Cadre légal ASV 2026</span>
-    </a>
-
-    <!-- Module Admin -->
-    <a class="module-card" href="SimAdmin-Veto.html">
-      <div class="mod-num">MODULE 05</div>
-      <span class="mod-icon">📋</span>
-      <div class="mod-name">SimAdmin</div>
-      <div class="mod-ue">UC2 · Gestion administrative · CAFASV</div>
-      <div class="mod-desc">Dossier patient, caisse, stocks, logiciel vétérinaire, RGPD, ordonnances.</div>
-      <span class="mod-tag">6 items · 6 quiz · 2 cas</span>
-    </a>
-
-    <!-- Module Hygiène -->
-    <a class="module-card" href="SimHygiene-Veto.html">
-      <div class="mod-num">MODULE 06</div>
-      <span class="mod-icon">🧹</span>
-      <div class="mod-name">SimHygiène</div>
-      <div class="mod-ue">UC3 · Hygiène et sécurité · CAFASV</div>
-      <div class="mod-desc">Nettoyage, désinfection, stérilisation, DASRI, risques professionnels, EPI.</div>
-      <span class="mod-tag">4 niveaux · 6 quiz · DASRI</span>
-    </a>
-
-    <!-- Module SimVitaux -->
-    <a class="module-card" href="SimVitaux-Veto.html">
-      <div class="mod-num">MODULE 08 · UC4</div>
-      <span class="mod-icon">📊</span>
-      <div class="mod-name">SimVitaux</div>
-      <div class="mod-ue">UC4 · Constantes vitales · CAFASV</div>
-      <div class="mod-desc">FC, FR, T°, TRC, PA — normes par espèce, techniques de mesure, signes d'urgence chien/chat/lapin/NAC.</div>
-      <span class="mod-tag">4 espèces · 6 quiz · Tableau comparatif</span>
-    </a>
-
-    <div class="module-card coming">
-      <div class="mod-num">PROCHAINEMENT</div>
-      <span class="mod-icon">📚</span>
-      <div class="mod-name">SimRévisionASV</div>
-      <div class="mod-ue">Toutes UC · QCM BTS ASV</div>
-      <div class="mod-desc">Questions par UC, cas cliniques, fiches mémo.</div>
-      <span class="mod-tag soon">À venir</span>
+    <div class="module-card" onclick="ouvrirBinome()" style="border-color:rgba(120,216,64,.4);background:rgba(120,216,64,.05);grid-column:span 2">
+      <div class="module-num">DUETISTE ASV</div>
+      <div class="module-icon">🤝</div>
+      <div class="module-name" style="color:#78d840">Mon Duetiste</div>
+      <div class="module-sub">Apprendre a deux - progresser ensemble</div>
+      <div class="module-desc">Liez-vous a un autre etudiant ASV abonne - explorez les memes modules - comparez vos scores et progressez en binome.</div>
+      <div class="module-btn" style="background:rgba(120,216,64,.2);color:#78d840;border-color:rgba(120,216,64,.4)">Choisir mon Duetiste</div>
     </div>
 
   </div>
 
-  <!-- PARTAGER -->
-  <div style="text-align:center;margin-bottom:24px">
-    <a href="SimVeto-Share.html" style="display:inline-flex;align-items:center;gap:8px;padding:11px 24px;border-radius:30px;background:rgba(120,216,64,.08);border:1.5px solid rgba(120,216,64,.25);color:#78d840;font-family:'Fira Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s">
-      📤 Partager avec votre référent
-    </a>
-  </div>
-
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Sim<span>Veto</span></div>
-    <div class="footer-txt">contact@simcare.fr · Formateur certifié · Auto-entrepreneur</div>
-    <div style="margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--txt2)">
-      Aussi : <a href="https://fabsav68-lgtm.github.io/simcare" style="color:var(--em);text-decoration:none">SimCare IFSI →</a>
-    </div>
+    Formateur certifie PRAP 2S - BCI - contact@praxiscare.fr<br>
+    Referentiel CAFASV RNCP40344 - 2026
+    <br><a href="stats-formateur-veto.html" style="color:rgba(120,216,64,.3);font-size:10px;text-decoration:none">acces formateur</a>
   </footer>
+</div>
 
+<!-- POPUP BINOME -->
+<div id="binome-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,13,8,.95);z-index:300;align-items:center;justify-content:center;">
+  <div style="background:#0d150a;border:1px solid rgba(120,216,64,.2);border-radius:16px;padding:24px;max-width:320px;width:90%;text-align:center">
+    <h2 style="color:#78d840;font-size:18px;margin-bottom:8px">Mon Duetiste ASV</h2>
+    <p style="color:#4a6840;font-size:12px;margin-bottom:16px">Entrez le code de votre binome. Les deux etudiants doivent etre abonnes.</p>
+    <div id="binome-actuel" style="background:rgba(120,216,64,.08);border:1px solid rgba(120,216,64,.15);border-radius:8px;padding:10px;margin-bottom:16px;font-size:13px;color:#78d840"></div>
+    <input id="binome-input" placeholder="PRAXIS-ASV-XXX" style="width:100%;padding:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#d8e8d0;font-size:14px;text-align:center;text-transform:uppercase;margin-bottom:8px">
+    <button onclick="lierBinome()" style="width:100%;padding:10px;background:#78d840;color:#0a0d08;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-bottom:8px">Lier ce binome</button>
+    <button onclick="voirScoreBinome()" style="width:100%;padding:10px;background:rgba(120,216,64,.1);color:#78d840;border:1px solid rgba(120,216,64,.2);border-radius:8px;font-weight:700;cursor:pointer;margin-bottom:8px">Voir notre score commun</button>
+    <div id="binome-msg" style="font-size:12px;margin-bottom:12px"></div>
+    <div id="binome-score" style="display:none;background:rgba(255,255,255,.04);border-radius:8px;padding:12px;margin-bottom:12px;text-align:left"></div>
+    <button onclick="fermerBinome()" style="background:none;border:1px solid rgba(255,255,255,.1);color:#4a6840;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:12px">Fermer</button>
+  </div>
 </div>
 
 <script>
-// PWA Install
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', function(e) {
-  e.preventDefault();
-  deferredPrompt = e;
-});
+var _moduleStart = null;
+var _moduleNom = null;
+const SUPABASE_URL = "https://uhbbwtxmsomqhuvzvoxy.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmJ3dHhtc29tcWh1dnp2b3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1MTI2OTIsImV4cCI6MjA5OTA4ODY5Mn0.WsH1qUbwjL8eF0y5vUBqG8lvpE4UgbNd3k2JbBGVyyY";
 
-function installPWA() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function() { deferredPrompt = null; });
-  } else {
-    alert('Pour installer SimVeto :\niPhone Safari → Partager → Sur l\'écran d\'accueil\nAndroid Chrome → Menu → Ajouter à l\'écran d\'accueil');
+function trackModule(nom){
+  var stats = JSON.parse(localStorage.getItem('praxisveto_stats') || '{}');
+  if(!stats.modules) stats.modules = {};
+  stats.modules[nom] = (stats.modules[nom] || 0) + 1;
+  localStorage.setItem('praxisveto_stats', JSON.stringify(stats));
+}
+
+function ouvrirModule(fichier){
+  var frame = document.getElementById('module-frame');
+  var btnRetour = document.getElementById('btn-retour');
+  var home = document.getElementById('home');
+  var nomModule = fichier.replace('.html','').replace(/-Veto$/,'').replace(/Sim/,'Sim');
+  trackModule(nomModule);
+  _moduleStart = Date.now();
+  _moduleNom = nomModule;
+  var codeEtudiant = sessionStorage.getItem('praxisveto_code');
+  fetch(SUPABASE_URL + "/rest/v1/praxis", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY
+    },
+    body: JSON.stringify({
+      student_code: codeEtudiant,
+      app: "praxisveto",
+      module: nomModule,
+      step: "ouverture",
+      session_id: codeEtudiant + "_" + Date.now()
+    })
+  });
+  frame.src = fichier;
+  frame.style.display = 'block';
+  btnRetour.style.display = 'block';
+  home.style.display = 'none';
+  window.scrollTo(0,0);
+}
+
+function envoyerTempsModule(){
+  if(_moduleStart && _moduleNom){
+    var tempsPasse = Date.now() - _moduleStart;
+    var codeEtudiant = sessionStorage.getItem('praxisveto_code');
+    fetch(SUPABASE_URL + "/rest/v1/praxis", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + SUPABASE_KEY
+      },
+      body: JSON.stringify({
+        student_code: codeEtudiant,
+        app: "praxisveto",
+        module: _moduleNom,
+        step: "fermeture",
+        time_spent_ms: tempsPasse,
+        session_id: codeEtudiant + "_" + _moduleStart
+      })
+    });
+    _moduleStart = null;
+    _moduleNom = null;
   }
 }
 
-// Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(function(){});
+function retourAccueil(){
+  var frame = document.getElementById('module-frame');
+  var btnRetour = document.getElementById('btn-retour');
+  var home = document.getElementById('home');
+  frame.style.display = 'none';
+  envoyerTempsModule();
+  frame.src = 'about:blank';
+  btnRetour.style.display = 'none';
+  home.style.display = 'flex';
+}
+
+window.addEventListener('message', function(e){
+  if(e.data && e.data.type === 'navigate') ouvrirModule(e.data.url);
+  if(e.data && e.data.type === 'retour') retourAccueil();
+});
+
+document.getElementById('module-frame').addEventListener('load', function(){
+  try {
+    var frameUrl = this.contentWindow.location.href;
+    if(frameUrl && frameUrl !== 'about:blank'){
+      document.getElementById('btn-retour').style.display = 'block';
+    }
+  } catch(e){}
+});
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.getRegistrations().then(function(regs){
+    regs.forEach(function(reg){ reg.unregister(); });
+  });
+}
+if('caches' in window){
+  caches.keys().then(function(keys){ keys.forEach(function(k){ caches.delete(k); }); });
+}
+
+var _inactivityTimer = null;
+function resetInactivityTimer(){
+  clearTimeout(_inactivityTimer);
+  _inactivityTimer = setTimeout(function(){
+    envoyerTempsModule();
+    sessionStorage.removeItem('praxisveto_code');
+    sessionStorage.removeItem('praxisveto_promo');
+    window.location.replace('acces-veto.html');
+  }, 5 * 60 * 1000);
+}
+document.addEventListener('click', resetInactivityTimer);
+document.addEventListener('touchstart', resetInactivityTimer);
+document.addEventListener('keypress', resetInactivityTimer);
+resetInactivityTimer();
+
+// BINOME ASV
+var CODES_VALIDES_VETO = ['PRAXIS-ASV-001','PRAXIS-ASV-002','PRAXIS-ASV-003','PRAXIS-ASV-004','PRAXIS-ASV-005',
+  'PRAXIS-ASV-006','PRAXIS-ASV-007','PRAXIS-ASV-008','PRAXIS-ASV-009','PRAXIS-ASV-010',
+  'PRAXIS-ASV-011','PRAXIS-ASV-012','PRAXIS-ASV-013','PRAXIS-ASV-014','PRAXIS-ASV-015',
+  'PRAXIS-ASV-016','PRAXIS-ASV-017','PRAXIS-ASV-018','PRAXIS-ASV-019','PRAXIS-ASV-020',
+  'PRAXIS-ASV-021','PRAXIS-ASV-022','PRAXIS-ASV-023','PRAXIS-ASV-024','PRAXIS-ASV-025',
+  'PRAXIS-ASV-026','PRAXIS-ASV-027','PRAXIS-ASV-028','PRAXIS-ASV-029','PRAXIS-ASV-030',
+  'PRAXIS-ASV-031','PRAXIS-ASV-032','PRAXIS-ASV-033','PRAXIS-ASV-034','PRAXIS-ASV-035',
+  'PRAXIS-ASV-036','PRAXIS-ASV-037','PRAXIS-ASV-038','PRAXIS-ASV-039','PRAXIS-ASV-040',
+  'PRAXIS-ASV-041','PRAXIS-ASV-042','PRAXIS-ASV-043','PRAXIS-ASV-044','PRAXIS-ASV-045',
+  'PRAXIS-ASV-046','PRAXIS-ASV-047','PRAXIS-ASV-048','PRAXIS-ASV-049','PRAXIS-ASV-050'];
+
+function ouvrirBinome(){
+  var overlay = document.getElementById('binome-overlay');
+  overlay.style.display = 'flex';
+  var binomeActuel = localStorage.getItem('praxisveto_binome');
+  var el = document.getElementById('binome-actuel');
+  el.textContent = binomeActuel ? 'Binome actuel : ' + binomeActuel : 'Aucun binome lie pour le moment';
+  document.getElementById('binome-score').style.display = 'none';
+  document.getElementById('binome-msg').textContent = '';
+}
+
+function fermerBinome(){
+  document.getElementById('binome-overlay').style.display = 'none';
+}
+
+function lierBinome(){
+  var monCode = sessionStorage.getItem('praxisveto_code');
+  var codeBinome = document.getElementById('binome-input').value.trim().toUpperCase();
+  var msg = document.getElementById('binome-msg');
+  if(!codeBinome){ msg.style.color='#e84040'; msg.textContent='Entrez un code binome.'; return; }
+  if(codeBinome === monCode){ msg.style.color='#e84040'; msg.textContent='Vous ne pouvez pas vous lier a vous-meme !'; return; }
+  if(CODES_VALIDES_VETO.indexOf(codeBinome) === -1){ msg.style.color='#e84040'; msg.textContent='Ce code n\'est pas un abonne actif.'; return; }
+  localStorage.setItem('praxisveto_binome', codeBinome);
+  fetch(SUPABASE_URL + "/rest/v1/praxis", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY
+    },
+    body: JSON.stringify({
+      student_code: monCode,
+      app: "praxisveto",
+      module: "binome",
+      step: codeBinome,
+      session_id: monCode + "_binome_" + Date.now()
+    })
+  });
+  msg.style.color='#78d840';
+  msg.textContent='Binome ' + codeBinome + ' lie avec succes !';
+  document.getElementById('binome-actuel').textContent = 'Binome actuel : ' + codeBinome;
+}
+
+function voirScoreBinome(){
+  var monCode = sessionStorage.getItem('praxisveto_code');
+  var codeBinome = localStorage.getItem('praxisveto_binome');
+  var scoreDiv = document.getElementById('binome-score');
+  var msg = document.getElementById('binome-msg');
+  if(!codeBinome){ msg.style.color='#e84040'; msg.textContent='Liez d\'abord un binome.'; return; }
+  msg.style.color='#4a6840'; msg.textContent='Chargement...';
+  fetch(SUPABASE_URL + "/rest/v1/praxis?student_code=in.(" + monCode + "," + codeBinome + ")&step=eq.ouverture&select=student_code,module", {
+    headers: {
+      "apikey": SUPABASE_KEY,
+      "Authorization": "Bearer " + SUPABASE_KEY
+    }
+  }).then(function(r){ return r.json(); }).then(function(data){
+    var moiMods = data.filter(function(d){ return d.student_code===monCode; }).map(function(d){ return d.module; });
+    var binomeMods = data.filter(function(d){ return d.student_code===codeBinome; }).map(function(d){ return d.module; });
+    var communs = [...new Set(moiMods.filter(function(m){ return binomeMods.indexOf(m)!==-1; }))];
+    var badge = communs.length>=8 ? 'Duetiste Expert ASV' : communs.length>=4 ? 'Duetiste Actif' : communs.length>=1 ? 'Duetiste Debutant' : 'Duetiste Inscrit';
+    scoreDiv.style.display = 'block';
+    scoreDiv.innerHTML = '<div style="text-align:center;font-size:18px;color:#78d840;margin-bottom:8px">' + badge + '</div>' +
+      '<div style="color:#4a6840;font-size:12px">Modules explores en commun : <strong style="color:#78d840">' + communs.length + '</strong></div>' +
+      '<div style="color:#4a6840;font-size:12px;margin-top:4px">Binome : <strong style="color:#a060ff">' + codeBinome + '</strong></div>' +
+      (communs.length>0 ? '<div style="margin-top:8px;font-size:11px;color:#4a6840">' + communs.join(', ') + '</div>' : '');
+    msg.textContent = '';
+  });
 }
 </script>
 </body>
