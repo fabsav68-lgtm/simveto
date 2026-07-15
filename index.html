@@ -277,6 +277,7 @@ function retourAccueil(){
 window.addEventListener('message', function(e){
   if(e.data && e.data.type === 'navigate') ouvrirModule(e.data.url);
   if(e.data && e.data.type === 'retour') retourAccueil();
+  if(e.data && e.data.type === 'activite') resetInactivityTimer();
 });
 
 document.getElementById('module-frame').addEventListener('load', function(){
