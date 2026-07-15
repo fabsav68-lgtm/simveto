@@ -12,14 +12,14 @@ html,body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 body{font-family:system-ui,sans-serif;background:var(--bg);color:var(--txt);padding:16px;}
 h1{font-family:Georgia,serif;font-size:22px;color:var(--em);margin-bottom:4px;}
 .sub{font-size:11px;color:var(--txt2);margin-bottom:20px;font-family:monospace;}
- 
+
 /* LOTERIE */
 .loterie{text-align:center;padding:24px 16px;background:var(--card);border:1.5px solid var(--bdr);border-radius:16px;margin-bottom:16px;}
 .loterie h2{font-size:16px;color:var(--txt);margin-bottom:6px;}
 .loterie p{font-size:12px;color:var(--txt2);margin-bottom:16px;}
 .btn-loterie{display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#50a820,#78d840);color:#0a0d08;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;}
 .btn-small{display:inline-block;padding:7px 14px;background:rgba(255,255,255,.06);color:var(--txt2);border:1px solid var(--bdr);border-radius:8px;font-size:11px;cursor:pointer;margin:3px;}
- 
+
 /* CHRONO */
 .chrono-wrap{text-align:center;margin-bottom:12px;}
 .chrono{font-size:32px;font-weight:700;font-family:monospace;color:var(--em);}
@@ -27,7 +27,7 @@ h1{font-family:Georgia,serif;font-size:22px;color:var(--em);margin-bottom:4px;}
 .chrono-bar{height:4px;background:rgba(255,255,255,.08);border-radius:2px;margin-bottom:16px;overflow:hidden;}
 .chrono-fill{height:100%;background:var(--em);border-radius:2px;transition:width .5s linear;}
 .chrono-fill.urgent{background:var(--red);}
- 
+
 /* SUJET */
 .sujet-card{background:var(--card);border:1.5px solid var(--bdr);border-radius:16px;padding:16px;margin-bottom:16px;display:none;}
 .sujet-card.show{display:block;}
@@ -37,7 +37,7 @@ h1{font-family:Georgia,serif;font-size:22px;color:var(--em);margin-bottom:4px;}
 .tip-type.tip{background:rgba(120,216,64,.1);color:var(--em);border:1px solid rgba(120,216,64,.2);}
 .tip-title{font-size:17px;font-weight:700;margin-bottom:10px;line-height:1.3;}
 .tip-situation{background:rgba(255,255,255,.03);border-left:3px solid var(--amber);padding:10px;border-radius:0 8px 8px 0;font-size:13px;color:var(--txt);margin-bottom:16px;line-height:1.6;}
- 
+
 /* REPONSE */
 .reponse-wrap{display:none;}
 .reponse-wrap.show{display:block;}
@@ -45,7 +45,7 @@ textarea{width:100%;padding:12px;background:rgba(255,255,255,.06);border:1.5px s
 textarea:focus{border-color:rgba(120,216,64,.4);}
 .btn-correction{width:100%;padding:12px;background:linear-gradient(135deg,#50a820,#78d840);color:#0a0d08;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;}
 .btn-passer{width:100%;padding:10px;background:rgba(255,255,255,.04);color:var(--txt2);border:1px solid var(--bdr);border-radius:10px;font-size:13px;cursor:pointer;margin-top:8px;}
- 
+
 /* CORRECTION IA */
 .correction-wrap{display:none;margin-top:16px;}
 .correction-wrap.show{display:block;}
@@ -65,7 +65,7 @@ textarea:focus{border-color:rgba(120,216,64,.4);}
 .loading{text-align:center;padding:20px;color:var(--txt2);font-size:13px;}
 .loading span{display:inline-block;animation:pulse 1.2s infinite;}
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
- 
+
 /* LISTE */
 .liste-wrap{background:var(--card);border:1px solid var(--bdr);border-radius:12px;margin-bottom:16px;overflow:hidden;display:none;}
 .liste-wrap.show{display:block;}
@@ -74,10 +74,10 @@ textarea:focus{border-color:rgba(120,216,64,.4);}
 </style>
 </head>
 <body>
- 
+
 <h1>SimTips ASV</h1>
 <p class="sub">Preparation a l'examen oral · Tirage aleatoire · Analyse IA de votre reponse</p>
- 
+
 <!-- LOTERIE -->
 <div class="loterie" id="loterie-screen">
   <h2>Tirage au sort</h2>
@@ -90,30 +90,30 @@ textarea:focus{border-color:rgba(120,216,64,.4);}
   <br><br>
   <button class="btn-small" onclick="toggleListe()">📚 Choisir un sujet</button>
 </div>
- 
+
 <!-- LISTE -->
 <div class="liste-wrap" id="tips-liste"></div>
- 
+
 <!-- CHRONO -->
 <div class="chrono-wrap" id="chrono-wrap" style="display:none">
   <div class="chrono" id="chrono-display">3:00</div>
   <div class="chrono-bar"><div class="chrono-fill" id="chrono-fill" style="width:100%"></div></div>
 </div>
- 
+
 <!-- SUJET -->
 <div class="sujet-card" id="sujet-card">
   <span class="tip-type" id="tip-type-badge"></span>
   <div class="tip-title" id="tip-title"></div>
   <div class="tip-situation" id="tip-situation"></div>
 </div>
- 
+
 <!-- REPONSE ETUDIANT -->
 <div class="reponse-wrap" id="reponse-wrap">
   <textarea id="reponse-etudiant" placeholder="Ecrivez votre reponse ici... Decrivez les etapes que vous feriez, ce que vous diriez, comment vous reagiriez."></textarea>
   <button class="btn-correction" onclick="voirCorrection()">✅ Voir la correction et l'analyse</button>
   <button class="btn-passer" onclick="passerDirectement()">Passer sans repondre</button>
 </div>
- 
+
 <!-- CORRECTION -->
 <div class="correction-wrap" id="correction-wrap">
   <div class="correction-card ia" id="analyse-ia">
@@ -128,7 +128,7 @@ textarea:focus{border-color:rgba(120,216,64,.4);}
   </div>
   <button class="btn-nouveau" onclick="nouveauTirage()">🎲 Nouveau sujet</button>
 </div>
- 
+
 <script>
 var TIPS = [
   {type:"role",titre:"Client en urgence - chien qui convulse",situation:"Il est 14h. Un client appelle, panique : son labrador de 5 ans convulse depuis 2 minutes. Il ne sait pas quoi faire.",etapes:["Garder son calme et rassurer le client immediatement","Relever le nom et l'age du chien","L'inviter a venir immediatement en clinique - ne pas attendre","Lui dire de NE PAS mettre les doigts dans la gueule du chien","Preparer la salle d'urgence avant son arrivee","Prevenir le veterinaire immediatement"],alerte:"Ne jamais minimiser une convulsion - toujours urgence immediate.",memo:"Mots cles : calme, rapide, prevenir le veto, preparer la salle."},
@@ -150,23 +150,23 @@ var TIPS = [
   {type:"tip",titre:"Mesure du TRC",situation:"Le veterinaire vous demande d'evaluer l'etat circulatoire d'un chien en choc.",etapes:["Relever la levre superieure du chien","Appuyer fermement avec le pouce sur la gencive 2 secondes","Relacher et chronometrer jusqu'au retour de la couleur rose","Normal : retour en moins de 2 secondes","Anormal : plus de 2 secondes = signe de choc ou deshydratation","Transmettre immediatement au veterinaire"],alerte:"TRC > 2 sec = urgence circulatoire. Alerter sans delai.",memo:"TRC normal < 2 sec · Gencive rose = bonne perfusion · Blanche ou bleue = urgence."},
   {type:"tip",titre:"Nettoyage d'une cage d'hospitalisation",situation:"Un chien vient de quitter la cage. Vous devez la preparer pour le suivant.",etapes:["Enfiler les EPI : gants, tablier","Retirer tous les residus : litiere, gamelles, poils","Nettoyer avec detergent : eliminer toute matiere organique","Rincer abondamment - le detergent inactive les desinfectants","Appliquer le desinfectant : respecter le temps de contact (5 min minimum)","Laisser secher completement avant introduction d'un nouvel animal"],alerte:"Desinfection sans nettoyage prealable = INEFFICACE.",memo:"Nettoyer + Rincer + Desinfecter + Rincer + Secher = protocole complet."},
 ];
- 
+
 var currentTip = null;
 var chronoInterval = null;
 var chronoTotal = 180;
 var chronoRestant = 180;
- 
+
 function tirerAuSort(filtre){
   var pool = filtre ? TIPS.filter(function(t){ return t.type === filtre; }) : TIPS;
   var tip = pool[Math.floor(Math.random() * pool.length)];
   afficherSujet(tip);
   document.getElementById('tips-liste').classList.remove('show');
 }
- 
+
 function afficherSujet(tip){
   currentTip = tip;
   stopChrono();
- 
+
   // Afficher le sujet
   var typeLabel = tip.type === 'role' ? '🎭 Jeu de role' : tip.type === 'cas' ? '📋 Etude de cas' : '⚡ Geste pratique';
   document.getElementById('tip-type-badge').textContent = typeLabel;
@@ -174,19 +174,19 @@ function afficherSujet(tip){
   document.getElementById('tip-title').textContent = tip.titre;
   document.getElementById('tip-situation').textContent = tip.situation;
   document.getElementById('reponse-etudiant').value = '';
- 
+
   // Afficher les elements
   document.getElementById('loterie-screen').style.display = 'none';
   document.getElementById('sujet-card').className = 'sujet-card show';
   document.getElementById('reponse-wrap').className = 'reponse-wrap show';
   document.getElementById('correction-wrap').className = 'correction-wrap';
   document.getElementById('chrono-wrap').style.display = 'block';
- 
+
   // Demarrer le chrono
   demarrerChrono();
   window.scrollTo(0, 0);
 }
- 
+
 function demarrerChrono(){
   chronoRestant = chronoTotal;
   updateChronoDisplay();
@@ -198,12 +198,12 @@ function demarrerChrono(){
     }
   }, 1000);
 }
- 
+
 function stopChrono(){
   if(chronoInterval) clearInterval(chronoInterval);
   chronoInterval = null;
 }
- 
+
 function updateChronoDisplay(){
   var min = Math.floor(chronoRestant / 60);
   var sec = chronoRestant % 60;
@@ -216,25 +216,25 @@ function updateChronoDisplay(){
   fill.style.width = pct + '%';
   fill.className = 'chrono-fill' + (chronoRestant <= 30 ? ' urgent' : '');
 }
- 
+
 async function voirCorrection(){
   stopChrono();
   var reponse = document.getElementById('reponse-etudiant').value.trim();
   document.getElementById('correction-wrap').className = 'correction-wrap show';
   document.getElementById('reponse-wrap').className = 'reponse-wrap';
   document.getElementById('chrono-wrap').style.display = 'none';
- 
+
   // Afficher les etapes de correction
   afficherEtapes();
- 
+
   // Analyse IA
   document.getElementById('analyse-texte').innerHTML = '<div class="loading"><span>Analyse de votre reponse en cours...</span></div>';
- 
+
   if(!reponse){
     document.getElementById('analyse-texte').textContent = "Vous n'avez pas fourni de reponse. Consultez la correction ci-dessous pour vous entrainer.";
     return;
   }
- 
+
   try {
     var prompt = "Tu es un formateur expert en formation d'Auxiliaires de Sante Veterinaire (ASV). " +
       "Un etudiant ASV vient de repondre a un sujet d'entrainement pour son examen oral de certification. " +
@@ -247,28 +247,27 @@ async function voirCorrection(){
       "\n2. Ce qui manque ou est incorrect (points a ameliorer)" +
       "\n3. Un conseil pratique pour l'examen oral" +
       "\nSois bienveillant, precis et concis. Maximum 200 mots. Ecris en francais simple.";
- 
-    var response = await fetch("https://uhbbwtxmsomqhuvzvoxy.supabase.co/functions/v1/analyse-reponse", {
-  method: "POST",
-  headers: {"Content-Type": "application/json"},
-  body: JSON.stringify({prompt: prompt})
-});
-var data = await response.json();
-var texte = data.texte || "Analyse indisponible.";
-document.getElementById('analyse-texte').textContent = texte;
+
+    var response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: "claude-sonnet-4-6",
+        max_tokens: 1000,
+        messages: [{role: "user", content: prompt}]
       })
     });
- 
+
     var data = await response.json();
     var texte = data.content && data.content[0] ? data.content[0].text : "Analyse indisponible.";
     document.getElementById('analyse-texte').textContent = texte;
   } catch(err) {
     document.getElementById('analyse-texte').textContent = "Analyse indisponible pour le moment. Consultez la correction ci-dessous.";
   }
- 
+
   window.scrollTo(0, 0);
 }
- 
+
 function passerDirectement(){
   stopChrono();
   document.getElementById('correction-wrap').className = 'correction-wrap show';
@@ -278,7 +277,7 @@ function passerDirectement(){
   afficherEtapes();
   window.scrollTo(0, 0);
 }
- 
+
 function afficherEtapes(){
   var etapesEl = document.getElementById('etapes-correction');
   etapesEl.innerHTML = '';
@@ -296,7 +295,7 @@ function afficherEtapes(){
   memoEl.textContent = currentTip.memo ? '💡 ' + currentTip.memo : '';
   memoEl.style.display = currentTip.memo ? 'block' : 'none';
 }
- 
+
 function nouveauTirage(){
   stopChrono();
   document.getElementById('loterie-screen').style.display = 'block';
@@ -306,7 +305,7 @@ function nouveauTirage(){
   document.getElementById('chrono-wrap').style.display = 'none';
   window.scrollTo(0, 0);
 }
- 
+
 function toggleListe(){
   var liste = document.getElementById('tips-liste');
   if(liste.classList.contains('show')){
