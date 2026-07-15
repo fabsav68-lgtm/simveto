@@ -248,13 +248,14 @@ async function voirCorrection(){
       "\n3. Un conseil pratique pour l'examen oral" +
       "\nSois bienveillant, precis et concis. Maximum 200 mots. Ecris en francais simple.";
  
-    var response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        model: "claude-sonnet-4-6",
-        max_tokens: 1000,
-        messages: [{role: "user", content: prompt}]
+    var response = await fetch("https://uhbbwtxmsomqhuvzvoxy.supabase.co/functions/v1/analyse-reponse", {
+  method: "POST",
+  headers: {"Content-Type": "application/json"},
+  body: JSON.stringify({prompt: prompt})
+});
+var data = await response.json();
+var texte = data.texte || "Analyse indisponible.";
+document.getElementById('analyse-texte').textContent = texte;
       })
     });
  
