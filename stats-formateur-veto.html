@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PraxisVeto · Dashboard Formateur ASV</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#0a0d08;color:#d8e8d0;min-height:100vh;padding:24px}
+h1{font-size:22px;color:#78d840;margin-bottom:4px}
+.sub{font-size:12px;color:#4a6840;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px}
+.card h3{font-size:11px;color:#4a6840;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.card strong{font-size:28px;color:#78d840}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:10px 12px;color:#4a6840;border-bottom:1px solid rgba(255,255,255,.06);font-size:11px;text-transform:uppercase}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04)}
+tr:hover td{background:rgba(255,255,255,.02)}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;background:rgba(120,216,64,.1);color:#78d840}
+.login-badge{background:rgba(94,203,122,.1);color:#4ecb71}
+.section{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:16px;margin-bottom:16px}
+.section h2{font-size:14px;color:#d8e8d0;margin-bottom:12px}
+.password-screen{max-width:320px;margin:80px auto;text-align:center}
+.password-screen input{width:100%;padding:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#d8e8d0;font-size:16px;text-align:center;margin:12px 0}
+.btn{background:#78d840;color:#0a0d08;border:none;padding:10px 24px;border-radius:8px;font-weight:700;cursor:pointer;width:100%}
+.error{color:#e84040;font-size:13px;margin-top:8px}
+#main{display:none}
+.refresh{float:right;background:rgba(120,216,64,.1);color:#78d840;border:1px solid rgba(120,216,64,.2);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px}
+</style>
+</head>
+<body>
+ 
+<div class="password-screen" id="auth">
+  <h1>🔐 Acces Formateur ASV</h1>
+  <p class="sub">Dashboard PraxisVeto</p>
+  <input type="password" id="pwd" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkPwd()">
+  <button class="btn" onclick="checkPwd()">Entrer</button>
+  <p class="error" id="pwdError"></p>
+</div>
+ 
+<div id="main">
+  <h1>📊 Dashboard Formateur ASV</h1>
+  <p class="sub">PraxisVeto · Donnees en temps reel <button class="refresh" onclick="loadData()">Actualiser</button></p>
+ 
+  <div class="grid">
+    <div class="card"><h3>Connexions</h3><strong id="statLogins">-</strong></div>
+    <div class="card"><h3>Etudiants ASV</h3><strong id="statStudents">-</strong></div>
+    <div class="card"><h3>Modules ouverts</h3><strong id="statModules">-</strong></div>
+    <div class="card"><h3>Temps moyen/module</h3><strong id="statTemps" style="font-size:16px;margin-top:4px">-</strong></div>
+    <div class="card"><h3>Derniere activite</h3><strong id="statLast" style="font-size:12px;margin-top:4px">-</strong></div>
+  </div>
+ 
+  <div class="section">
+    <h2>📋 Activite recente</h2>
+    <table>
+      <thead><tr><th>Date et heure</th><th>Code etudiant</th><th>Module consulte</th><th>Action</th><th>Temps passe</th></tr></thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+ 
+  <div class="section">
+    <h2>👥 Suivi par etudiant ASV</h2>
+    <table>
+      <thead><tr><th>Code etudiant</th><th>Promotion</th><th>Connexions</th><th>Modules vus</th><th>Temps total</th><th>1ere connexion</th><th>Derniere activite</th></tr></thead>
+      <tbody id="studentsBody"></tbody>
+    </table>
+  </div>
+ 
+  <div class="section">
+    <h2>📚 Modules les plus consultes</h2>
+    <table>
+      <thead><tr><th>Module</th><th>Nombre d'ouvertures</th><th>Temps moyen passe</th></tr></thead>
+      <tbody id="modulesBody"></tbody>
+    </table>
+  </div>
+</div>
+ 
+<script>
+const SUPABASE_URL = "https://uhbbwtxmsomqhuvzvoxy.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmJ3dHhtc29tcWh1dnp2b3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1MTI2OTIsImV4cCI6MjA5OTA4ODY5Mn0.WsH1qUbwjL8eF0y5vUBqG8lvpE4UgbNd3k2JbBGVyyY";
+const PASSWORD = "PraxisVeto2026";
+ 
+window.addEventListener('load', function(){
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.get('key') === PASSWORD){
+    document.getElementById('auth').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    loadData();
+  }
+});
+ 
+function checkPwd(){
+  const pwd = document.getElementById('pwd').value;
+  if(pwd === PASSWORD){
+    document.getElementById('auth').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    loadData();
+  } else {
+    document.getElementById('pwdError').textContent = "Mot de passe incorrect.";
+  }
+}
+ 
+function msEnTemps(ms){
+  if(!ms) return '-';
+  var s = Math.round(ms/1000);
+  if(s < 60) return s + ' sec';
+  var m = Math.floor(s/60);
+  var sec = s % 60;
+  return m + ' min ' + (sec > 0 ? sec + ' sec' : '');
+}
+ 
+async function loadData(){
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/praxis?order=created_at.desc&limit=500&app=eq.praxisveto`, {
+    headers: {"apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}`}
+  });
+  const data = await res.json();
+ 
+  const logins = data.filter(r => r.module === 'login');
+  const ouvertures = data.filter(r => r.step === 'ouverture');
+  const fermetures = data.filter(r => r.step === 'fermeture' && r.time_spent_ms);
+  const students = [...new Set(data.filter(r=>r.student_code).map(r=>r.student_code))];
+  const tempsMoyen = fermetures.length ? Math.round(fermetures.reduce((a,r)=>a+(r.time_spent_ms||0),0)/fermetures.length) : 0;
+ 
+  document.getElementById('statLogins').textContent = logins.length;
+  document.getElementById('statStudents').textContent = students.length;
+  document.getElementById('statModules').textContent = ouvertures.length;
+  document.getElementById('statTemps').textContent = msEnTemps(tempsMoyen);
+  document.getElementById('statLast').textContent = data[0] ? new Date(data[0].created_at).toLocaleString('fr-FR') : '-';
+ 
+  document.getElementById('tableBody').innerHTML = data.slice(0,50).map(r => {
+    const heure = new Date(r.created_at).toLocaleString('fr-FR');
+    var action = '-';
+    if(r.module === 'login') action = '<span class="badge login-badge">Connexion</span>';
+    else if(r.step === 'ouverture') action = '<span class="badge">Ouverture</span>';
+    else if(r.step === 'fermeture') action = '<span class="badge" style="background:rgba(64,200,120,.1);color:#40c878">Fermeture</span>';
+    return `<tr><td>${heure}</td><td>${r.student_code||'-'}</td><td>${r.module||'-'}</td><td>${action}</td><td>${msEnTemps(r.time_spent_ms)}</td></tr>`;
+  }).join('');
+ 
+  const studMap = {};
+  data.filter(r=>r.student_code).forEach(r=>{
+    if(!studMap[r.student_code]) studMap[r.student_code] = {name:r.student_name,first:r.created_at,last:r.created_at,connexions:0,modules:new Set(),tempsTotal:0};
+    if(r.created_at < studMap[r.student_code].first) studMap[r.student_code].first = r.created_at;
+    if(r.created_at > studMap[r.student_code].last) studMap[r.student_code].last = r.created_at;
+    if(r.module === 'login') studMap[r.student_code].connexions++;
+    if(r.step === 'ouverture' && r.module) studMap[r.student_code].modules.add(r.module);
+    if(r.time_spent_ms) studMap[r.student_code].tempsTotal += r.time_spent_ms;
+  });
+ 
+  document.getElementById('studentsBody').innerHTML = Object.entries(studMap).map(([code, info])=>{
+    return `<tr><td>${code}</td><td>${info.name||'-'}</td><td>${info.connexions}</td><td>${info.modules.size}</td><td>${msEnTemps(info.tempsTotal)}</td><td>${new Date(info.first).toLocaleString('fr-FR')}</td><td>${new Date(info.last).toLocaleString('fr-FR')}</td></tr>`;
+  }).join('');
+ 
+  const modMap = {};
+  ouvertures.forEach(r=>{ if(!modMap[r.module]) modMap[r.module]={ouvertures:0,tempsTotal:0,nb:0}; modMap[r.module].ouvertures++; });
+  fermetures.forEach(r=>{ if(r.module && modMap[r.module]){ modMap[r.module].tempsTotal+=r.time_spent_ms||0; modMap[r.module].nb++; } });
+ 
+  document.getElementById('modulesBody').innerHTML = Object.entries(modMap)
+    .sort((a,b)=>b[1].ouvertures-a[1].ouvertures)
+    .map(([mod,info])=>{
+      var moy = info.nb ? Math.round(info.tempsTotal/info.nb) : 0;
+      return `<tr><td>${mod}</td><td>${info.ouvertures}</td><td>${msEnTemps(moy)}</td></tr>`;
+    }).join('');
+}
+</script>
+</body>
+</html>
