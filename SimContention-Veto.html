@@ -428,8 +428,8 @@ function render(){
   document.getElementById('app').innerHTML=h;
 }
 
-function go(v){S.view=v;render();window.scrollTo({top:0,behavior:'smooth'});}
-function setO(o){S.onglet=o;S.analyse='';render();window.scrollTo({top:0,behavior:'smooth'});}
+function go(v){S.view=v;stopLecture();render();window.scrollTo({top:0,behavior:'smooth'});}
+function setO(o){S.onglet=o;S.analyse='';stopLecture();render();window.scrollTo({top:0,behavior:'smooth'});}
 function toggleCas(id){if(S.casShown[id]){delete S.casShown[id];}else{S.casShown[id]=true;}render();}
 function selQ(i){if(S.qShown)return;S.qSel=i;S.qShown=true;S.qTotal++;if(i===QUIZ[S.qIdx%QUIZ.length].rep)S.qScore++;render();}
 function nxtQ(){S.qIdx++;S.qSel=null;S.qShown=false;render();window.scrollTo({top:0,behavior:'smooth'});}
@@ -457,6 +457,21 @@ render();
 </script>
 
 <a class="home-btn-fixed" href="index.html">⌂ SimVeto</a>
+
+<!-- Bouton audio -->
+<button id="btn-audio" onclick="lireOnglet()" style="
+  position:fixed;bottom:20px;right:20px;z-index:1000;
+  background:#78d840;border:none;border-radius:50px;
+  color:#0a0d08;font-size:13px;font-weight:800;
+  padding:11px 18px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(120,216,64,.35);
+  font-family:'Fira Mono',monospace;letter-spacing:.5px;
+  white-space:nowrap;transition:opacity .2s">🔊 Écouter</button>
+
+<script>
+  window.PRAXIS_AUDIO_SELECTOR = '.signal-nom, .signal-body, .proto-txt, .mat-nom, .mat-desc, .cv-titre, .cv-desc, .cas-titre, .cas-contexte, .cas-question, .cas-reponse.visible, .quiz-expl, .info, .card-title, .card-sub, .pt-t, .analysis p';
+</script>
+<script src="praxis-audio.js"></script>
 <script src="praxiscare-feedback.js"></script>
 </body>
 </html>
