@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SimAccueil · UC1 CAFASV · SimVeto</title>
+<title>PraxisAccueil · UC1 CAFASV · PraxisVeto</title>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Karla:wght@300;400;500;600&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -90,6 +90,7 @@ hr.div{border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0}
 @media(max-width:480px){.grid2{grid-template-columns:1fr}}
 </style>
 </head>
+  
 <body>
 <div id="app"></div>
 <script>
@@ -99,7 +100,6 @@ hr.div{border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0}
 //  Sources : CAFASV, Via Compétences, ASVinfos, Convention Collective Nationale vétérinaire
 // ═══════════════════════════════════════
 
-// Compétences UC1 officielles
 var COMPETENCES_UC1 = [
   {id:'c1', icon:'🏥', titre:'Accueillir et identifier les besoins du client',
    tag:'UC1-1',
@@ -108,29 +108,29 @@ var COMPETENCES_UC1 = [
    ne_pas:'Diagnostiquer par téléphone. Promettre un résultat. Minimiser une urgence sans avis vétérinaire.'},
   {id:'c2', icon:'📞', titre:'Identifier et trier les situations d\'urgence',
    tag:'UC1-2',
-   desc:'Reconnaître par téléphone ou à l\'accueil les signes d\'urgence vitale. Informer le vétérinaire. Conseiller le propriétaire sur les mesures conservatoires pendant le transport.',
-   asv:'Poser les 4 questions clés : depuis quand ? Mange-t-il/elle ? Conscient(e) ? A-t-il/elle du mal à respirer ? Selon les réponses : RDV immédiat, urgence ou conseil de surveillance.',
+   desc:'Reconnaître par téléphone ou à l\'accueil les signes d\'urgence vitale. Informer le vétérinaire. Conseiller le propriétaire sur les mesures conservatoires pendant le transport. Identifier l\'espèce, la race et l\'âge de l\'animal dès le premier contact.',
+   asv:'Poser les 5 questions clés : depuis quand ? Quel âge a l\'animal ? Mange-t-il/elle ? Conscient(e) ? A-t-il/elle du mal à respirer ? L\'âge oriente le niveau de risque (très jeune ou très vieux = vigilance accrue). Selon les réponses : RDV immédiat, urgence ou conseil de surveillance.',
    ne_pas:'Décider seule du caractère urgent sans en référer au vétérinaire. Rassurer sans avoir évalué.'},
   {id:'c3', icon:'🍽️', titre:'Conseiller en nutrition',
    tag:'UC1-3',
-   desc:'Alimentation adaptée à l\'espèce, l\'âge, le stade physiologique (gestation, croissance, senior), le poids et la condition corporelle. Croquettes, pâtées, BARF, régimes vétérinaires.',
+   desc:'Alimentation adaptée à l\'espèce, l\'âge, le stade physiologique (gestation, croissance, senior), le poids et la condition corporelle. Croquettes, pâtées, BARF, régimes diététiques.',
    asv:'Connaître les gammes disponibles en clinique. Recommander en accord avec les préconisations du vétérinaire. Expliquer les différences qualitatives. Ne jamais critiquer un choix du client.',
-   ne_pas:'Prescrire un régime thérapeutique sans vétérinaire. Promettre une guérison via l\'alimentation.'},
+   ne_pas:'Prescrire un régime diététique pathologique sans vétérinaire. Promettre une guérison via l\'alimentation.'},
   {id:'c4', icon:'🪲', titre:'Conseiller en antiparasitaires',
    tag:'UC1-4',
-   desc:'Prévention puces, tiques, vers (endoparasites et ectoparasites). Fréquence selon le mode de vie et l\'âge. Protocoles antiparasitaires internes (vermifuge) et externes (pipette, collier, spray).',
-   asv:'Identifier le mode de vie (animal sortant/sédentaire, contact enfants). Proposer le protocole adapté. Rappeler la fréquence. Délivrer uniquement les produits sans ordonnance selon liste validée.',
-   ne_pas:'Délivrer des antiparasitaires sur ordonnance sans prescription valide. Conseiller un produit non adapté au poids ou à l\'espèce.'},
+   desc:'Prévention puces, tiques, vers (endoparasites et ectoparasites). Fréquence selon le mode de vie, l\'âge et la zone géographique de résidence habituelle. Protocoles antiparasitaires internes (vermifuge) et externes (pipette, collier, spray). Certaines régions présentent des risques spécifiques : leishmaniose dans le sud de la France et pourtour méditerranéen, piroplasmose en zones boisées, dirofilariose en zones humides.',
+   asv:'Identifier le mode de vie (animal sortant/sédentaire, contact enfants) ET la zone géographique de résidence. Proposer le protocole adapté à la région. Rappeler la fréquence. Délivrer uniquement les produits sans ordonnance selon liste validée.',
+   ne_pas:'Délivrer des antiparasitaires sur ordonnance sans prescription valide. Conseiller un produit non adapté au poids, à l\'espèce ou à la zone géographique.'},
   {id:'c5', icon:'📋', titre:'Informer sur la réglementation',
    tag:'UC1-5',
-   desc:'Identification obligatoire (puce, tatouage). Vaccination (rage obligatoire si voyage). Déclaration de naissances. Passeport européen pour animaux. Certificats sanitaires à l\'export.',
-   asv:'Informer sans interpréter la loi. Orienter vers le vétérinaire pour tout ce qui relève d\'un acte ou d\'une décision médicale. Fournir les documents réglementaires disponibles.',
+   desc:'Identification obligatoire (puce, tatouage). Vaccination (rage obligatoire si voyage). Déclaration de naissances. Passeport européen pour animaux. Certificats sanitaires à l\'export. Catégorie du chien (1 ou 2) : vérification à l\'inscription, muselière et assurance RC obligatoires en public.',
+   asv:'Informer sans interpréter la loi. Vérifier la catégorie du chien à l\'accueil et s\'assurer que le propriétaire connaît ses obligations (déclaration mairie, muselière, assurance RC). Orienter vers le vétérinaire pour tout ce qui relève d\'un acte ou d\'une décision médicale. Fournir les documents réglementaires disponibles.',
    ne_pas:'Valider une démarche administrative médicale sans le vétérinaire. Signer des documents officiels.'},
   {id:'c6', icon:'💬', titre:'Désamorcer les situations conflictuelles',
    tag:'UC1-6',
-   desc:'Communication non-violente (CNV). Gestion de la colère, de la détresse, du deuil. Empathie sans fusion. Limites professionnelles. Escalade vers le vétérinaire si nécessaire.',
-   asv:'Écouter sans couper. Reformuler. Reconnaître l\'émotion sans valider les reproches injustes. Proposer une solution concrète. Escalader vers le vétérinaire si nécessaire.',
-   ne_pas:'Rentrer dans le conflit. S\'excuser pour des décisions médicales. Prendre parti contre le vétérinaire.'},
+   desc:'Communication non-violente (CNV). Gestion de la colère, de la détresse, du deuil. Empathie sans fusion. Limites professionnelles.',
+   asv:'Écouter sans couper. Reformuler. Reconnaître l\'émotion sans valider les reproches injustes. Proposer une solution concrète. Maintenir son calme. Parler posément.',
+   ne_pas:'Rentrer dans le conflit. S\'excuser pour des décisions médicales. Prendre parti contre le vétérinaire. Laisser la situation s\'envenimer sans en référer au vétérinaire.'},
   {id:'c7', icon:'💰', titre:'Établir et expliquer les devis',
    tag:'UC1-7',
    desc:'Présenter un devis détaillé et lisible. Expliquer chaque poste. Gérer les questions sur les tarifs sans gêne. Proposer des solutions (assurance, facilités de paiement selon politique clinique).',
@@ -164,6 +164,7 @@ var ANTIPARASITAIRES = [
   {type:'Ectoparasites — Tiques', freq:'Avant chaque saison/sortie en forêt', prod:'Pipette, collier, comprimé préventif', attention:'Retirer avec crochet tire-tiques — ne jamais arracher à la main'},
   {type:'Endoparasites — Vers ronds', freq:'Tous les 3 mois chez l\'adulte — mensuel jusqu\'à 6 mois', prod:'Comprimé vermifuge (Milbemax, Drontal, Panacur)', attention:'Dosage impératif selon le poids exact'},
   {type:'Endoparasites — Vers plats', freq:'Tous les 3 mois si animal chasseur ou accès aux rongeurs', prod:'Comprimé à base de praziquantel', attention:'Zoonose possible : risque transmission à l\'humain'},
+  {type:'Leishmaniose (zone à risque)', freq:'Protection renforcée — zone méditerranéenne et sud de la France', prod:'Collier Seresto ou Scalibor (deltamethrine) + pipette longue durée', attention:'Transmise par les phlébotomes (petits moucherons nocturnes). Vaccin disponible (Letifend). Adapter le protocole si séjour ou résidence dans une zone endémique (sud de la France, Corse, PACA, Occitanie).'},
 ];
 
 // Situations conflictuelles — cas CNV
@@ -171,7 +172,7 @@ var CAS_CONFLIT = [
   {id:'cf1', titre:'M. Renard — Facture contestée',
    contexte:'M. Renard arrive à l\'accueil très agité. Il agite une facture de 380€ pour la stérilisation de sa chatte et dit : "C\'est un scandale ! Vous m\'avez arnaqué ! Je vais écrire sur Google que vous volez vos clients !"',
    question:'Comment répondez-vous selon les principes UC1 / CNV ?',
-   reponse:'**Écouter sans couper.** Laisser M. Renard exprimer son mécontentement. **Reformuler sans valider l\'agression :** "Je comprends que cette facture vous surprend et que vous êtes en colère." **Expliquer calmement :** Détailler chaque poste (anesthésie, acte, hospitalisation, médicaments). **Ne pas s\'excuser des prix.** Si la tension reste forte : "Je vais demander au Dr [X] de vous rejoindre pour vous expliquer en détail." **Ne jamais rentrer dans le conflit** ni critiquer les tarifs de la clinique.'},
+   reponse:'**Écouter sans couper.** Laisser M. Renard exprimer son mécontentement. **Reformuler sans valider l\'agression :** "Je comprends que cette facture vous surprend et que vous êtes en colère." **Expliquer calmement :** Détailler chaque poste (anesthésie, acte, hospitalisation, médicaments). **Ne pas s\'excuser des prix.** Maintenir son calme, parler posément. Si la tension reste forte : "Je vais demander au Dr [X] de vous rejoindre pour vous expliquer en détail." **Ne jamais rentrer dans le conflit** ni critiquer les tarifs de la clinique.'},
   {id:'cf2', titre:'Mme Petit — Annonce du décès',
    contexte:'Mme Petit arrive pour récupérer son chien Noisette, opéré hier. Vous savez que Noisette est décédé pendant la nuit en réanimation. Le vétérinaire est en consultation.',
    question:'Quelle est votre conduite à tenir ?',
@@ -179,7 +180,7 @@ var CAS_CONFLIT = [
   {id:'cf3', titre:'Urgence téléphonique — Chien qui convulse',
    contexte:'Il est 18h45. La clinique ferme à 19h. Mme Garcia appelle en panique : "Mon chien Bull, 5 ans, il tremble de partout, les dents claquent, les yeux révulsés. Ça dure depuis 5 minutes !"',
    question:'Quel est votre triage et votre conduite ?',
-   reponse:'**Convulsion en cours = URGENCE VITALE.** Questions rapides : "Depuis combien de temps ? A-t-il ingéré quelque chose ? Est-il diabétique ?" **Ne pas faire attendre.** Dire : "Venez IMMÉDIATEMENT, je préviens le vétérinaire maintenant." **Alerter le vétérinaire** avant même la fin de l\'appel. **Conseiller le propriétaire** : "Ne mettez rien dans sa gueule, éloignez les objets, allongez-le sur le flanc, ne le retenez pas." Préparer l\'arrivée (contention, monitoring).'},
+   reponse:'**Convulsion en cours = URGENCE VITALE.** Questions rapides : "Depuis combien de temps ? Quel âge a Bull exactement ? A-t-il ingéré quelque chose ? Est-il diabétique ?" **Ne pas faire attendre.** Dire : "Venez IMMÉDIATEMENT, je préviens le vétérinaire maintenant." **Alerter le vétérinaire** avant même la fin de l\'appel. **Conseiller le propriétaire** : "Ne mettez rien dans sa gueule, éloignez les objets, allongez-le sur le flanc, ne le retenez pas." Préparer l\'arrivée (contention, monitoring).'},
 ];
 
 // Devis — structure pédagogique
@@ -197,19 +198,19 @@ var QUIZ_UC1 = [
   {q:'Un client appelle et vous demande si les tremblements de son chien depuis ce matin sont graves. Que répondez-vous ?',
    opts:[
      'Non c\'est sûrement pas grave — venez en fin de journée',
-     'Posez les questions de triage, informez le vétérinaire et orientez selon l\'évaluation réelle',
+     'Posez les questions de triage (dont l\'âge), informez le vétérinaire et orientez selon l\'évaluation réelle',
      'Je ne peux pas vous répondre — appelez les urgences vétérinaires',
      'Donnez-lui de l\'aspirine et surveillez'
    ],rep:1,
-   expl:'L\'ASV **pose les questions de triage** (depuis quand, conscient, mange-t-il, a-t-il ingéré quelque chose), **informe le vétérinaire** et oriente en conséquence. Elle ne rassure jamais sans évaluation ni ne donne de conseil médical. Ici les tremblements peuvent signaler une hypoglycémie, une intoxication ou une crise convulsive — urgences potentielles.'},
+   expl:'L\'ASV **pose les questions de triage** (depuis quand, quel âge, conscient, mange-t-il, a-t-il ingéré quelque chose), **informe le vétérinaire** et oriente en conséquence. L\'âge de l\'animal est une donnée clé : un chiot ou un senior tremblant représente une urgence plus critique qu\'un adulte. Elle ne rassure jamais sans évaluation ni ne donne de conseil médical.'},
   {q:'Un client demande un conseil pour nourrir son chat stérilisé qui grossit. L\'ASV doit :',
    opts:[
-     'Prescrire un régime amaigrissant vétérinaire',
+     'Prescrire un régime diététique amaigrissant',
      'Conseiller une alimentation stérilisé/light selon les gammes disponibles et en référer au vétérinaire',
      'Refuser tout conseil nutritionnel — ce n\'est pas son rôle',
      'Recommander le BARF sans avis vétérinaire'
    ],rep:1,
-   expl:'L\'ASV **peut et doit conseiller en nutrition** (UC1-3). Elle oriente vers les gammes adaptées (stérilisé, contrôle de poids) disponibles en clinique, conformément aux préconisations du vétérinaire. Elle peut orienter vers une consultation si le surpoids est important, mais ne prescrit pas de régime thérapeutique.'},
+   expl:'L\'ASV **peut et doit conseiller en nutrition** (UC1-3). Elle oriente vers les gammes adaptées (stérilisé, contrôle de poids) disponibles en clinique, conformément aux préconisations du vétérinaire. Elle peut orienter vers une consultation si le surpoids est important, mais ne prescrit pas de régime diététique pathologique.'},
   {q:'La vermifugation d\'un chien adulte standard doit se faire :',
    opts:[
      'Une fois par an suffit',
@@ -222,10 +223,10 @@ var QUIZ_UC1 = [
    opts:[
      'S\'excuser pour les prix et promettre une remise',
      'Argumenter que la clinique est la moins chère de la région',
-     'Écouter, reformuler, expliquer calmement chaque poste et escalader au vétérinaire si nécessaire',
+     'Écouter, reformuler, expliquer calmement chaque poste et en référer au vétérinaire si nécessaire',
      'Ignorer les remarques et continuer la facturation'
    ],rep:2,
-   expl:'Selon UC1-6 (CNV) : **écouter sans couper**, **reformuler** ("Je comprends que cette facture vous surprend"), **expliquer** chaque poste calmement. Ne jamais s\'excuser des prix ni promettre de remise. Si la tension persiste, escalader vers le vétérinaire responsable. Ne jamais critiquer la politique tarifaire de la clinique.'},
+   expl:'Selon UC1-6 (CNV) : **écouter sans couper**, **reformuler** ("Je comprends que cette facture vous surprend"), **expliquer** chaque poste calmement, **maintenir son calme** et **parler posément**. Ne jamais s\'excuser des prix ni promettre de remise. Si la tension persiste, en référer vers le vétérinaire responsable. Ne jamais critiquer la politique tarifaire de la clinique.'},
   {q:'L\'identification électronique (puce) est obligatoire en France pour :',
    opts:[
      'Tous les animaux de compagnie sans exception',
@@ -237,11 +238,11 @@ var QUIZ_UC1 = [
   {q:'Pour conseiller la délivrance d\'un antiparasitaire externe, l\'ASV doit en premier lieu :',
    opts:[
      'Proposer le produit le moins cher en stock',
-     'Vérifier l\'espèce, le poids et le mode de vie de l\'animal',
+     'Vérifier l\'espèce, le poids, le mode de vie et la zone géographique de résidence de l\'animal',
      'Délivrer toujours la pipette la plus forte pour être sûr',
      'Refuser — seul le vétérinaire peut conseiller'
    ],rep:1,
-   expl:'L\'ASV doit **vérifier l\'espèce, le poids et le mode de vie** avant tout conseil antiparasitaire. Certains produits chien sont toxiques pour le chat (pyréthrinoïdes). Le dosage doit être adapté au poids exact. Le mode de vie détermine la fréquence et le type de produit (chasseur, contact enfants, zone à tiques...).'},
+   expl:'L\'ASV doit **vérifier l\'espèce, le poids, le mode de vie et la zone géographique** avant tout conseil antiparasitaire. Certains produits chien sont toxiques pour le chat. Le dosage doit être adapté au poids exact. La zone géographique détermine les risques spécifiques : dans le sud de la France, la **leishmaniose** impose un protocole renforcé (collier longue durée type Scalibor + protection nocturne).'},
 ];
 
 // ═══════════════════════════════════════
@@ -266,7 +267,7 @@ function render(){
   var q=QUIZ_UC1[S.qIdx%QUIZ_UC1.length];
 
   if(S.view!=='welcome'){
-    h+='<div class="site-header"><div class="badge">🐾 SimVeto · UC1 Conseil clientèle · CAFASV</div>';
+    h+='<div class="site-header"><div class="badge">🐾 PraxisVeto · UC1 Conseil clientèle · CAFASV</div>';
     h+='<h1>Sim<span>Accueil</span></h1>';
     h+='<p>// Accueil · Urgences · Nutrition · Antiparasitaires · Conflits · Devis · RNCP40344</p></div>';
     h+='<div class="tabs">';
@@ -278,7 +279,7 @@ function render(){
     });
     h+='</div>';
   } else {
-    h+='<div class="site-header" style="padding-top:44px"><div class="badge">🐾 SimVeto · UC1 Conseil clientèle · CAFASV</div>';
+    h+='<div class="site-header" style="padding-top:44px"><div class="badge">🐾 PraxisVeto · UC1 Conseil clientèle · CAFASV</div>';
     h+='<h1>Sim<span>Accueil</span></h1></div>';
   }
   h+='<div class="wrap">';
@@ -290,8 +291,9 @@ function render(){
     h+='<p style="color:var(--txt2);font-size:14px;line-height:1.85;max-width:460px;margin:0 auto">L\'ASV est le premier visage de la clinique. Sa façon d\'accueillir, de conseiller et de gérer les situations difficiles détermine la confiance des clients — et la réputation de l\'établissement.</p>';
     h+='<div style="display:flex;flex-direction:column;gap:10px;margin:16px 0;text-align:left">';
     [{i:'📚',t:'8 compétences UC1',d:'Accueil, triage urgences, nutrition, antiparasitaires, réglementation, conflits, devis, communication'},
-     {i:'📞',t:'Triage téléphonique',d:'Les 4 questions clés, les situations urgentes, le script recommandé CAFASV'},
-     {i:'🍽️',t:'Conseil nutrition',d:'Chien, chat, stades physiologiques, régimes vétérinaires — sans prescrire'},
+     {i:'📞',t:'Triage téléphonique',d:'Les 5 questions clés dont l\'âge de l\'animal, les situations urgentes, le script recommandé CAFASV'},
+     {i:'🍽️',t:'Conseil nutrition',d:'Chien, chat, stades physiologiques, régimes diététiques — sans prescrire'},
+     {i:'🪲',t:'Conseils antiparasitaires',d:'Protocoles adaptés à la zone géographique, dont la leishmaniose dans le sud de la France'},
      {i:'💬',t:'Gestion des conflits',d:'3 cas réels avec démarche CNV détaillée — épreuve phare du jury UC1'},
     ].forEach(function(p){
       h+='<div style="display:flex;gap:12px"><span style="font-size:18px">'+p.i+'</span>';
@@ -330,9 +332,12 @@ function render(){
     h+='<div class="card-title" style="color:var(--em3)">📞 Triage téléphonique — UC1-2 CAFASV</div>';
     h+='<div class="card-sub">L\'ASV ne diagnostique pas. Elle trie, oriente, informe le vétérinaire. Un mauvais triage peut coûter la vie d\'un animal.</div>';
 
-    // 4 questions clés
-    h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:10px">Les 4 questions de triage obligatoires</div>';
-    [{n:'1',q:'Depuis quand ?',e:'Un problème soudain et récent est plus urgent qu\'un problème chronique.'},{n:'2',q:'Conscient(e) et debout ?',e:'Un animal couché, inconscient ou qui ne peut plus se lever = urgence immédiate.'},{n:'3',q:'Mange et boit normalement ?',e:'Refus alimentaire depuis plus de 24h ou vomissements répétés = signe d\'alerte.'},{n:'4',q:'Difficultés à respirer ?',e:'Détresse respiratoire = urgence vitale absolue. Venir IMMÉDIATEMENT.'}
+    h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:10px">Les 5 questions de triage obligatoires</div>';
+    [{n:'1',q:'Depuis quand ?',e:'Un problème soudain et récent est plus urgent qu\'un problème chronique.'},
+     {n:'2',q:'Quel âge a l\'animal ?',e:'Un très jeune animal (chiot, chaton) ou un senior est plus vulnérable. L\'âge oriente le niveau de vigilance et la rapidité d\'intervention.'},
+     {n:'3',q:'Conscient(e) et debout ?',e:'Un animal couché, inconscient ou qui ne peut plus se lever = urgence immédiate.'},
+     {n:'4',q:'Mange et boit normalement ?',e:'Refus alimentaire depuis plus de 24h ou vomissements répétés = signe d\'alerte.'},
+     {n:'5',q:'Difficultés à respirer ?',e:'Détresse respiratoire = urgence vitale absolue. Venir IMMÉDIATEMENT.'}
     ].forEach(function(q){
       h+='<div style="display:flex;gap:12px;padding:12px;border-radius:8px;background:rgba(0,0,0,.2);margin-bottom:8px;border-left:3px solid rgba(160,96,248,.4)">';
       h+='<span style="font-family:var(--head);font-size:16px;font-weight:800;color:var(--em3);flex-shrink:0;width:24px">'+q.n+'</span>';
@@ -352,7 +357,7 @@ function render(){
       h+='<div style="font-size:12px;font-weight:600;color:var(--txt)">➤ '+esc(n.rep)+'</div></div>';
     });
 
-    h+='<div class="info info-em" style="margin-top:10px">📋 <strong>Script recommandé :</strong> "Bonjour, clinique [X], je suis [prénom]. Que puis-je faire pour vous ?" → Écouter → 4 questions de triage → En référer au vétérinaire → Orienter.</div>';
+    h+='<div class="info info-em" style="margin-top:10px">📋 <strong>Script recommandé :</strong> "Bonjour, clinique [X], je suis [prénom]. Que puis-je faire pour vous ?" → Écouter → 5 questions de triage (dont l\'âge) → En référer au vétérinaire → Orienter.</div>';
     h+='<div class="info info-warn">⚠️ <strong>Jamais :</strong> "Ce n\'est probablement pas grave" sans triage complet. La sous-estimation d\'une urgence engage la responsabilité de la clinique.</div>';
     h+='</div></div>';
 
@@ -360,7 +365,7 @@ function render(){
   } else if(S.onglet==='nutrition'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--em3)">🍽️ Conseil en nutrition — UC1-3 CAFASV</div>';
-    h+='<div class="card-sub">L\'ASV conseille selon les gammes disponibles en clinique et les recommandations du vétérinaire. Elle ne prescrit pas de régime thérapeutique.</div>';
+    h+='<div class="card-sub">L\'ASV conseille selon les gammes disponibles en clinique et les recommandations du vétérinaire. Elle ne prescrit pas de régime diététique pathologique.</div>';
     NUTRITION_GUIDE.forEach(function(esp){
       h+='<div style="margin-bottom:16px">';
       h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:8px">'+esp.espece+'</div>';
@@ -371,7 +376,7 @@ function render(){
       });
       h+='</div>';
     });
-    h+='<div class="info info-warn">⚠️ <strong>Régimes thérapeutiques (renal, hepatic, hypoallergenic, gastrointestinal...) :</strong> Délivrés uniquement sur prescription vétérinaire. L\'ASV ne les recommande pas spontanément sans consultation préalable.</div>';
+    h+='<div class="info info-warn">⚠️ <strong>Régimes diététiques pathologiques (renal, hepatic, hypoallergenic, gastrointestinal...) :</strong> Délivrés uniquement sur prescription vétérinaire. L\'ASV ne les recommande pas spontanément sans consultation préalable.</div>';
     h+='<hr style="border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0">';
     h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:10px">Conseils clés à donner</div>';
     [{t:'Quantités',d:'Toujours se référer au tableau du fabricant selon le poids. Les yeux ne sont pas une balance.'},{t:'Eau fraîche',d:'Disponible en permanence — surtout pour les chats (prévention calculs urinaires).'},{t:'Transition alimentaire',d:'Jamais brutal — mélanger progressivement sur 7-10 jours pour éviter les troubles digestifs.'},{t:'Friandises',d:'Maximum 10% de la ration journalière. À intégrer dans le calcul calorique total.'}
@@ -386,8 +391,9 @@ function render(){
   } else if(S.onglet==='antiparasitaires'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--em3)">🪲 Conseil antiparasitaire — UC1-4 CAFASV</div>';
-    h+='<div class="card-sub">Prévention adaptée à l\'animal et au mode de vie. Certains produits sont dangereux si mal utilisés.</div>';
-    h+='<div class="info info-red" style="margin-bottom:14px">🚫 <strong>Danger vital :</strong> Les antiparasitaires à base de pyréthrinoïdes (permethrine) sont <strong>toxiques pour le chat</strong> même en contact indirect. Ne jamais appliquer un produit chien sur un chat ou dans une maison avec des chats.</div>';
+    h+='<div class="card-sub">Prévention adaptée à l\'animal, au mode de vie et à la zone géographique de résidence habituelle.</div>';
+    h+='<div class="info info-red" style="margin-bottom:10px">🚫 <strong>Danger vital :</strong> Les antiparasitaires à base de pyréthrinoïdes (permethrine) sont <strong>toxiques pour le chat</strong> même en contact indirect. Ne jamais appliquer un produit chien sur un chat ou dans une maison avec des chats.</div>';
+    h+='<div class="info info-warn" style="margin-bottom:14px">🗺️ <strong>Zone géographique :</strong> Toujours demander la zone de résidence habituelle. Dans le <strong>sud de la France</strong> (PACA, Occitanie, Corse, Nouvelle-Aquitaine sud), la <strong>leishmaniose</strong> transmise par les phlébotomes impose un protocole antiparasitaire renforcé. D\'autres risques géographiques existent : piroplasmose en zones boisées, dirofilariose en zones humides.</div>';
     ANTIPARASITAIRES.forEach(function(a,i){
       h+='<div style="border-radius:8px;padding:14px;background:'+(i%2===0?'rgba(0,0,0,.2)':'rgba(0,0,0,.15)')+';margin-bottom:8px;border-left:3px solid rgba(160,96,248,.3)">';
       h+='<div style="font-size:13px;font-weight:700;color:var(--em3);margin-bottom:8px">'+esc(a.type)+'</div>';
@@ -399,7 +405,7 @@ function render(){
       });
       h+='</div></div>';
     });
-    h+='<div class="info info-em" style="margin-top:10px">📋 <strong>Avant toute délivrance :</strong> Vérifier espèce + poids + âge + mode de vie. Les produits sans ordonnance peuvent être délivrés par l\'ASV selon la liste validée par le vétérinaire responsable. Les produits sur ordonnance nécessitent une prescription valide.</div>';
+    h+='<div class="info info-em" style="margin-top:10px">📋 <strong>Avant toute délivrance :</strong> Vérifier espèce + poids + âge + mode de vie + zone géographique de résidence. Les produits sans ordonnance peuvent être délivrés par l\'ASV selon la liste validée par le vétérinaire responsable. Les produits sur ordonnance nécessitent une prescription valide.</div>';
     h+='</div></div>';
 
   // ── CONFLITS CNV ───────────────────────────────────────
@@ -420,6 +426,7 @@ function render(){
       h+='<div style="font-size:12px;color:var(--txt2)">'+s.d+'</div></div></div>';
     });
     h+='</div>';
+    h+='<div class="info info-em" style="margin-bottom:12px">🎯 <strong>Posture clé :</strong> Écouter sans couper · Poser des questions ouvertes · Maintenir son calme · Parler posément · Reformuler avant de répondre.</div>';
     h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:10px">3 cas pratiques — Rédigez puis découvrez la correction</div>';
     CAS_CONFLIT.forEach(function(cas){
       var shown=S.casShown[cas.id];
@@ -448,7 +455,7 @@ function render(){
     });
     h+='<hr style="border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0">';
     h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:10px">Posture lors de la présentation du devis</div>';
-    [{t:'Avant l\'acte',d:'Présenter le devis estimatif avant tout acte important. Obtenir l\'accord explicite du client. Conserver le document signé.'},{t:'Expliquer sans s\'excuser',d:'"L\'anesthésie représente 80€ car elle comprend la surveillance constante de votre animal pendant toute l\'opération."'},{t:'Objection prix',d:'"Je comprends que c\'est un budget important. Est-ce que vous avez une assurance santé animale ?" ou escalader au vétérinaire pour les facilités de paiement.'},{t:'Jamais',d:'Promettre une remise sans validation du responsable. Dire "je trouve aussi que c\'est cher". Modifier le devis sans accord du vétérinaire.'}
+    [{t:'Avant l\'acte',d:'Présenter le devis estimatif avant tout acte important. Obtenir l\'accord explicite du client. Conserver le document signé.'},{t:'Expliquer sans s\'excuser',d:'"L\'anesthésie représente 80€ car elle comprend la surveillance constante de votre animal pendant toute l\'opération."'},{t:'Objection prix',d:'"Je comprends que c\'est un budget important. Est-ce que vous avez une assurance santé animale ?" ou en référer au vétérinaire pour les facilités de paiement.'},{t:'Jamais',d:'Promettre une remise sans validation du responsable. Dire "je trouve aussi que c\'est cher". Modifier le devis sans accord du vétérinaire.'}
     ].forEach(function(p){
       h+='<div style="display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.04)">';
       h+='<div style="font-size:13px;font-weight:600;color:var(--em3);min-width:130px;flex-shrink:0">'+esc(p.t)+'</div>';
@@ -501,15 +508,15 @@ function render(){
   if(S.view!=='welcome'){
     h+='<div style="margin-top:10px;display:flex;gap:8px">';
     h+='<button class="btn-g" onclick="go(\'welcome\')" style="color:var(--em3);border-color:rgba(160,96,248,.2)">← Accueil</button>';
-    h+='<button class="btn-g" onclick="window.location.href=\'index.html\'">⌂ SimVeto</button>';
+    h+='<button class="btn-g" onclick="window.location.href=\'index.html\'">⌂ PraxisVeto</button>';
     h+='</div>';
   }
   h+='</div>';
   document.getElementById('app').innerHTML=h;
 }
 
-function go(v){S.view=v;render();window.scrollTo({top:0,behavior:'smooth'});}
-function setO(o){S.onglet=o;S.analyse='';render();window.scrollTo({top:0,behavior:'smooth'});}
+function go(v){S.view=v;stopLecture();render();window.scrollTo({top:0,behavior:'smooth'});}
+function setO(o){S.onglet=o;S.analyse='';stopLecture();render();window.scrollTo({top:0,behavior:'smooth'});}
 function selQ(i){if(S.qShown)return;S.qSel=i;S.qShown=true;S.qTotal++;if(i===QUIZ_UC1[S.qIdx%QUIZ_UC1.length].rep)S.qScore++;render();}
 function nxtQ(){S.qIdx++;S.qSel=null;S.qShown=false;render();window.scrollTo({top:0,behavior:'smooth'});}
 function rstQ(){S.qIdx=0;S.qScore=0;S.qTotal=0;S.qSel=null;S.qShown=false;render();}
@@ -534,9 +541,20 @@ async function runIA(){
 render();
 </script>
 
-<!-- Bouton accueil fixe -->
-<a class="home-btn-fixed" href="index.html">⌂ SimVeto</a>
-<!-- Références : CAFASV UC1 · RNCP40344 · Convention Collective Nationale vétérinaire · Code rural L.5143-6 · Code de la consommation L.111-1 (devis) -->
-<script src="praxiscare-feedback.js"></script>
+<a class="home-btn-fixed" href="index.html">⌂ PraxisVeto</a>
+
+<!-- Bouton audio -->
+<button id="btn-audio" onclick="lireOnglet()" style="
+  position:fixed;bottom:20px;right:20px;z-index:1000;
+  background:#78d840;border:none;border-radius:50px;
+  color:#0a0d08;font-size:13px;font-weight:800;
+  padding:11px 18px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(120,216,64,.35);
+  font-family:'Fira Mono',monospace;letter-spacing:.5px;
+  white-space:nowrap;transition:opacity .2s">🔊 Écouter</button>
+
+  <script src="praxis-audio.js"></script>
+  <script src="praxisveto-splash.js"></script>
+  <script src="praxiscare-feedback.js"></script>
 </body>
 </html>
