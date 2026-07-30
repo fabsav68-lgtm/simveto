@@ -34,8 +34,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .card.em{border-top:2px solid var(--em)}
 .card-title{font-family:var(--head);font-size:15px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
 .card-sub{color:var(--txt2);font-size:12px;margin-bottom:16px;line-height:1.65}
-
-/* Niveaux d'action */
 .niveau-card{border-radius:8px;padding:14px;margin-bottom:8px;cursor:pointer;transition:all .18s;border:1.5px solid var(--bdr);background:rgba(0,0,0,.2);-webkit-tap-highlight-color:transparent}
 .niveau-card.open{border-color:rgba(64,200,120,.35)}
 .niveau-header{display:flex;align-items:center;gap:12px}
@@ -43,28 +41,22 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .niveau-nom{font-size:14px;font-weight:600}
 .niveau-body{font-size:12px;color:var(--txt2);line-height:1.7;display:none;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.06)}
 .niveau-card.open .niveau-body{display:block}
-
-/* Protocole étapes */
 .proto-step{display:flex;gap:12px;padding:10px;border-radius:8px;background:rgba(0,0,0,.2);margin-bottom:6px;border-left:3px solid rgba(64,200,120,.4)}
 .proto-num{font-family:var(--head);font-size:16px;font-weight:800;color:var(--em);flex-shrink:0;width:24px}
 .proto-titre{font-size:13px;font-weight:600;color:var(--txt);margin-bottom:2px}
 .proto-desc{font-size:12px;color:var(--txt2);line-height:1.6}
-
-/* Quiz */
 .quiz-opt{padding:11px 14px;border-radius:8px;border:1.5px solid var(--bdr);background:rgba(255,255,255,.02);color:var(--txt2);cursor:pointer;font-size:13px;margin-bottom:7px;transition:all .15s;display:flex;align-items:center;gap:10px;-webkit-tap-highlight-color:transparent}
 .quiz-opt:hover{background:rgba(64,200,120,.06);color:var(--txt)}
 .quiz-opt.correct{background:rgba(64,200,120,.1);border-color:rgba(64,200,120,.4);color:var(--em)}
 .quiz-opt.wrong{background:rgba(232,64,64,.1);border-color:rgba(232,64,64,.4);color:var(--red)}
 .quiz-expl{background:rgba(64,200,120,.05);border:1px solid rgba(64,200,120,.15);border-radius:8px;padding:11px 13px;margin-top:10px;font-size:12px;color:var(--txt2);line-height:1.7}
 .quiz-expl strong{color:var(--txt)}
-
 .info{border-radius:8px;padding:10px 13px;font-size:12px;line-height:1.75;margin-bottom:10px}
 .info-em  {background:rgba(64,200,120,.06);border-left:3px solid rgba(64,200,120,.5);color:var(--em)}
 .info-warn{background:rgba(232,160,48,.06);border-left:3px solid rgba(232,160,48,.5);color:var(--amber)}
 .info-red {background:rgba(232,64,64,.06);border-left:3px solid rgba(232,64,64,.5);color:var(--red)}
 .info-blue{background:rgba(64,168,224,.06);border-left:3px solid rgba(64,168,224,.5);color:var(--blue)}
 .info-violet{background:rgba(144,96,224,.06);border-left:3px solid rgba(144,96,224,.5);color:var(--violet)}
-
 .btn-p{background:linear-gradient(135deg,var(--em2),var(--em));border:none;border-radius:8px;color:#080d0a;font-family:var(--head);font-size:13px;font-weight:700;padding:11px 22px;cursor:pointer;transition:opacity .2s,transform .1s;letter-spacing:-0.3px}
 .btn-p:hover{opacity:.9;transform:translateY(-1px)}
 .btn-g{background:rgba(255,255,255,.04);border:1.5px solid var(--bdr);border-radius:8px;color:var(--txt2);font-family:var(--sans);font-size:12px;font-weight:600;padding:9px 16px;cursor:pointer;transition:all .15s}
@@ -98,12 +90,6 @@ hr.div{border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0}
 <body>
 <div id="app"></div>
 <script>
-// ═══════════════════════════════════════
-//  DONNÉES CAFASV UC3
-//  Sources : INRS, arrêté 7/09/1999 DASRI,
-//  ASVinfos référentiel, guide INRS hygiène cabinet vétérinaire
-// ═══════════════════════════════════════
-
 var NIVEAUX_HYGIENE = [
   {id:'n1', icon:'🧹', niveau:'Nettoyage', col:'var(--blue)',
    titre:'Nettoyage — Éliminer la saleté visible',
@@ -174,9 +160,6 @@ var QUIZ_HYGIENE = [
    expl:'**Bartonella henselae** cause la **maladie des griffes du chat** : infection cutanée, ganglionnaire, fièvre, fatigue. Transmise par griffures ou morsures de chat. Prévention : gants de contention, désinfection immédiate des plaies, déclaration en maladie professionnelle si contamination confirmée.'},
 ];
 
-// ═══════════════════════════════════════
-//  ÉTAT
-// ═══════════════════════════════════════
 var S = {
   view:'welcome', onglet:'niveaux', openItem:null,
   qIdx:0, qSel:null, qShown:false, qScore:0, qTotal:0,
@@ -212,7 +195,6 @@ function render(){
   }
   h+='<div class="wrap">';
 
-  // ── WELCOME ────────────────────────────────────────────
   if(S.view==='welcome'){
     h+='<div class="card em fadeup"><div style="text-align:center;padding:8px 0 18px">';
     h+='<div style="font-size:52px;margin-bottom:14px">🧹</div>';
@@ -230,7 +212,6 @@ function render(){
     h+='<button class="btn-p btn-full" onclick="go(\'main\')">Commencer →</button>';
     h+='</div></div>';
 
-  // ── NIVEAUX D'HYGIÈNE ──────────────────────────────────
   } else if(S.onglet==='niveaux'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--em)">🧹 Les 4 niveaux d\'hygiène — UC3 CAFASV</div>';
@@ -260,11 +241,10 @@ function render(){
     h+='<div class="info info-warn">⚠️ <strong>Règle fondamentale :</strong> On ne peut pas sauter des étapes. Désinfecter sans nettoyer préalablement = inefficace. Stériliser du matériel non désinfecté = dangereux.</div>';
     h+='</div></div>';
 
-  // ── ZONES ──────────────────────────────────────────────
   } else if(S.onglet==='zones'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--em)">🏥 Protocoles par zone</div>';
-    h+='<div class="card-sub">UC3 CAFASV — Chaque zone de la clinique a son niveau de risque et son protocole adapté. Source : guide INRS hygiène cabinet vétérinaire.</div>';
+    h+='<div class="card-sub">UC3 CAFASV — Chaque zone de la clinique a son niveau de risque et son protocole adapté.</div>';
     h+='<div style="background:rgba(0,0,0,.2);border-radius:8px;overflow:hidden;margin-bottom:14px">';
     h+='<div style="display:grid;grid-template-columns:1.8fr 1fr 1.5fr 0.8fr;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)">';
     ['Zone','Fréquence','Produits','Risque'].forEach(function(t){
@@ -280,19 +260,16 @@ function render(){
       h+='</div>';
     });
     h+='</div>';
-
-    // Autoclave
     h+='<div style="font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--txt2);margin-bottom:10px">Procédure autoclave — stérilisation chirurgicale</div>';
     [{n:'1',t:'Nettoyage instruments',d:'Éliminer toute trace de sang ou matière organique — Brossage mécanique + enzymatique'},{n:'2',t:'Rinçage et séchage',d:'Rinçage abondant · Séchage complet — l\'eau résiduelle compromet la stérilisation'},{n:'3',t:'Conditionnement',d:'Sachets de stérilisation datés · Indicateur chimique à l\'intérieur · Intégrité de l\'emballage vérifiée'},{n:'4',t:'Cycle autoclave',d:'134°C / 18 min (classe B) ou selon protocole vétérinaire · Contrôle indicateur chimique à l\'issue'},{n:'5',t:'Stockage',d:'Rangement en zone propre et sèche · Durée de validité : 3 mois si emballage intact · Vérifier avant usage'}].forEach(function(s){
       h+='<div class="proto-step"><span class="proto-num">'+s.n+'</span><div><div class="proto-titre">'+esc(s.t)+'</div><div class="proto-desc">'+esc(s.d)+'</div></div></div>';
     });
     h+='</div></div>';
 
-  // ── DASRI ──────────────────────────────────────────────
   } else if(S.onglet==='dasri'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--em)">⚠️ Gestion des DASRI</div>';
-    h+='<div class="card-sub">UC3 CAFASV · Arrêté du 7 septembre 1999 · Décret 2011-763 · Les DASRI sont des déchets d\'Activités de Soins à Risques Infectieux.</div>';
+    h+='<div class="card-sub">UC3 CAFASV · Arrêté du 7 septembre 1999 · Décret 2011-763</div>';
     h+='<div class="info info-red" style="margin-bottom:14px">🚫 <strong>Règle absolue :</strong> Ne JAMAIS recapuchonner une aiguille à la main. Ne jamais trier les déchets à la main dans un conteneur. Un objet coupant est un OPCT dès sa première utilisation.</div>';
     DASRI_TYPES.forEach(function(d){
       h+='<div style="display:flex;gap:12px;padding:10px;border-radius:8px;background:rgba(0,0,0,.2);margin-bottom:6px;border-left:3px solid '+d.couleur+'40">';
@@ -305,14 +282,13 @@ function render(){
     [{n:'1',t:'Remplissage maximal',d:'Ne jamais dépasser le repère de remplissage (3/4 plein). Un conteneur trop plein est dangereux.'},{n:'2',t:'Fermeture',d:'Fermeture définitive et irréversible du couvercle. Aucune réouverture possible.'},{n:'3',t:'Étiquetage',d:'Nom de la clinique, date de fermeture, type de déchets. Obligatoire réglementairement.'},{n:'4',t:'Stockage intermédiaire',d:'Local dédié fermé, hors accès du public et des animaux, ventilé. Durée max : 3 mois.'},{n:'5',t:'Enlèvement',d:'Par prestataire agréé. Bordereau de suivi DASRI conservé 5 ans. Traçabilité obligatoire.'}].forEach(function(s){
       h+='<div class="proto-step"><span class="proto-num">'+s.n+'</span><div><div class="proto-titre">'+esc(s.t)+'</div><div class="proto-desc">'+esc(s.d)+'</div></div></div>';
     });
-    h+='<div class="info info-blue" style="margin-top:10px">📋 <strong>Traçabilité DASRI :</strong> Le bordereau de suivi des déchets (BSD) doit être conservé 5 ans. En cas de contrôle, l\'absence de traçabilité est une infraction pénale. L\'ASV tient le registre de suivi sous la responsabilité du vétérinaire.</div>';
+    h+='<div class="info info-blue" style="margin-top:10px">📋 <strong>Traçabilité DASRI :</strong> Le bordereau de suivi des déchets (BSD) doit être conservé 5 ans. En cas de contrôle, l\'absence de traçabilité est une infraction pénale.</div>';
     h+='</div></div>';
 
-  // ── RISQUES PROFESSIONNELS ─────────────────────────────
   } else if(S.onglet==='risques'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--em)">🛡️ Risques professionnels — EPI et prévention</div>';
-    h+='<div class="card-sub">UC3 CAFASV · L\'ASV est exposée à des risques spécifiques. La prévention est une obligation légale de l\'employeur et une responsabilité de chaque salarié.</div>';
+    h+='<div class="card-sub">UC3 CAFASV · L\'ASV est exposée à des risques spécifiques. La prévention est une obligation légale.</div>';
     RISQUES_PRO.forEach(function(r){
       h+='<div style="border-radius:10px;padding:16px;background:rgba(0,0,0,.2);margin-bottom:10px;border-left:3px solid rgba(64,200,120,.3)">';
       h+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">';
@@ -327,11 +303,10 @@ function render(){
       h+='<div style="font-size:12px;color:var(--txt2);line-height:1.6">'+esc(r.ref)+'</div></div>';
       h+='</div></div>';
     });
-    h+='<div class="info info-warn" style="margin-top:10px">📋 <strong>Accident du travail :</strong> Toute morsure, griffure, piqûre ou exposition à un produit doit être déclarée en accident du travail dans les 24h. L\'ASV informe le vétérinaire responsable qui initie la procédure. Ne jamais minimiser une exposition.</div>';
-    h+='<div class="info info-violet" style="margin-top:8px">☢️ <strong>Femmes enceintes :</strong> Exposition aux rayonnements ionisants interdite. Manipulation de certains anesthésiants volatils déconseillée. Informer immédiatement le médecin du travail.</div>';
+    h+='<div class="info info-warn" style="margin-top:10px">📋 <strong>Accident du travail :</strong> Toute morsure, griffure, piqûre ou exposition doit être déclarée dans les 24h.</div>';
+    h+='<div class="info info-violet" style="margin-top:8px">☢️ <strong>Femmes enceintes :</strong> Exposition aux rayonnements ionisants interdite. Informer immédiatement le médecin du travail.</div>';
     h+='</div></div>';
 
-  // ── QUIZ ───────────────────────────────────────────────
   } else if(S.onglet==='quiz'){
     var pct=Math.round(S.qIdx/QUIZ_HYGIENE.length*100);
     h+='<div class="fadeup">';
@@ -354,7 +329,6 @@ function render(){
     h+='<button class="btn-g btn-full" onclick="rstQ()" style="margin-top:8px;color:var(--em)">↺ Recommencer</button>';
     h+='</div>';
 
-  // ── ANALYSE IA ─────────────────────────────────────────
   } else if(S.onglet==='analyse'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--em)">🤖 Analyse IA · Hygiène et sécurité</div>';
@@ -382,8 +356,8 @@ function render(){
   document.getElementById('app').innerHTML=h;
 }
 
-function go(v){S.view=v;render();window.scrollTo({top:0,behavior:'smooth'});}
-function setO(o){S.onglet=o;S.analyse='';render();window.scrollTo({top:0,behavior:'smooth'});}
+function go(v){S.view=v;stopLecture();render();window.scrollTo({top:0,behavior:'smooth'});}
+function setO(o){S.onglet=o;S.analyse='';stopLecture();render();window.scrollTo({top:0,behavior:'smooth'});}
 function selQ(i){if(S.qShown)return;S.qSel=i;S.qShown=true;S.qTotal++;if(i===QUIZ_HYGIENE[S.qIdx%QUIZ_HYGIENE.length].rep)S.qScore++;render();}
 function nxtQ(){S.qIdx++;S.qSel=null;S.qShown=false;render();window.scrollTo({top:0,behavior:'smooth'});}
 function rstQ(){S.qIdx=0;S.qScore=0;S.qTotal=0;S.qSel=null;S.qShown=false;render();}
@@ -408,9 +382,22 @@ async function runIA(){
 render();
 </script>
 
-<!-- Bouton accueil fixe -->
 <a class="home-btn-fixed" href="index.html">⌂ SimVeto</a>
-<!-- Références : CAFASV UC3 · Arrêté DASRI 7/09/1999 · Décret 2011-763 · INRS guide ASV · Directive EURATOM · Code du travail L.4121 -->
+
+<!-- Bouton audio -->
+<button id="btn-audio" onclick="lireOnglet()" style="
+  position:fixed;bottom:20px;right:20px;z-index:1000;
+  background:#40c878;border:none;border-radius:50px;
+  color:#080d0a;font-size:13px;font-weight:800;
+  padding:11px 18px;cursor:pointer;
+  box-shadow:0 4px 16px rgba(64,200,120,.35);
+  font-family:'Fira Mono',monospace;letter-spacing:.5px;
+  white-space:nowrap;transition:opacity .2s">🔊 Écouter</button>
+
+<script>
+  window.PRAXIS_AUDIO_SELECTOR = '.niveau-nom, .niveau-body, .proto-titre, .proto-desc, .card-title, .card-sub, .info, .quiz-expl, .analysis p';
+</script>
+<script src="praxis-audio.js"></script>
 <script src="praxiscare-feedback.js"></script>
 </body>
 </html>
