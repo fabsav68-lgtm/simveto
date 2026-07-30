@@ -37,8 +37,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .card.em{border-top:2px solid var(--red)}
 .card-title{font-family:var(--head);font-size:15px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
 .card-sub{color:var(--txt2);font-size:12px;margin-bottom:16px;line-height:1.65}
-
-/* Signaux */
 .signal-card{border-radius:10px;padding:14px;margin-bottom:8px;cursor:pointer;
   transition:all .18s;border-left:3px solid transparent;background:rgba(0,0,0,.2);
   -webkit-tap-highlight-color:transparent}
@@ -54,8 +52,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .signal-body{display:none;margin-top:10px;padding-top:10px;
   border-top:1px solid rgba(255,255,255,.06);font-size:12px;color:var(--txt2);line-height:1.7}
 .signal-card.open .signal-body{display:block}
-
-/* Protocole steps */
 .proto-step{display:flex;gap:12px;align-items:flex-start;padding:10px 0;
   border-bottom:1px solid rgba(255,255,255,.04)}
 .proto-step:last-child{border-bottom:none}
@@ -63,8 +59,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   flex-shrink:0;width:28px;line-height:1.2}
 .proto-txt{font-size:13px;line-height:1.65}
 .proto-txt strong{color:var(--txt)}
-
-/* Matériel */
 .materiel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .mat-item{background:rgba(0,0,0,.2);border-radius:8px;padding:12px;
   border:1.5px solid var(--bdr);transition:all .2s;cursor:pointer;
@@ -75,16 +69,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .mat-nom{font-size:13px;font-weight:600;margin-bottom:3px}
 .mat-desc{font-size:11px;color:var(--txt2);line-height:1.5;display:none}
 .mat-item.active .mat-desc{display:block}
-
-/* CV légaux */
 .cv-card{border-radius:8px;padding:14px;margin-bottom:8px;
   border-left:4px solid var(--amber);background:rgba(232,160,48,.05)}
 .cv-titre{font-family:var(--mono);font-size:11px;font-weight:700;
   color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
 .cv-desc{font-size:13px;color:var(--txt2);line-height:1.65}
 .cv-desc strong{color:var(--txt)}
-
-/* Cas cliniques */
 .cas-card{background:rgba(0,0,0,.2);border-radius:10px;padding:16px;
   margin-bottom:10px;border-left:3px solid var(--red)}
 .cas-titre{font-family:var(--head);font-size:14px;font-weight:700;
@@ -96,8 +86,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   border-radius:6px;padding:10px;font-size:12px;color:var(--txt2);line-height:1.7;display:none}
 .cas-reponse.visible{display:block}
 .cas-reponse strong{color:var(--txt)}
-
-/* Quiz */
 .quiz-opt{padding:11px 14px;border-radius:8px;border:1.5px solid var(--bdr);
   background:rgba(255,255,255,.02);color:var(--txt2);cursor:pointer;font-size:13px;
   margin-bottom:7px;transition:all .15s;display:flex;align-items:center;gap:10px;
@@ -109,13 +97,11 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   border-radius:8px;padding:11px 13px;margin-top:10px;font-size:12px;
   color:var(--txt2);line-height:1.7}
 .quiz-expl strong{color:var(--txt)}
-
 .info{border-radius:8px;padding:10px 13px;font-size:12px;line-height:1.75;margin-bottom:10px}
 .info-em  {background:rgba(120,216,64,.06);border-left:3px solid rgba(120,216,64,.5);color:var(--em)}
 .info-warn{background:rgba(232,160,48,.06);border-left:3px solid rgba(232,160,48,.5);color:var(--amber)}
 .info-crit{background:rgba(232,64,64,.06);border-left:3px solid rgba(232,64,64,.5);color:var(--red)}
 .info-blue{background:rgba(64,168,224,.06);border-left:3px solid rgba(64,168,224,.5);color:var(--blue)}
-
 .btn-p{background:linear-gradient(135deg,#c03030,var(--red));border:none;border-radius:8px;
   color:#fff;font-family:var(--head);font-size:13px;font-weight:700;padding:11px 22px;
   cursor:pointer;transition:opacity .2s,transform .1s;letter-spacing:-0.3px}
@@ -125,7 +111,6 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
   padding:9px 16px;cursor:pointer;transition:all .15s}
 .btn-g:hover{background:rgba(232,64,64,.06);color:var(--txt)}
 .btn-full{width:100%}
-.nav-row{display:flex;gap:8px}.nav-row>*{flex:1}
 .progress-wrap{background:rgba(255,255,255,.06);border-radius:100px;height:7px;overflow:hidden;margin:6px 0}
 .progress-bar{height:100%;border-radius:100px;transition:width .5s ease}
 .pts{display:flex;flex-direction:column;gap:10px;margin:16px 0;text-align:left}
@@ -152,51 +137,22 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .apikey-row button{padding:8px 12px;border:none;border-radius:6px;background:#c03030;
   color:#fff;font-weight:700;cursor:pointer;font-size:11px}
 hr.div{border:none;border-top:1px solid rgba(255,255,255,.06);margin:14px 0}
+.home-btn-fixed{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999;
+  background:rgba(10,13,8,.92);border:1.5px solid rgba(120,216,64,.3);border-radius:30px;
+  padding:10px 22px;display:flex;align-items:center;gap:8px;font-family:'Fira Mono',monospace;
+  font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#78d840;cursor:pointer;
+  text-decoration:none;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  box-shadow:0 4px 20px rgba(0,0,0,.5);transition:all .2s;white-space:nowrap}
+.home-btn-fixed:hover{background:rgba(120,216,64,.12);border-color:rgba(120,216,64,.5)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes dotB{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
 .fadeup{animation:fadeUp .35s ease forwards}
 @media(max-width:480px){.materiel-grid{grid-template-columns:1fr}}
-
-/* ── BOUTON ACCUEIL FIXE ── */
-.home-btn-fixed {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
-  background: rgba(10,13,8,.92);
-  border: 1.5px solid rgba(120,216,64,.3);
-  border-radius: 30px;
-  padding: 10px 22px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Fira Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #78d840;
-  cursor: pointer;
-  text-decoration: none;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0,0,0,.5);
-  transition: all .2s;
-  white-space: nowrap;
-}
-.home-btn-fixed:hover {
-  background: rgba(120,216,64,.12);
-  border-color: rgba(120,216,64,.5);
-}
-
 </style>
 </head>
 <body>
 <div id="app"></div>
 <script>
-// ═══════════════════════════════════════
-//  DONNÉES
-// ═══════════════════════════════════════
 var SIGNAUX = [
   { id:'s1', icon:'👂', nom:'Oreilles plaquées', niveau:2,
     desc:'Oreilles rabattues en arrière = peur ou agressivité défensive. Signal intermédiaire à ne pas ignorer. Adapter immédiatement l\'approche.' },
@@ -210,12 +166,12 @@ var SIGNAUX = [
     desc:'Tension musculaire visible, queue entre les pattes ou rigide = état de stress élevé. Ne pas forcer le contact. Proposer une friandise à distance.' },
   { id:'s6', icon:'😾', nom:'Chat : oreilles en arrière + dos arqué', niveau:3,
     desc:'Position défensive maximale chez le chat. Risque de griffure ET morsure simultanées. Utiliser la cage de contention ou la serviette épaisse.' },
-  { id:'s7', icon:'🙈', nom:'Animal qui se cache ou fuit', niveau:1,
+  { id:'s7', icon:'👁️', nom:'Chat : mydriase (pupilles dilatées)', niveau:3,
+    desc:'Chez le chat, la dilatation maximale des pupilles (mydriase) est un signal d\'alarme majeur : l\'animal est en état de peur intense ou d\'excitation agressive. Ne pas confondre avec la mydriase physiologique en lumière faible — ici le contexte (cabinet, manipulation) rend ce signe cliniquement significatif. Stopper immédiatement toute approche. Associé aux oreilles plaquées et au dos arqué, le risque de griffure et de morsure est très élevé.' },
+  { id:'s8', icon:'🙈', nom:'Animal qui se cache ou fuit', niveau:1,
     desc:'Peur sans agressivité directe. Ne pas forcer. Laisser l\'animal explorer à son rythme. La fuite peut se transformer en agressivité défensive si l\'animal est coincé.' },
 ];
 
-// Note CAFASV UC1 : L'ASV identifie le niveau d'alerte et EN RÉFÈRE au vétérinaire.
-// Elle ne décide jamais seule de la contention forcée ou de la sédation.
 var ROLE_ASV_CONTENTION = [
   {niveau:'VIGILANCE', asv:'Ralentir l\'approche, informer le vétérinaire, proposer un délai', veto:'Évalue et décide de la suite'},
   {niveau:'ATTENTION', asv:'Stopper toute manipulation, préparer le matériel, alerter le vétérinaire', veto:'Décide : muselière, sédation ou report'},
@@ -239,7 +195,7 @@ var CAS = [
   { id:'misty', titre:'Misty — Chatte persane, 6 ans, terreur du cabinet',
     contexte:'Mme Martin apporte Misty pour stérilisation prévue. Dès l\'ouverture du transport, Misty siffle, dos arqué, griffes sorties. Elle a déjà griffé 2 ASV lors de consultations précédentes.',
     question:'Comment préparez-vous la prise en charge de Misty ?',
-    reponse:'<strong>Préparation :</strong> Gants de contention + serviette épaisse prêts. Ne pas forcer l\'ouverture du transporteur — laisser Misty sortir seule ou démonter le dessus du transport.\n\n<strong>Technique burrito :</strong> Envelopper rapidement dans la serviette en couvrant la tête. Maintenir fermement sans écraser. Travailler vite et calmement.\n\n<strong>Alternative :</strong> Cage de contention pour l\'examen initial. Proposer au vétérinaire une prémédication anxiolytique pour les prochaines visites (Feliway, Zylkène).' },
+    reponse:'<strong>Préparation :</strong> Gants de contention + serviette épaisse prêts. Ne pas forcer l\'ouverture du transporteur — laisser Misty sortir seule ou démonter le dessus du transport.\n\n<strong>Signaux d\'alerte à surveiller :</strong> Oreilles plaquées, dos arqué, et surtout mydriase (pupilles totalement dilatées) = risque maximal de griffure/morsure simultanées. En présence de ces 3 signes : ne pas tenter la contention manuelle sans protection complète.\n\n<strong>Technique burrito :</strong> Envelopper rapidement dans la serviette en couvrant la tête. Maintenir fermement sans écraser. Travailler vite et calmement.\n\n<strong>Alternative :</strong> Cage de contention pour l\'examen initial. Proposer au vétérinaire une prémédication anxiolytique pour les prochaines visites (Feliway, Zylkène).' },
   { id:'kiki', titre:'Kiki — Perroquet gris du Gabon, morsures à répétition',
     contexte:'Un perroquet est amené pour bilan annuel. L\'oiseau a déjà mordu sévèrement 2 personnes. Le propriétaire dit "il mord tout le monde sauf moi".',
     question:'Quelles précautions spécifiques pour un NAC potentiellement dangereux ?',
@@ -251,7 +207,7 @@ var QUIZ = [
     opts:['Gronder le chien pour lui montrer qui commande','Stopper toute action et reculer lentement','Continuer rapidement pour en finir vite','Appeler le propriétaire pour tenir son chien'],
     rep:1, expl:'Le grognement est une **communication**. Il dit "je suis mal à l\'aise, arrête". Stopper toute action et reculer lentement. Ne jamais punir un grognement — l\'animal qui ne grogne plus avant de mordre est plus dangereux.' },
   { q:'Un chien a mordu une personne. Le vétérinaire doit établir :',
-    opts:['Un simple certificat de bonne santé','Les certificats vétérinaires CV1, CV2, CV3 sur 15 jours','Une déclaration d\'accident de travail','Rien si le propriétaire ne porte pas plainte'],
+    opts:['Un simple certificat de bonne santé','Les certificats vétérinaires CV1, CV2, CV3 sur 15 jours','Une déclaration d\'accident de travail','Rien si le chien est vacciné contre la rage'],
     rep:1, expl:'**CV1 (J0) + CV2 (J+8) + CV3 (J+15)** sont obligatoires par la loi pour tout animal mordeur, qu\'il soit vacciné ou non. C\'est une mesure de surveillance antirabique. Le vétérinaire et le propriétaire sont tous deux obligés.' },
   { q:'Pour contenir un chat très agressif, la technique la plus adaptée est :',
     opts:['Le maintenir fermement par la peau du cou uniquement','L\'envelopper dans une serviette épaisse (technique burrito)','Utiliser des gants de contention et forcer','Demander au propriétaire de le tenir'],
@@ -262,12 +218,14 @@ var QUIZ = [
   { q:'Les gants de contention pour chat :',
     opts:['Garantissent une protection totale contre les morsures','Réduisent la sensibilité et peuvent augmenter la force appliquée','Sont obligatoires pour tout chat','Remplacent toujours la technique burrito'],
     rep:1, expl:'Les gants **réduisent la sensibilité tactile** — risque d\'appuyer trop fort sans s\'en rendre compte. Ils ne protègent pas des morsures profondes. La technique burrito reste souvent préférable.' },
+  { q:'Chez le chat, la mydriase (pupilles totalement dilatées) lors d\'une consultation signifie :',
+    opts:['L\'animal est calme et s\'adapte à la lumière du cabinet','L\'animal est en état de peur intense ou d\'excitation agressive — signal d\'alerte niveau 3','L\'animal a besoin d\'une vérification ophtalmologique','La lumière du cabinet est trop forte'],
+    rep:1, expl:'En contexte de consultation, la **mydriase chez le chat** est un signal d\'alarme majeur (niveau 3). L\'animal est en état de peur intense ou prêt à l\'agression défensive. Associée aux oreilles plaquées et au dos arqué, elle indique un risque très élevé de griffure et de morsure simultanées. Stopper immédiatement toute approche et en référer au vétérinaire.' },
   { q:'Face à un animal qui fuit et se cache, l\'ASV doit :',
     opts:['Attraper rapidement l\'animal avant qu\'il ne se blesse','Laisser l\'animal explorer à son rythme sans forcer','Fermer toutes les issues et encercler l\'animal','Demander au propriétaire de le rattraper'],
     rep:1, expl:'Un animal qui **fuit** communique sa peur. Forcer le contact peut déclencher une agressivité défensive. Laisser l\'animal se calmer, proposer des friandises à distance, laisser renifler la main sans imposer le contact.' },
 ];
 
-// État
 var S = {
   view:'welcome', onglet:'signaux', signalOpen:null, matOpen:null, casShown:{},
   qIdx:0, qSel:null, qShown:false, qScore:0, qTotal:0,
@@ -314,7 +272,7 @@ function render(){
     h+='Un animal hostile au cabinet — chien qui grogne, chat qui crache, NAC qui mord — c\'est la situation la plus fréquente et la plus risquée pour l\'ASV. SimContention vous prépare à agir avec méthode.';
     h+='</p>';
     h+='<div class="pts">';
-    h+='<div class="pt"><span class="pt-i">⚠️</span><span class="pt-t"><strong>Signaux d\'alerte</strong> — reconnaître les 7 signes avant-coureurs</span></div>';
+    h+='<div class="pt"><span class="pt-i">⚠️</span><span class="pt-t"><strong>Signaux d\'alerte</strong> — reconnaître les 8 signes avant-coureurs dont la mydriase chez le chat</span></div>';
     h+='<div class="pt"><span class="pt-i">📋</span><span class="pt-t"><strong>Protocole de contention</strong> — les étapes dans l\'ordre</span></div>';
     h+='<div class="pt"><span class="pt-i">🧤</span><span class="pt-t"><strong>Matériel</strong> — quel outil pour quelle situation</span></div>';
     h+='<div class="pt"><span class="pt-i">⚖️</span><span class="pt-t"><strong>Obligations légales</strong> — CV1/CV2/CV3, déclaration mairie</span></div>';
@@ -326,7 +284,7 @@ function render(){
   } else if(S.onglet==='signaux'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--red)">⚠️ Signaux d\'alerte à reconnaître</div>';
-    h+='<div class="card-sub">Avant toute morsure, l\'animal communique. L\'ASV doit lire ces signaux.</div>';
+    h+='<div class="card-sub">Avant toute morsure ou griffure, l\'animal communique. L\'ASV doit lire ces signaux.</div>';
     SIGNAUX.forEach(function(s){
       h+='<div class="signal-card '+(S.signalOpen===s.id?'open':'')+'" onclick="S.signalOpen=S.signalOpen===s.id?null:\''+s.id+'\';render()">';
       h+='<div class="signal-header">';
@@ -339,13 +297,14 @@ function render(){
     });
     h+='</div>';
     h+='<div class="info info-crit">🚨 <strong>Règle d\'or :</strong> Ne jamais punir un grognement. Un animal qui ne grogne plus avant de mordre est plus dangereux qu\'un animal qui grogne.</div>';
+    h+='<div class="info info-warn">🐈 <strong>Spécifique chat :</strong> La mydriase (pupilles dilatées) en contexte de consultation est un signal d\'alerte de niveau 3. Associée aux oreilles plaquées et au dos arqué, elle annonce une réaction agressive imminente.</div>';
     h+='</div>';
 
   } else if(S.onglet==='protocole'){
     h+='<div class="fadeup"><div class="card em">';
     h+='<div class="card-title" style="color:var(--red)">📋 Protocole de contention — dans l\'ordre</div>';
     h+='<div class="card-sub">Face à un animal hostile, chaque étape compte. Ne pas brûler les étapes.</div>';
-    [{n:'1',t:'Observer avant d\'agir',d:'Prendre 30 secondes pour évaluer le niveau d\'alerte. Lire le langage corporel. Ne pas s\'approcher immédiatement.'},
+    [{n:'1',t:'Observer avant d\'agir',d:'Prendre 30 secondes pour évaluer le niveau d\'alerte. Lire le langage corporel (oreilles, posture, queue, pupilles). Ne pas s\'approcher immédiatement.'},
      {n:'2',t:'Prévenir le vétérinaire',d:'Toujours signaler un animal potentiellement dangereux avant de commencer. C\'est le vétérinaire qui décide de la stratégie.'},
      {n:'3',t:'Isoler l\'animal si possible',d:'Salle d\'attente séparée, box calme. Réduire les stimuli (bruit, autres animaux, enfants).'},
      {n:'4',t:'Préparer le matériel',d:'Muselière adaptée, gants, serviette, cage de contention. Tout à portée de main AVANT d\'approcher.'},
@@ -387,7 +346,7 @@ function render(){
     [{code:'CV1',titre:'1ère visite — Jour J',
       desc:'Établi le jour de la morsure ou au plus tôt. Évaluation de l\'état de santé de l\'animal. L\'animal est remis au propriétaire sous conditions. <strong>Déclaration en mairie obligatoire.</strong>'},
      {code:'CV2',titre:'2ème visite — J + 8',
-      desc:'Contrôle de l\'état de santé de l\'animal. Vérification que l\'animal est toujours vivant et surveille sa santé. <strong>Document remis au propriétaire.</strong>'},
+      desc:'Contrôle de l\'état de santé de l\'animal. Vérification que l\'animal est toujours vivant. <strong>Document remis au propriétaire.</strong>'},
      {code:'CV3',titre:'3ème visite — J + 15',
       desc:'Visite finale. Si l\'animal est toujours en bonne santé, le médecin de la victime peut confirmer l\'absence de risque rabique. <strong>Clôture de la procédure.</strong>'},
     ].forEach(function(cv){
@@ -497,11 +456,7 @@ async function runIA(){
 render();
 </script>
 
-<!-- Bouton accueil fixe -->
 <a class="home-btn-fixed" href="index.html">⌂ SimVeto</a>
-
-
-<!-- Références légales : Arrêté du 21 avril 1997 · Code rural L.211-11 · Loi 2008 chiens dangereux -->
 <script src="praxiscare-feedback.js"></script>
 </body>
 </html>
