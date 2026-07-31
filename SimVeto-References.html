@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PraxisRéférences-SimVeto · Bibliographie</title>
+<style>
+:root{
+  --blue:#1a6fb5;--blue-light:#e8f2fb;--blue-mid:#2d87d0;--blue-dark:#124f85;
+  --orange:#e07b2a;--green:#2a9d5c;--purple:#7b52ab;--teal:#0097a7;--red:#c0392b;
+  --gray-bg:#f5f7fa;--gray-border:#dde3ec;
+  --text:#1e2a3a;--text-light:#5a6a7e;
+  --radius:10px;--shadow:0 2px 10px rgba(26,111,181,0.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--gray-bg);color:var(--text);min-height:100vh;}
+header{background:linear-gradient(135deg,#0d3d1a,#1a7a35 60%,#2a9d5c);color:#fff;padding:18px 20px 14px;position:sticky;top:0;z-index:100;box-shadow:0 3px 12px rgba(13,61,26,.3);}
+.header-top{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+.module-badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:3px 9px;font-size:.72rem;font-weight:700;letter-spacing:.05em;white-space:nowrap;}
+header h1{font-size:1.05rem;font-weight:700;line-height:1.2;}
+header p.subtitle{font-size:.75rem;opacity:.8;margin-top:2px;}
+.content{max-width:860px;margin:0 auto;padding:20px 16px 80px;}
+
+.intro-banner{background:linear-gradient(135deg,#0d3d1a,#1a7a35);color:#fff;border-radius:var(--radius);padding:18px 20px;margin-bottom:24px;display:flex;gap:14px;align-items:flex-start;}
+.intro-banner .icon{font-size:2rem;flex-shrink:0;}
+.intro-banner h2{font-size:.95rem;font-weight:700;margin-bottom:6px;}
+.intro-banner p{font-size:.81rem;line-height:1.6;opacity:.9;}
+
+.section-title{font-size:.75rem;font-weight:700;color:var(--text-light);text-transform:uppercase;letter-spacing:.1em;margin:24px 0 12px;padding-left:10px;border-left:3px solid var(--green);}
+
+.ref-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:16px;display:grid;grid-template-columns:80px 1fr;gap:18px;align-items:start;border-left:4px solid var(--green);}
+@media(max-width:480px){.ref-card{grid-template-columns:1fr;}}
+.ref-card.orange{border-left-color:var(--orange);}
+.ref-card.blue{border-left-color:var(--blue);}
+.ref-card.purple{border-left-color:var(--purple);}
+.ref-card.teal{border-left-color:var(--teal);}
+.ref-card.red{border-left-color:var(--red);}
+
+.ref-avatar{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;background:#e6f4ee;border:3px solid #e6f4ee;}
+.ref-avatar.orange{background:#fde8c5;border-color:#fde8c5;}
+.ref-avatar.blue{background:var(--blue-light);border-color:var(--blue-light);}
+.ref-avatar.purple{background:#f0ebff;border-color:#f0ebff;}
+.ref-avatar.teal{background:#e0f7fa;border-color:#e0f7fa;}
+.ref-avatar.red{background:#fdecea;border-color:#fdecea;}
+
+.ref-body h3{font-size:.98rem;font-weight:700;color:#1e7a45;margin-bottom:3px;}
+.ref-card.orange .ref-body h3{color:#b55f10;}
+.ref-card.blue .ref-body h3{color:var(--blue-dark);}
+.ref-card.purple .ref-body h3{color:#5a3a8a;}
+.ref-card.teal .ref-body h3{color:#006978;}
+.ref-card.red .ref-body h3{color:var(--red);}
+
+.ref-meta{font-size:.75rem;color:var(--text-light);margin-bottom:10px;}
+.ref-meta span{display:inline-block;margin-right:12px;}
+.ref-apport{font-size:.83rem;line-height:1.65;color:var(--text);margin-bottom:10px;}
+.ref-oeuvre{font-size:.77rem;color:var(--text-light);margin-bottom:8px;}
+.ref-oeuvre strong{color:var(--text);}
+
+.ref-modules{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.ref-module{display:inline-block;padding:2px 9px;border-radius:10px;font-size:.72rem;font-weight:600;background:#e6f4ee;color:#1e7a45;}
+.ref-card.orange .ref-module{background:#fde8c5;color:#b55f10;}
+.ref-card.blue .ref-module{background:var(--blue-light);color:var(--blue-dark);}
+.ref-card.purple .ref-module{background:#f0ebff;color:#5a3a8a;}
+.ref-card.teal .ref-module{background:#e0f7fa;color:#006978;}
+.ref-card.red .ref-module{background:#fdecea;color:var(--red);}
+
+.ref-citation{background:var(--gray-bg);border-radius:7px;padding:10px 14px;margin-bottom:10px;font-size:.8rem;font-style:italic;color:var(--text);border-left:3px solid var(--green);line-height:1.6;}
+.ref-card.orange .ref-citation{border-left-color:var(--orange);}
+.ref-card.blue .ref-citation{border-left-color:var(--blue);}
+.ref-card.purple .ref-citation{border-left-color:var(--purple);}
+.ref-card.teal .ref-citation{border-left-color:var(--teal);}
+.ref-card.red .ref-citation{border-left-color:var(--red);}
+
+.ref-link{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:7px;background:#1a7a35;color:#fff;font-size:.78rem;font-weight:700;text-decoration:none;transition:background .18s;}
+.ref-link:hover{background:#0d3d1a;}
+.ref-card.orange .ref-link{background:var(--orange);}
+.ref-card.blue .ref-link{background:var(--blue);}
+.ref-card.purple .ref-link{background:var(--purple);}
+.ref-card.teal .ref-link{background:var(--teal);}
+.ref-card.red .ref-link{background:var(--red);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="module-badge">RÉFÉRENCES · BIBLIOGRAPHIE · SimVeto</div>
+    <div>
+      <h1>PraxisRéférences-SimVeto</h1>
+      <p class="subtitle">Les auteurs et théories qui fondent les soins vétérinaires</p>
+    </div>
+  </div>
+</header>
+
+<div class="content">
+
+  <div class="intro-banner">
+    <div class="icon">📚</div>
+    <div>
+      <h2>Pourquoi cette page ?</h2>
+      <p>Les soins vétérinaires s'appuient sur des siècles de découvertes scientifiques en microbiologie, physiologie et pharmacologie. Cette page présente les grands noms dont les travaux fondent les connaissances utilisées dans SimVeto.</p>
+    </div>
+  </div>
+
+  <!-- MICROBIOLOGIE & INFECTIOLOGIE -->
+  <div class="section-title">🦠 Microbiologie et maladies infectieuses</div>
+
+  <div class="ref-card orange">
+    <div class="ref-avatar orange">🧪</div>
+    <div class="ref-body">
+      <h3>Louis Pasteur</h3>
+      <div class="ref-meta">
+        <span>🇫🇷 Français</span>
+        <span>📅 1822 – 1895</span>
+        <span>🎓 Chimiste, microbiologiste</span>
+      </div>
+      <p class="ref-apport">Louis Pasteur est le fondateur de la <strong>microbiologie moderne</strong> et l'un des pères de la médecine vétérinaire. Ses découvertes ont révolutionné la compréhension des maladies infectieuses : il démontre que les microorganismes sont responsables des maladies et de la fermentation, réfute la génération spontanée, invente la <strong>pasteurisation</strong> et développe les premiers <strong>vaccins</strong> (poulet cholera, charbon, rage). Son vaccin contre la rage (1885) est l'une des plus grandes victoires de la médecine vétérinaire et humaine.</p>
+      <div class="ref-oeuvre"><strong>Découvertes clés :</strong> Pasteurisation (1864) · Vaccin contre le charbon (1881) · Vaccin contre la rage (1885)</div>
+      <div class="ref-citation">"Dans les champs de l'observation, le hasard ne favorise que les esprits préparés."</div>
+      <div class="ref-modules">
+        <span class="ref-module">Maladies infectieuses</span>
+        <span class="ref-module">Vaccination</span>
+        <span class="ref-module">Hygiène et asepsie</span>
+        <span class="ref-module">Zoonoses</span>
+      </div>
+      <a class="ref-link" href="https://fr.wikipedia.org/wiki/Louis_Pasteur" target="_blank">🔗 Wikipedia</a>
+    </div>
+  </div>
+
+  <div class="ref-card red">
+    <div class="ref-avatar red">🔬</div>
+    <div class="ref-body">
+      <h3>Robert Koch</h3>
+      <div class="ref-meta">
+        <span>🇩🇪 Allemand</span>
+        <span>📅 1843 – 1910</span>
+        <span>🎓 Médecin, microbiologiste · Prix Nobel 1905</span>
+      </div>
+      <p class="ref-apport">Robert Koch est le co-fondateur de la bactériologie moderne avec Pasteur. Il découvre le <strong>bacille du charbon</strong> (1876), le <strong>bacille de la tuberculose</strong> (1882) et le <strong>vibrion cholérique</strong> (1883). Ses <strong>postulats de Koch</strong> (critères pour établir qu'un microorganisme est responsable d'une maladie) restent une référence en infectiologie vétérinaire et humaine. Ses techniques de culture bactérienne sur milieu solide (gélose) sont encore utilisées aujourd'hui dans les laboratoires vétérinaires.</p>
+      <div class="ref-oeuvre"><strong>Découvertes clés :</strong> Postulats de Koch (1884) · Découverte du bacille tuberculeux (1882) · Techniques de culture bactérienne</div>
+      <div class="ref-citation">"Un jour, la tuberculose sera aussi facile à prévenir que la variole."</div>
+      <div class="ref-modules">
+        <span class="ref-module">Bactériologie</span>
+        <span class="ref-module">Tuberculose bovine</span>
+        <span class="ref-module">Diagnostic infectieux</span>
+        <span class="ref-module">Zoonoses</span>
+      </div>
+      <a class="ref-link" href="https://fr.wikipedia.org/wiki/Robert_Koch" target="_blank">🔗 Wikipedia</a>
+    </div>
+  </div>
+
+  <!-- PHYSIOLOGIE ANIMALE -->
+  <div class="section-title">🔬 Physiologie et médecine expérimentale</div>
+
+  <div class="ref-card blue">
+    <div class="ref-avatar blue">⚗️</div>
+    <div class="ref-body">
+      <h3>Claude Bernard</h3>
+      <div class="ref-meta">
+        <span>🇫🇷 Français</span>
+        <span>📅 1813 – 1878</span>
+        <span>🎓 Médecin, physiologiste</span>
+      </div>
+      <p class="ref-apport">Claude Bernard est le fondateur de la <strong>physiologie expérimentale</strong> et le concepteur du <strong>milieu intérieur</strong> — la stabilité du milieu interne de l'organisme. Ses travaux sur le foie (rôle glycogénique), le système nerveux végétatif et les poisons (curare) ont fondé la pharmacologie moderne. En médecine vétérinaire, la compréhension de la physiologie des différentes espèces animales repose directement sur ses méthodes expérimentales.</p>
+      <div class="ref-oeuvre"><strong>Œuvre clé :</strong> Introduction à l'étude de la médecine expérimentale (1865)</div>
+      <div class="ref-citation">"La fixité du milieu intérieur est la condition d'une vie libre et indépendante."</div>
+      <div class="ref-modules">
+        <span class="ref-module">Physiologie animale</span>
+        <span class="ref-module">Pharmacologie vétérinaire</span>
+        <span class="ref-module">Milieu intérieur</span>
+      </div>
+      <a class="ref-link" href="https://fr.wikipedia.org/wiki/Claude_Bernard" target="_blank">🔗 Wikipedia</a>
+    </div>
+  </div>
+
+  <!-- BIEN-ÊTRE ANIMAL -->
+  <div class="section-title">🐾 Bien-être animal</div>
+
+  <div class="ref-card teal">
+    <div class="ref-avatar teal">🐾</div>
+    <div class="ref-body">
+      <h3>Les 5 libertés animales — Farm Animal Welfare Council</h3>
+      <div class="ref-meta">
+        <span>🇬🇧 Royaume-Uni</span>
+        <span>📅 1979</span>
+        <span>🎓 Conseil consultatif gouvernemental britannique</span>
+      </div>
+      <p class="ref-apport">Bien que non attribuées à un auteur unique, les <strong>5 libertés animales</strong> constituent le référentiel mondial du bien-être animal, formulées par le Farm Animal Welfare Council britannique en 1979. Elles définissent les conditions minimales pour considérer qu'un animal ne souffre pas : absence de faim et de soif, absence d'inconfort, absence de douleur et de maladie, liberté d'expression des comportements naturels, absence de peur et de détresse. Ce modèle est le fondement de toute évaluation du bien-être animal en médecine vétérinaire.</p>
+      <div class="ref-oeuvre"><strong>Référence :</strong> Farm Animal Welfare Council Report (1979) · Brambell Report (1965)</div>
+      <div class="ref-citation">"Le bien-être d'un animal comprend son état physique et mental."</div>
+      <div class="ref-modules">
+        <span class="ref-module">Bien-être animal</span>
+        <span class="ref-module">Éthologie</span>
+        <span class="ref-module">Législation vétérinaire</span>
+      </div>
+      <a class="ref-link" href="https://fr.wikipedia.org/wiki/Cinq_libert%C3%A9s_(bien-%C3%AAtre_animal)" target="_blank">🔗 Wikipedia</a>
+    </div>
+  </div>
+
+  <div class="ref-card purple">
+    <div class="ref-avatar purple">🧬</div>
+    <div class="ref-body">
+      <h3>Temple Grandin</h3>
+      <div class="ref-meta">
+        <span>🇺🇸 Américaine</span>
+        <span>📅 1947 –</span>
+        <span>🎓 Zootechnicienne, éthologiste</span>
+      </div>
+      <p class="ref-apport">Temple Grandin est une figure mondiale du <strong>bien-être animal</strong>, particulièrement dans l'élevage et les abattoirs. Autiste, elle a développé une capacité unique à comprendre le comportement animal et à concevoir des environnements qui réduisent le stress des animaux. Ses travaux ont transformé les pratiques de manipulation des bovins dans le monde entier. Ses systèmes de contention en arc de cercle sont utilisés dans des milliers d'établissements. Ses recherches sur la douleur et le stress animal fondent les pratiques modernes de médecine vétérinaire préventive.</p>
+      <div class="ref-oeuvre"><strong>Œuvre clé :</strong> Animals in Translation (2005) · Thinking in Pictures (1995)</div>
+      <div class="ref-citation">"La nature est cruelle, mais nous n'avons pas à l'être."</div>
+      <div class="ref-modules">
+        <span class="ref-module">Bien-être animal</span>
+        <span class="ref-module">Comportement animal</span>
+        <span class="ref-module">Contention et manipulation</span>
+      </div>
+      <a class="ref-link" href="https://fr.wikipedia.org/wiki/Temple_Grandin" target="_blank">🔗 Wikipedia</a>
+    </div>
+  </div>
+
+  <!-- TEXTES RÉGLEMENTAIRES -->
+  <div class="section-title">📜 Textes réglementaires de référence</div>
+
+  <div class="ref-card">
+    <div class="ref-avatar">📋</div>
+    <div class="ref-body">
+      <h3>Textes officiels SimVeto</h3>
+      <div class="ref-meta"><span>🇫🇷 République Française · 🇪🇺 Union Européenne</span></div>
+      <p class="ref-apport">Les contenus de SimVeto sont fondés sur les textes réglementaires suivants :</p>
+      <ul style="font-size:.81rem;line-height:1.9;padding-left:18px;margin-top:8px;">
+        <li><strong>Code rural et de la pêche maritime</strong> — Livre II : Santé animale et protection des animaux</li>
+        <li><strong>Règlement (CE) n°1/2005</strong> — Protection des animaux pendant le transport</li>
+        <li><strong>Directive 2010/63/UE</strong> — Protection des animaux utilisés à des fins scientifiques</li>
+        <li><strong>Arrêté du 25 octobre 1982</strong> — Réglementation relative à l'exercice de la médecine vétérinaire</li>
+        <li><strong>Loi du 16 février 2015</strong> — Reconnaissance de la sensibilité des animaux dans le Code civil (article 515-14)</li>
+        <li><strong>Référentiel CAFASV</strong> — Formation des assistants vétérinaires en France</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
