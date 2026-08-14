@@ -286,56 +286,22 @@ document.addEventListener('touchstart', resetInactivityTimer);
 document.addEventListener('keypress', resetInactivityTimer);
 resetInactivityTimer();
 
-var CODES_VALIDES_VETO = ['PRAXIS-ASV-001','PRAXIS-ASV-002','PRAXIS-ASV-003','PRAXIS-ASV-004','PRAXIS-ASV-005',
-  'PRAXIS-ASV-006','PRAXIS-ASV-007','PRAXIS-ASV-008','PRAXIS-ASV-009','PRAXIS-ASV-010',
-  'PRAXIS-ASV-011','PRAXIS-ASV-012','PRAXIS-ASV-013','PRAXIS-ASV-014','PRAXIS-ASV-015',
-  'PRAXIS-ASV-016','PRAXIS-ASV-017','PRAXIS-ASV-018','PRAXIS-ASV-019','PRAXIS-ASV-020',
-  'PRAXIS-ASV-021','PRAXIS-ASV-022','PRAXIS-ASV-023','PRAXIS-ASV-024','PRAXIS-ASV-025',
-  'PRAXIS-ASV-026','PRAXIS-ASV-027','PRAXIS-ASV-028','PRAXIS-ASV-029','PRAXIS-ASV-030',
-  'PRAXIS-ASV-031','PRAXIS-ASV-032','PRAXIS-ASV-033','PRAXIS-ASV-034','PRAXIS-ASV-035',
-  'PRAXIS-ASV-036','PRAXIS-ASV-037','PRAXIS-ASV-038','PRAXIS-ASV-039','PRAXIS-ASV-040',
-  'PRAXIS-ASV-041','PRAXIS-ASV-042','PRAXIS-ASV-043','PRAXIS-ASV-044','PRAXIS-ASV-045',
-  'PRAXIS-ASV-046','PRAXIS-ASV-047','PRAXIS-ASV-048','PRAXIS-ASV-049','PRAXIS-ASV-050'];
-
-function ouvrirBinome(){
-  document.getElementById('binome-overlay').style.display='flex';
-  var b=localStorage.getItem('praxisveto_binome');
-  document.getElementById('binome-actuel').textContent=b?'Binome actuel : '+b:'Aucun binome lie pour le moment';
-  document.getElementById('binome-score').style.display='none';
-  document.getElementById('binome-msg').textContent='';
-}
-function fermerBinome(){document.getElementById('binome-overlay').style.display='none';}
 function lierBinome(){
   var monCode=sessionStorage.getItem('praxisveto_code');
   var cb=document.getElementById('binome-input').value.trim().toUpperCase();
   var msg=document.getElementById('binome-msg');
   if(!cb){msg.style.color='#e84040';msg.textContent='Entrez un code binome.';return;}
   if(cb===monCode){msg.style.color='#e84040';msg.textContent='Vous ne pouvez pas vous lier a vous-meme !';return;}
-  if(CODES_VALIDES_VETO.indexOf(cb)===-1){msg.style.color='#e84040';msg.textContent='Ce code n\'est pas un abonne actif.';return;}
-  localStorage.setItem('praxisveto_binome',cb);
-  fetch(SUPABASE_URL+"/rest/v1/praxis",{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY},body:JSON.stringify({student_code:monCode,app:"praxisveto",module:"binome",step:cb,session_id:monCode+"_binome_"+Date.now()})});
-  msg.style.color='#78d840';msg.textContent='Binome '+cb+' lie avec succes !';
-  document.getElementById('binome-actuel').textContent='Binome actuel : '+cb;
-}
-function voirScoreBinome(){
-  var monCode=sessionStorage.getItem('praxisveto_code');
-  var cb=localStorage.getItem('praxisveto_binome');
-  var scoreDiv=document.getElementById('binome-score');
-  var msg=document.getElementById('binome-msg');
-  if(!cb){msg.style.color='#e84040';msg.textContent='Liez d\'abord un binome.';return;}
-  msg.style.color='#4a6840';msg.textContent='Chargement...';
-  fetch(SUPABASE_URL+"/rest/v1/praxis?student_code=in.("+monCode+","+cb+")&step=eq.ouverture&select=student_code,module",{headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY}})
+  msg.style.color='#4a6840';msg.textContent='Verification...';
+  fetch('https://fvrfiikrasezlzpaxpqz.supabase.co/functions/v1/verifier-acces',{method:'POST',headers:{'Content-Type':'application/json','apikey':'sb_publishable_TNksbociGaWCY53M4wCAXg_faOxEqKt','Authorization':'Bearer sb_publishable_TNksbociGaWCY53M4wCAXg_faOxEqKt'},body:JSON.stringify({code:cb,app:'SimVeto'})})
   .then(function(r){return r.json();}).then(function(data){
-    var moi=data.filter(function(d){return d.student_code===monCode;}).map(function(d){return d.module;});
-    var bin=data.filter(function(d){return d.student_code===cb;}).map(function(d){return d.module;});
-    var communs=[...new Set(moi.filter(function(m){return bin.indexOf(m)!==-1;}))];
-    var badge=communs.length>=8?'Duetiste Expert ASV':communs.length>=4?'Duetiste Actif':communs.length>=1?'Duetiste Debutant':'Duetiste Inscrit';
-    scoreDiv.style.display='block';
-    scoreDiv.innerHTML='<div style="text-align:center;font-size:18px;color:#78d840;margin-bottom:8px">'+badge+'</div>'+
-      '<div style="color:#4a6840;font-size:12px">Modules explores en commun : <strong style="color:#78d840">'+communs.length+'</strong></div>'+
-      '<div style="color:#4a6840;font-size:12px;margin-top:4px">Binome : <strong style="color:#a060ff">'+cb+'</strong></div>'+
-      (communs.length>0?'<div style="margin-top:8px;font-size:11px;color:#4a6840">'+communs.join(', ')+'</div>':'');
-    msg.textContent='';
+    if(!data.valide){msg.style.color='#e84040';msg.textContent='Ce code n\'est pas un abonne actif.';return;}
+    localStorage.setItem('praxisveto_binome',cb);
+    fetch(SUPABASE_URL+"/rest/v1/praxis",{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY},body:JSON.stringify({student_code:monCode,app:"praxisveto",module:"binome",step:cb,session_id:monCode+"_binome_"+Date.now()})}).catch(function(){});
+    msg.style.color='#78d840';msg.textContent='Binome '+cb+' lie avec succes !';
+    document.getElementById('binome-actuel').textContent='Binome actuel : '+cb;
+  }).catch(function(){msg.style.color='#e84040';msg.textContent='Erreur de verification, reessayez.';});
+}
   });
 }
 </script>
