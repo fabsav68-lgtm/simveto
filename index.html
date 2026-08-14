@@ -41,19 +41,9 @@ footer{border-top:1px solid rgba(255,255,255,.07);padding:24px 20px;text-align:c
 </style>
 <script>
 (function(){
-  var CODES = ['PRAXIS-ASV-001','PRAXIS-ASV-002','PRAXIS-ASV-003','PRAXIS-ASV-004','PRAXIS-ASV-005',
-    'PRAXIS-ASV-006','PRAXIS-ASV-007','PRAXIS-ASV-008','PRAXIS-ASV-009','PRAXIS-ASV-010',
-    'PRAXIS-ASV-011','PRAXIS-ASV-012','PRAXIS-ASV-013','PRAXIS-ASV-014','PRAXIS-ASV-015',
-    'PRAXIS-ASV-016','PRAXIS-ASV-017','PRAXIS-ASV-018','PRAXIS-ASV-019','PRAXIS-ASV-020',
-    'PRAXIS-ASV-021','PRAXIS-ASV-022','PRAXIS-ASV-023','PRAXIS-ASV-024','PRAXIS-ASV-025',
-    'PRAXIS-ASV-026','PRAXIS-ASV-027','PRAXIS-ASV-028','PRAXIS-ASV-029','PRAXIS-ASV-030',
-    'PRAXIS-ASV-031','PRAXIS-ASV-032','PRAXIS-ASV-033','PRAXIS-ASV-034','PRAXIS-ASV-035',
-    'PRAXIS-ASV-036','PRAXIS-ASV-037','PRAXIS-ASV-038','PRAXIS-ASV-039','PRAXIS-ASV-040',
-    'PRAXIS-ASV-041','PRAXIS-ASV-042','PRAXIS-ASV-043','PRAXIS-ASV-044','PRAXIS-ASV-045',
-    'PRAXIS-ASV-046','PRAXIS-ASV-047','PRAXIS-ASV-048','PRAXIS-ASV-049','PRAXIS-ASV-050',
-    'PRAXIS-VETO-FORM-01'];
   var code = sessionStorage.getItem('praxisveto_code');
-  if(!code || CODES.indexOf(code) === -1){
+  var promo = sessionStorage.getItem('praxisveto_promo');
+  if(!code || !promo){
     window.location.replace('acces-veto.html');
   }
 })();
