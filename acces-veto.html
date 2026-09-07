@@ -86,18 +86,18 @@ function validerCode(){
     sessionStorage.setItem('praxisveto_code', code);
     sessionStorage.setItem('praxisveto_promo', promo);
 
-    // Envoi Supabase (tracking existant conservé)
-    fetch("https://uhbbwtxmsomqhuvzvoxy.supabase.co/rest/v1/praxis", {
+    // Tracking connexions — redirige vers le projet principal (l'ancien projet a ete supprime)
+    fetch("https://fvrfiikrasezlzpaxpqz.supabase.co/rest/v1/connexions_historique", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmJ3dHhtc29tcWh1dnp2b3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1MTI2OTIsImV4cCI6MjA5OTA4ODY5Mn0.WsH1qUbwjL8eF0y5vUBqG8lvpE4UgbNd3k2JbBGVyyY",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmJ3dHhtc29tcWh1dnp2b3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1MTI2OTIsImV4cCI6MjA5OTA4ODY5Mn0.WsH1qUbwjL8eF0y5vUBqG8lvpE4UgbNd3k2JbBGVyyY"
+        "apikey": "sb_publishable_TNksbociGaWCY53M4wCAXg_faOxEqKt",
+        "Authorization": "Bearer sb_publishable_TNksbociGaWCY53M4wCAXg_faOxEqKt"
       },
       body: JSON.stringify({
         student_code: code,
         student_name: promo,
-        app: "praxisveto",
+        app: "simveto",
         module: "login",
         session_id: code + "_" + Date.now()
       })
