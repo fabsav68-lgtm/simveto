@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PraxisGestes · Fiches techniques Veto</title>
+<style>
+:root{
+  --bg:#0a0d08; --bg2:#121810; --card:rgba(255,255,255,.03); --bdr:rgba(255,255,255,.08);
+  --txt:#d8e8d0; --txt2:#4a6840; --em:#78d840;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 55%,var(--bg) 100%);color:var(--txt);min-height:100vh;padding-bottom:40px}
+.wrap{max-width:680px;margin:0 auto;padding:0 20px}
+header{padding:32px 0 20px;text-align:center}
+.badge{display:inline-block;background:rgba(120,216,64,.1);border:1px solid rgba(120,216,64,.25);color:var(--em);padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:2px;font-family:monospace;margin-bottom:14px}
+h1{font-family:Georgia,serif;font-size:32px;font-weight:300;letter-spacing:-0.5px}
+h1 em{font-style:italic;color:var(--em)}
+.sub{color:var(--txt2);font-size:13px;margin-top:8px;line-height:1.7;max-width:420px;margin-left:auto;margin-right:auto}
+
+.fiches-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+@media(max-width:420px){.fiches-grid{grid-template-columns:1fr}}
+.fiche-card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:18px;text-decoration:none;color:var(--txt);display:block;transition:border-color .15s}
+.fiche-card:active{border-color:var(--em)}
+.fiche-icon{font-size:28px;margin-bottom:8px}
+.fiche-name{font-size:15px;font-weight:700;margin-bottom:4px}
+.fiche-desc{font-size:12px;color:var(--txt2);line-height:1.5}
+
+.soon-card{background:rgba(255,255,255,.015);border:1px dashed var(--bdr);border-radius:16px;padding:18px}
+.soon-card .fiche-name{color:var(--txt2)}
+
+footer{border-top:1px solid var(--bdr);margin-top:32px;padding:20px;text-align:center;font-size:11px;color:var(--txt2);font-family:monospace}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge">FICHES TECHNIQUES</div>
+    <h1>Praxis<em>Gestes</em></h1>
+    <p class="sub">Base de données des soins et gestes vétérinaires — consultation rapide, matériel, étapes, astuces vérifiées.</p>
+  </header>
+
+  <div class="fiches-grid">
+    <a class="fiche-card" href="FicheTechnique-Contention-ChienChat.html">
+      <div class="fiche-icon">🐾</div>
+      <div class="fiche-name">Contention chien/chat</div>
+      <div class="fiche-desc">Sécurité de l'animal et du soignant</div>
+    </a>
+    <a class="fiche-card" href="FicheTechnique-Contention-NAC.html">
+      <div class="fiche-icon">🐰</div>
+      <div class="fiche-name">Contention NAC</div>
+      <div class="fiche-desc">Lapin, rongeur, oiseau</div>
+    </a>
+    <a class="fiche-card" href="FicheTechnique-Constantes-ChienChat.html">
+      <div class="fiche-icon">🌡️</div>
+      <div class="fiche-name">Constantes chien/chat</div>
+      <div class="fiche-desc">Température, FC, TRC</div>
+    </a>
+    <a class="fiche-card" href="FicheTechnique-Constantes-NAC.html">
+      <div class="fiche-icon">🐹</div>
+      <div class="fiche-name">Constantes NAC</div>
+      <div class="fiche-desc">Lapin, cochon d'Inde</div>
+    </a>
+    <div class="soon-card">
+      <div class="fiche-icon">✂️</div>
+      <div class="fiche-name">Prochainement</div>
+      <div class="fiche-desc">Champ opératoire, prélèvement sanguin...</div>
+    </div>
+  </div>
+
+  <footer>MedExpert · Praxis · Base de données des soins techniques vétérinaires</footer>
+</div>
+</body>
+</html>
