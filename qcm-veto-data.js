@@ -1,325 +1,66 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>PraxisVeto · Suite pedagogique ASV</title>
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-veto.png">
-<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-veto.png">
-<link rel="icon" type="image/png" href="apple-touch-icon-veto.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="PraxisVeto">
-<meta name="theme-color" content="#0a0d08">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:#0a0d08}
-#home{position:fixed;inset:0;background:linear-gradient(160deg,#0a0d08 0%,#121810 55%,#0a0d08 100%);color:#d8e8d0;overflow-y:auto;-webkit-overflow-scrolling:touch;font-family:system-ui,sans-serif;display:flex;flex-direction:column;}
-#module-frame{position:fixed;inset:0;width:100%;height:100%;border:none;display:none;background:#0a0d08;z-index:100;}
-#btn-retour{position:fixed;top:env(safe-area-inset-top, 12px);left:16px;z-index:200;display:none;background:rgba(10,13,8,.9);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:8px 16px;color:#d8e8d0;font-size:14px;font-weight:600;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-family:system-ui,sans-serif;}
-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(10,13,8,.9);position:sticky;top:0;z-index:10;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
-.nav-logo{font-size:22px;font-weight:700;color:#d8e8d0;font-family:Georgia,serif}
-.nav-logo span{color:#78d840}
-.nav-tag{font-size:10px;letter-spacing:2px;color:#4a6840;border:1px solid rgba(255,255,255,.07);padding:3px 10px;border-radius:20px;font-family:monospace}
-.hero{text-align:center;padding:48px 24px 36px}
-.hero-badge{display:inline-block;background:rgba(120,216,64,.1);border:1px solid rgba(120,216,64,.25);color:#78d840;padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:2px;font-family:monospace;margin-bottom:18px}
-.hero h1{font-family:Georgia,serif;font-size:clamp(32px,7vw,60px);font-weight:300;line-height:1.1;letter-spacing:-1px;margin-bottom:14px}
-.hero h1 em{font-style:italic;color:#78d840}
-.hero h1 strong{font-weight:700}
-.hero p{font-size:15px;color:#4a6840;line-height:1.75;max-width:440px;margin:0 auto}
-.modules-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px 40px;max-width:680px;margin:0 auto;width:100%;}
-@media(max-width:380px){.modules-grid{grid-template-columns:1fr}}
-.module-card{border-radius:16px;padding:18px 16px;border:1.5px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);display:flex;flex-direction:column;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .15s,opacity .15s;user-select:none;-webkit-user-select:none;}
-.module-card:active{transform:scale(.97);opacity:.85}
-.module-num{font-family:monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.2);margin-bottom:10px}
-.module-icon{font-size:28px;margin-bottom:8px}
-.module-name{font-size:20px;font-weight:700;letter-spacing:-0.5px;margin-bottom:3px;line-height:1}
-.module-sub{font-size:11px;color:#4a6840;margin-bottom:8px}
-.module-desc{font-size:12px;color:#4a6840;line-height:1.6;flex:1;margin-bottom:12px}
-.module-btn{display:block;text-align:center;padding:9px;border-radius:8px;font-size:12px;font-weight:700;border:1.5px solid transparent;}
-footer{border-top:1px solid rgba(255,255,255,.07);padding:24px 20px;text-align:center;font-size:11px;color:#4a6840;font-family:monospace;}
-</style>
-<script>
-(function(){
-  var code = sessionStorage.getItem('praxisveto_code');
-  var promo = sessionStorage.getItem('praxisveto_promo');
-  if(!code || !promo){
-    window.location.replace('acces-veto.html');
-  }
-})();
-document.addEventListener('visibilitychange', function(){
-  if(document.visibilityState === 'hidden'){
-    sessionStorage.removeItem('praxisveto_code');
-    sessionStorage.removeItem('praxisveto_promo');
-  }
-});
-</script>
-</head>
-<body>
+// Praxis - Banque de questions QCM SimVeto
+// Organisation officielle : titre ASV GIPSA (APFORM/SNVEL), 4 UC (Unités de Compétences)
+// UC1 : Conseiller la clientèle du vétérinaire
+// UC2 : Contribuer à l'organisation interne de l'établissement
+// UC3 : Assurer l'hygiène
+// UC4 : Assister le vétérinaire en soins et en chirurgie (contention, constantes déjà couverts par les fiches existantes)
+// Ne pas dupliquer ce contenu ailleurs - toujours modifier ce fichier unique
 
-<button id="btn-retour" onclick="retourAccueil()">PraxisVeto</button>
-<iframe id="module-frame" src="" allowfullscreen></iframe>
+const QCM_VETO = {
+  uc1: [
+    { module:'UC1 - Conseiller la clientèle', q:'Un client appelle en décrivant un chien avec ventre gonflé et tentatives de vomissement inefficaces. Que doit faire l\'ASV ?', opts:['Donner un conseil pour calmer l\'animal en attendant', 'Reconnaître les signes d\'une urgence vitale possible (P1) et orienter immédiatement selon le protocole', 'Dire au client de rappeler le lendemain', 'Diagnostiquer une simple indigestion par téléphone'], rep:1, expl:'Ventre gonflé + vomissements inefficaces évoquent une **torsion d\'estomac, urgence vitale (P1)** — l\'ASV qualifie l\'appel selon le protocole et oriente sans délai.' },
+    { module:'UC1 - Conseiller la clientèle', q:'L\'ASV peut-il donner un conseil thérapeutique à un client par téléphone ?', opts:['Oui, si la situation semble simple', 'Non, jamais — cela reste strictement réservé au vétérinaire', 'Oui, uniquement pour les urgences', 'Cela dépend de l\'ancienneté de l\'ASV'], rep:1, expl:'Évaluer un symptôme ou donner un **conseil thérapeutique reste strictement réservé au vétérinaire**, sans aucune exception.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Sur quoi repose la qualification d\'un appel d\'urgence par l\'ASV ?', opts:['Sur son intuition personnelle', 'Sur des scripts et arbres décisionnels rédigés et validés par le vétérinaire', 'Sur ce que demande le client', 'Il n\'existe aucun protocole, chaque ASV fait comme il veut'], rep:1, expl:'La qualification suit des **scripts et arbres décisionnels validés par le vétérinaire** — l\'ASV les applique, il ne les invente jamais.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Quel ordre de priorité l\'ASV doit-il respecter au quotidien face à plusieurs sollicitations ?', opts:['Traiter dans l\'ordre d\'arrivée uniquement', 'Urgence vitale, puis attente en salle, puis téléphone, puis tâches administratives', 'Toujours répondre au téléphone en premier', 'L\'administratif passe toujours en priorité'], rep:1, expl:'La hiérarchie est claire : **urgence vitale > attente en salle > appels téléphoniques > tâches administratives**.' },
 
-<div id="home">
-  <nav>
-    <div class="nav-logo">Praxis<span>Veto</span></div>
-    <div class="nav-tag">ASV 2026</div>
-  </nav>
+    { module:'UC1 - Conseiller la clientèle', q:'Qui a le droit de délivrer un médicament vétérinaire soumis à prescription à un client ?', opts:['L\'ASV peut le faire seul, sans intervention du vétérinaire', 'Seuls les ayants droit du médicament vétérinaire (pharmaciens et vétérinaires)', 'Toute personne travaillant dans la structure', 'Le client peut se servir lui-même en salle d\'attente'], rep:1, expl:'Seuls les **ayants droit du médicament vétérinaire** (pharmaciens, vétérinaires) peuvent le délivrer. L\'ASV peut ensuite s\'occuper de l\'encaissement et des conseils.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Quelle exception permet à l\'ASV de vendre certains antiparasitaires externes sans intervention du vétérinaire ?', opts:['Aucune exception n\'existe, jamais', 'Les APE dérogatoires, sans ordonnance, à usage externe uniquement', 'Tous les antiparasitaires sans exception', 'Uniquement si le client insiste'], rep:1, expl:'Certains **APE (antiparasitaires externes) dérogatoires**, sans ordonnance et à usage externe, peuvent être vendus directement par l\'ASV.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Sous quelle responsabilité s\'exerce l\'activité de l\'ASV ?', opts:['En totale autonomie, sans supervision', 'Sous la responsabilité du vétérinaire, dans le cadre qu\'il définit', 'Sous la responsabilité exclusive du client', 'Aucun cadre de responsabilité n\'est défini'], rep:1, expl:'L\'activité de l\'ASV s\'exerce **sous la responsabilité du vétérinaire**, dans le cadre qu\'il définit.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Quels sont les 4 grands champs d\'activité de l\'ASV ?', opts:['Chirurgie, anesthésie, radiologie, laboratoire', 'Relation client, assistance administrative, hygiène/sécurité, assistance vétérinaire', 'Uniquement la vente de produits', 'Uniquement les soins aux animaux'], rep:1, expl:'Les 4 champs sont : **relation client, assistance administrative, hygiène/sécurité, assistance vétérinaire**.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Sur quoi doit porter l\'argumentaire de vente d\'un produit vétérinaire non soumis à prescription ?', opts:['Uniquement sur le prix le plus bas', 'Le bien-être animal, dans le respect du cadre réglementaire', 'Aucun argumentaire n\'est nécessaire', 'Uniquement sur la marque du produit'], rep:1, expl:'L\'argumentaire doit être adapté au **bien-être animal**, dans le respect du cadre réglementaire.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Quelles connaissances sont nécessaires pour conseiller un client sur l\'entretien de son animal ?', opts:['Aucune connaissance particulière n\'est requise', 'Nutrition, reproduction, éducation, protocoles de vaccination et antiparasitaires', 'Uniquement le prix des produits', 'Uniquement la race de l\'animal'], rep:1, expl:'Le conseil s\'appuie sur la connaissance de la **nutrition, reproduction, éducation, vaccination, protocoles antiparasitaires**.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Que doit faire l\'ASV lors de l\'entretien d\'accueil d\'un client ?', opts:['Ignorer les demandes non médicales', 'Utiliser une communication adaptée, conduire l\'entretien, noter et transmettre les informations', 'Faire attendre systématiquement le client', 'Renvoyer directement vers internet'], rep:1, expl:'L\'ASV utilise une **communication adaptée**, conduit l\'entretien, **note et transmet** les informations recueillies.' },
+    { module:'UC1 - Conseiller la clientèle', q:'Quel rôle joue l\'ASV dans la fidélisation de la clientèle ?', opts:['Aucun rôle, cela ne concerne que le vétérinaire', 'Un rôle clé, par la qualité de l\'accueil et du conseil', 'Un rôle secondaire sans réelle importance', 'La fidélisation ne concerne que la facturation'], rep:1, expl:'L\'ASV joue un **rôle clé** dans la fidélisation, via la qualité de l\'accueil et du conseil apporté.' },
+  ],
+  uc2: [
+    { module:'UC2 - Organisation interne', q:'Qui porte la responsabilité légale du traitement des données du dossier médical au sens du RGPD ?', opts:['Le logiciel de gestion utilisé', 'Le vétérinaire, en tant que responsable de traitement', 'L\'ASV qui saisit les informations', 'Personne n\'est responsable, c\'est automatique'], rep:1, expl:'C\'est le **vétérinaire qui porte la responsabilité** du traitement des données en tant que responsable de traitement, pas uniquement son logiciel.' },
+    { module:'UC2 - Organisation interne', q:'Un client demande la suppression de toutes ses données. La clinique peut-elle tout effacer immédiatement ?', opts:['Oui, systématiquement et sans délai', 'Non, le droit à l\'effacement est limité par les obligations légales de conservation (comptabilité, vaccins)', 'Non, aucune donnée ne peut jamais être supprimée', 'Cela dépend uniquement de l\'humeur du client'], rep:1, expl:'Le droit à l\'effacement est **limité par les obligations légales** : documents comptables (6 ans), certificats de vaccination (10 ans) doivent être conservés malgré la demande.' },
+    { module:'UC2 - Organisation interne', q:'Un dossier médical uniquement numérique a-t-il la même valeur légale qu\'un dossier papier ?', opts:['Non, le papier reste toujours supérieur', 'Oui, à condition que le logiciel garantisse intégrité, traçabilité et sécurité', 'Seul un dossier papier est reconnu en cas de litige', 'La question ne se pose jamais en pratique'], rep:1, expl:'Un dossier numérique a la **même valeur légale**, à condition de garantir intégrité, traçabilité et sécurité des données.' },
 
-  <div class="hero">
-    <div class="hero-badge">Suite pedagogique ASV - 9 modules</div>
-    <h1><em>Le soin animal</em><br><strong>s'apprend</strong><br>par la pratique</h1>
-    <p>Referentiel CAFASV RNCP40344 - UC1 a UC4</p>
-  </div>
+    { module:'UC2 - Organisation interne', q:'Quelles sont les principales tâches administratives courantes de l\'ASV ?', opts:['Uniquement répondre au téléphone', 'Secrétariat, tenue de caisse, suivi des stocks et commandes, planning', 'Uniquement l\'accueil physique des clients', 'Aucune tâche administrative ne lui incombe'], rep:1, expl:'L\'ASV assure **secrétariat courant, tenue de caisse, suivi des stocks/commandes, planification des rendez-vous**.' },
+    { module:'UC2 - Organisation interne', q:'L\'ASV peut-il être amené à préparer certains éléments de comptabilité ?', opts:['Non, jamais, c\'est strictement interdit', 'Oui, il peut compléter et contrôler documents et justificatifs comptables', 'Seul le vétérinaire peut y toucher', 'Uniquement dans les très grandes structures'], rep:1, expl:'L\'ASV peut **compléter et contrôler des documents et justificatifs comptables**, selon l\'organisation de la structure.' },
+    { module:'UC2 - Organisation interne', q:'Comment l\'ASV gère-t-il généralement les dossiers clients aujourd\'hui ?', opts:['Exclusivement sur papier', 'Sur informatique, avec production de courriers et documents de communication', 'Il n\'a pas accès aux dossiers clients', 'Uniquement par téléphone sans trace écrite'], rep:1, expl:'La gestion se fait **sur informatique** : dossiers clients, courriers, documents de communication.' },
+    { module:'UC2 - Organisation interne', q:'Quel principe guide la planification des rendez-vous et activités par l\'ASV ?', opts:['L\'ordre d\'arrivée uniquement, sans autre critère', 'La planification selon les priorités', 'Un tirage au sort', 'Aucune règle particulière ne s\'applique'], rep:1, expl:'L\'ASV planifie rendez-vous et activités **en fonction des priorités**.' },
+    { module:'UC2 - Organisation interne', q:'Que comprend le suivi des stocks assuré par l\'ASV ?', opts:['Uniquement compter les produits une fois par an', 'Le suivi du stock, des commandes et des livraisons', 'Cela ne fait pas partie de ses missions', 'Uniquement les produits d\'hygiène'], rep:1, expl:'Le suivi comprend le **stock, les commandes et les livraisons** de produits.' },
+    { module:'UC2 - Organisation interne', q:'L\'ASV est-il amené à utiliser internet et la messagerie électronique dans ses tâches quotidiennes ?', opts:['Non, ces outils sont réservés au vétérinaire', 'Oui, cela fait partie de ses tâches courantes', 'Seulement en cas d\'urgence', 'Uniquement pour un usage personnel'], rep:1, expl:'L\'utilisation d\'**internet et de la messagerie électronique** fait partie des tâches courantes de l\'ASV.' },
+    { module:'UC2 - Organisation interne', q:'Pourquoi l\'ASV est-il souvent qualifié de « bras droit » du vétérinaire ?', opts:['Parce qu\'il assiste uniquement lors des chirurgies', 'Parce qu\'il organise l\'ensemble de la structure : secrétariat, planning, dossiers, stocks', 'Ce terme n\'est jamais utilisé dans la profession', 'Parce qu\'il remplace le vétérinaire en son absence'], rep:1, expl:'L\'ASV est le **« bras droit » organisé** du vétérinaire pour la gestion globale de la structure.' },
+  ],
+  uc3: [
+    { module:'UC3 - Assurer l\'hygiène', q:'Quelle est la différence entre asepsie et stérilisation ?', opts:['Ce sont deux termes strictement synonymes','L\'asepsie prévient la contamination, la stérilisation détruit tous les micro-organismes','L\'asepsie concerne uniquement les mains, la stérilisation uniquement le matériel','La stérilisation est une forme allégée d\'asepsie'], rep:1, expl:'L\'**asepsie** prévient la contamination microbienne ; la **stérilisation** détruit tous les micro-organismes présents.' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Par quel procédé le matériel chirurgical (bistouris, pinces, clamps) est-il stérilisé en clinique vétérinaire ?', opts:['Un simple lavage à l\'eau savonneuse','Une solution hydroalcoolique','Un autoclave','Un séchage à l\'air libre'], rep:2, expl:'Le matériel chirurgical est stérilisé par **autoclave** (chaleur humide sous pression).' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Quel est le rôle du bac à ultra-sons dans le protocole de stérilisation ?', opts:['Une première étape de nettoyage/désinfection en profondeur avant stérilisation','Remplacer complètement l\'autoclave','Sécher rapidement le matériel','Aiguiser les instruments tranchants'], rep:0, expl:'Le bac à ultra-sons assure une **première étape de nettoyage** avant la stérilisation à l\'autoclave.' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Que comprend la préparation rigoureuse du chirurgien et de son assistant avant une intervention ?', opts:['Un simple lavage de mains suffit','Triple désinfection des mains, masque, calot, gants, blouse stérile','Seul le chirurgien doit se préparer, pas l\'assistant','Aucune préparation spécifique n\'est requise'], rep:1, expl:'La préparation comprend **triple désinfection des mains, masque, calot, gants, blouse stérile**, pour les deux personnes.' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Quel texte encadre la gestion des DASRI (déchets d\'activités de soins à risques infectieux) vétérinaires ?', opts:['Aucune réglementation spécifique n\'existe','Un arrêté de 2010','L\'arrêté du 7 septembre 1999','Une simple recommandation non contraignante'], rep:2, expl:'Les DASRI vétérinaires sont encadrés par l\'**arrêté du 7 septembre 1999**.' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Quel est le double enjeu de la biosécurité dans un établissement de soins vétérinaires ?', opts:['Protéger les animaux patients ET sécuriser l\'équipe soignante','Uniquement protéger les animaux','Uniquement protéger le personnel','Uniquement respecter l\'esthétique des locaux'], rep:0, expl:'La biosécurité protège **les animaux patients ET l\'équipe** (vétérinaires, ASV, accueil).' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Le protocole de désinfection est-il identique entre la salle de chirurgie et la salle d\'attente ?', opts:['Non, un protocole unique s\'applique partout de la même façon','Oui, chaque zone nécessite un protocole adapté à ses risques propres','Seule la salle de chirurgie nécessite un protocole','Le protocole dépend uniquement de la taille des locaux'], rep:1, expl:'Chaque zone (consultation, chirurgie, chenil/chatterie, attente) nécessite un **protocole adapté** à ses risques propres.' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Qu\'est-ce qui complique particulièrement la désinfection en milieu vétérinaire ?', opts:['L\'absence totale de contamination','Le faible nombre de patients','Une charge organique élevée qui complique la désinfection','L\'utilisation exclusive de produits naturels'], rep:2, expl:'La **charge organique élevée** (poils, salive, sang, sécrétions) complique la désinfection.' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Comment doit être préparé le site opératoire avant une intervention chirurgicale ?', opts:['Elle n\'est jamais nécessaire chez l\'animal','Un simple rinçage à l\'eau suffit','Elle se fait après l\'intervention uniquement','Une désinfection avec des antiseptiques adaptés, avant l\'intervention'], rep:3, expl:'Le site opératoire nécessite une **désinfection avec antiseptiques adaptés**, avant toute incision.' },
+    { module:'UC3 - Assurer l\'hygiène', q:'Un échec de stérilisation est-il toujours visible à l\'œil nu ?', opts:['Non, un échec de stérilisation n\'est pas toujours visible à l\'œil nu','Oui, un instrument mal stérilisé se voit toujours facilement','La stérilisation ne peut jamais échouer avec un autoclave','Seule la couleur de l\'instrument permet de vérifier la stérilisation'], rep:0, expl:'Un échec de stérilisation **n\'est pas toujours visible** — d\'où l\'usage d\'indicateurs de validation (chimiques, biologiques).' },
+  ],
+  uc4: [
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Où se pratique généralement une injection sous-cutanée chez le chien ou le chat ?', opts:['Dans la cuisse uniquement', 'Entre les omoplates (zone interscapulaire)', 'Dans l\'oreille', 'Sous la queue'], rep:1, expl:'L\'injection sous-cutanée se fait généralement **entre les omoplates**, en pinçant la peau pour former une « tente ».' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Combien de sites intramusculaires maximum peut-on utiliser par jour chez le chien ou le chat ?', opts:['Autant que nécessaire, sans limite', 'Maximum 2 sites IM par jour', 'Un seul site pour toute la vie de l\'animal', 'Il n\'existe aucune recommandation à ce sujet'], rep:1, expl:'La règle est de ne pas dépasser **2 sites intramusculaires par jour**, en se limitant à une injection par cuisse/côté.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Quelles veines sont couramment utilisées pour une injection intraveineuse chez le chien/chat ?', opts:['Uniquement une veine de l\'oreille', 'La veine céphalique ou saphène', 'N\'importe quelle veine visible', 'Les injections IV ne se font jamais chez l\'animal'], rep:1, expl:'La **veine céphalique ou saphène** sont couramment utilisées, la jugulaire étant une autre option selon les cas.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Pourquoi une contention sécurisée est-elle indispensable avant une injection intraveineuse ?', opts:['Ce n\'est pas nécessaire pour l\'IV', 'Pour bien visualiser la veine et éviter les mouvements de l\'animal', 'Uniquement pour rassurer le propriétaire', 'La contention ne concerne que la chirurgie'], rep:1, expl:'La contention permet de **bien visualiser la veine** et de sécuriser le geste en évitant tout mouvement brusque.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Peut-on réutiliser la même seringue et aiguille pour plusieurs injections différentes ?', opts:['Oui, pour économiser le matériel', 'Non, une seringue et une aiguille neuves à chaque injection', 'Seulement si l\'animal est le même', 'Cela dépend uniquement du produit injecté'], rep:1, expl:'Il faut utiliser une **seringue et une aiguille neuves à chaque injection**, sans exception.' },
 
-  <div class="modules-grid">
-
-    <div class="module-card" onclick="ouvrirModule('SimAccueil-Veto.html')" style="border-color:rgba(120,216,64,.3);grid-column:span 2">
-      <div class="module-num">UC1 - MODULE COMPLET</div>
-      <div class="module-icon">🏥</div>
-      <div class="module-name" style="color:#78d840">PraxisAccueil</div>
-      <div class="module-sub">UC1 - Conseiller la clientele - CAFASV RNCP40344</div>
-      <div class="module-desc">Les 8 competences UC1 : accueil, triage urgences, nutrition, antiparasitaires, reglementation, conflits CNV, devis, communication.</div>
-      <div class="module-btn" style="background:rgba(120,216,64,.1);color:#78d840;border-color:rgba(120,216,64,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimVeto-Diabete-Canin.html')" style="border-color:rgba(232,48,48,.3);grid-column:span 2">
-      <div class="module-num">MODULE PILOTE</div>
-      <div class="module-icon">🩸</div>
-      <div class="module-name" style="color:#e83030">PraxisGlyco Canin</div>
-      <div class="module-sub">Diabete - Insulinotherapie - BTS ASV</div>
-      <div class="module-desc">Glycemie du chien diabetique, Caninsulin, reconnaissance des urgences hypoglycemiques et cetoacidosiques.</div>
-      <div class="module-btn" style="background:rgba(232,48,48,.1);color:#e83030;border-color:rgba(232,48,48,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimContention-Veto.html')" style="border-color:rgba(232,160,48,.3)">
-      <div class="module-num">MODULE 02</div>
-      <div class="module-icon">⚠️</div>
-      <div class="module-name" style="color:#e8a030">PraxisContention</div>
-      <div class="module-sub">Animal hostile - Protocoles - Securite</div>
-      <div class="module-desc">Signaux d'alerte, protocole de contention, materiel adapte, obligations legales animal mordeur.</div>
-      <div class="module-btn" style="background:rgba(232,160,48,.1);color:#e8a030;border-color:rgba(232,160,48,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimComm-Veto.html')" style="border-color:rgba(120,216,64,.3)">
-      <div class="module-num">MODULE 03</div>
-      <div class="module-icon">🐾</div>
-      <div class="module-name" style="color:#78d840">PraxisComm</div>
-      <div class="module-sub">Langage animal - Premiers contacts</div>
-      <div class="module-desc">Lire le langage corporel du chien, chat et NAC. Protocole d'approche. Gerer le proprietaire anxieux.</div>
-      <div class="module-btn" style="background:rgba(120,216,64,.1);color:#78d840;border-color:rgba(120,216,64,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimJuridique-Veto.html')" style="border-color:rgba(160,96,255,.3)">
-      <div class="module-num">MODULE 04</div>
-      <div class="module-icon">⚖️</div>
-      <div class="module-name" style="color:#a060ff">PraxisJuridique</div>
-      <div class="module-sub">CV1 - CV2 - CV3 - Categories</div>
-      <div class="module-desc">Procedure animal mordeur, categories 1 et 2, role de l'ASV vs veterinaire, cas pratiques legaux.</div>
-      <div class="module-btn" style="background:rgba(160,96,255,.1);color:#a060ff;border-color:rgba(160,96,255,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimAdmin-Veto.html')" style="border-color:rgba(56,189,248,.3)">
-      <div class="module-num">MODULE 05</div>
-      <div class="module-icon">📋</div>
-      <div class="module-name" style="color:#38bdf8">PraxisAdmin</div>
-      <div class="module-sub">UC2 - Gestion administrative - CAFASV</div>
-      <div class="module-desc">Dossier patient, caisse, stocks, logiciel veterinaire, RGPD, ordonnances.</div>
-      <div class="module-btn" style="background:rgba(56,189,248,.1);color:#38bdf8;border-color:rgba(56,189,248,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimHygiene-Veto.html')" style="border-color:rgba(64,200,120,.3)">
-      <div class="module-num">MODULE 06</div>
-      <div class="module-icon">🧹</div>
-      <div class="module-name" style="color:#40c878">PraxisHygiene</div>
-      <div class="module-sub">UC3 - Hygiene et securite - CAFASV</div>
-      <div class="module-desc">Nettoyage, desinfection, sterilisation, DASRI, risques professionnels, EPI.</div>
-      <div class="module-btn" style="background:rgba(64,200,120,.1);color:#40c878;border-color:rgba(64,200,120,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimVitaux-Veto.html')" style="border-color:rgba(240,192,64,.3);grid-column:span 2">
-      <div class="module-num">MODULE 08 - UC4</div>
-      <div class="module-icon">📊</div>
-      <div class="module-name" style="color:#f0c040">PraxisVitaux</div>
-      <div class="module-sub">UC4 - Constantes vitales - CAFASV</div>
-      <div class="module-desc">FC, FR, T, TRC, PA - normes par espece, techniques de mesure, signes d'urgence chien/chat/lapin/NAC.</div>
-      <div class="module-btn" style="background:rgba(240,192,64,.1);color:#f0c040;border-color:rgba(240,192,64,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimTips-Veto.html')" style="border-color:rgba(232,160,48,.3);grid-column:span 2">
-      <div class="module-num">MODULE TIPS</div>
-      <div class="module-icon">🎲</div>
-      <div class="module-name" style="color:#e8a030">PraxisTips</div>
-      <div class="module-sub">Loterie examen · Jeux de role · Etudes de cas · Gestes pratiques</div>
-      <div class="module-desc">Tirage au sort de situations aleatoires pour se preparer a l'oral de certification ASV - comme le vrai examen.</div>
-      <div class="module-btn" style="background:rgba(232,160,48,.1);color:#e8a030;border-color:rgba(232,160,48,.3)">Tirer un sujet</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('SimVeto-References.html')" style="border-color:rgba(26,122,53,.2);grid-column:span 2">
-      <div class="module-num">RÉFÉRENCES · BIBLIOGRAPHIE</div>
-      <div class="module-icon">📚</div>
-      <div class="module-name" style="color:#1a7a35">SimRéférences</div>
-      <div class="module-sub">Les auteurs et théories qui fondent les soins vétérinaires</div>
-      <div class="module-desc">Pasteur, Koch, Bernard, Temple Grandin, les 5 libertés animales — et les textes réglementaires vétérinaires.</div>
-      <div class="module-btn" style="background:rgba(26,122,53,.1);color:#1a7a35;border-color:rgba(26,122,53,.3)">Consulter</div>
-    </div>
-  <div class="module-card" onclick="ouvrirModule('SimVeto-Illustrations.html')" style="border-color:rgba(120,216,64,.2);grid-column:span 2">
-  <div class="module-num">ILLUSTRATIONS · PROTOCOLES VISUELS</div>
-  <div class="module-icon">🖼️</div>
-  <div class="module-name" style="color:#78d840">PraxisIllustrations</div>
-  <div class="module-sub">Protocoles visuels · Contention · Constantes · Mordeur</div>
-  <div class="module-desc">6 illustrations pédagogiques — contention chat et lapin, constantes chien, chat et NAC, protocole chien mordeur.</div>
-  <div class="module-btn" style="background:rgba(120,216,64,.1);color:#78d840;border-color:rgba(120,216,64,.3)">Consulter</div>
-</div>
-    <div class="module-card" onclick="ouvrirBinome()" style="border-color:rgba(120,216,64,.4);background:rgba(120,216,64,.05);grid-column:span 2">
-      <div class="module-num">BINOME ASV</div>
-      <div class="module-icon">🤝</div>
-      <div class="module-name" style="color:#78d840">Mon Binome</div>
-      <div class="module-sub">Apprendre a deux - progresser ensemble</div>
-      <div class="module-desc">Liez-vous a un autre etudiant ASV abonne - explorez les memes modules - comparez vos scores et progressez en binome.</div>
-      <div class="module-btn" style="background:rgba(120,216,64,.2);color:#78d840;border-color:rgba(120,216,64,.4)">Choisir mon Binome</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('PraxisGestes-Hub-Veto.html')" style="border-color:rgba(20,184,166,.2)">
-      <div class="module-num">FICHES PRATIQUES</div>
-      <div class="module-icon">📋</div>
-      <div class="module-name" style="color:#14b8a6">Praxis Gestes</div>
-      <div class="module-sub">4 fiches — contention et constantes</div>
-      <div class="module-desc">Base de données des soins techniques : contention chien/chat/NAC, prise de constantes — consultation rapide.</div>
-      <div class="module-btn" style="background:rgba(20,184,166,.1);color:#14b8a6;border-color:rgba(20,184,166,.3)">Ouvrir</div>
-    </div>
-
-    <div class="module-card" onclick="ouvrirModule('PraxisRevision-Veto.html')" style="border-color:rgba(120,216,64,.25)">
-      <div class="module-num">RÉVISION QCM</div>
-      <div class="module-icon">✅</div>
-      <div class="module-name" style="color:#78d840">Praxis Revision</div>
-      <div class="module-sub">4 UC complètes — référentiel ASV GIPSA</div>
-      <div class="module-desc">QCM organisés selon les 4 UC du titre officiel — relation clientèle, organisation, hygiène, soins/chirurgie. 33 questions.</div>
-      <div class="module-btn" style="background:rgba(120,216,64,.12);color:#78d840;border-color:rgba(120,216,64,.35)">Ouvrir</div>
-    </div>
-
-  </div>
-
-  <footer>
-    Formateur certifie PRAP 2S - BCI - contact@praxiscare.fr<br>
-    Referentiel CAFASV RNCP40344 - 2026
-    <br><a href="stats-formateur-veto.html" style="color:rgba(120,216,64,.3);font-size:10px;text-decoration:none">acces formateur</a>
-  </footer>
-</div>
-
-<!-- POPUP BINOME -->
-<div id="binome-overlay" style="display:none;position:fixed;inset:0;background:rgba(10,13,8,.95);z-index:300;align-items:center;justify-content:center;">
-  <div style="background:#0d150a;border:1px solid rgba(120,216,64,.2);border-radius:16px;padding:24px;max-width:320px;width:90%;text-align:center">
-    <h2 style="color:#78d840;font-size:18px;margin-bottom:8px">Mon Binome ASV</h2>
-    <p style="color:#4a6840;font-size:12px;margin-bottom:16px">Entrez le code de votre binome. Les deux etudiants doivent etre abonnes.</p>
-    <div id="binome-actuel" style="background:rgba(120,216,64,.08);border:1px solid rgba(120,216,64,.15);border-radius:8px;padding:10px;margin-bottom:16px;font-size:13px;color:#78d840"></div>
-    <input id="binome-input" placeholder="PRAXIS-ASV-XXX" style="width:100%;padding:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#d8e8d0;font-size:14px;text-align:center;text-transform:uppercase;margin-bottom:8px">
-    <button onclick="lierBinome()" style="width:100%;padding:10px;background:#78d840;color:#0a0d08;border:none;border-radius:8px;font-weight:700;cursor:pointer;margin-bottom:8px">Lier ce binome</button>
-    <button onclick="voirScoreBinome()" style="width:100%;padding:10px;background:rgba(120,216,64,.1);color:#78d840;border:1px solid rgba(120,216,64,.2);border-radius:8px;font-weight:700;cursor:pointer;margin-bottom:8px">Voir notre score commun</button>
-    <div id="binome-msg" style="font-size:12px;margin-bottom:12px"></div>
-    <div id="binome-score" style="display:none;background:rgba(255,255,255,.04);border-radius:8px;padding:12px;margin-bottom:12px;text-align:left"></div>
-    <button onclick="fermerBinome()" style="background:none;border:1px solid rgba(255,255,255,.1);color:#4a6840;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:12px">Fermer</button>
-  </div>
-</div>
-
-<script>
-var _moduleStart = null;
-var _moduleNom = null;
-const SUPABASE_URL = "https://fvrfiikrasezlzpaxpqz.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVoYmJ3dHhtc29tcWh1dnp2b3h5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM1MTI2OTIsImV4cCI6MjA5OTA4ODY5Mn0.WsH1qUbwjL8eF0y5vUBqG8lvpE4UgbNd3k2JbBGVyyY";
-
-function trackModule(nom){
-  var stats = JSON.parse(localStorage.getItem('praxisveto_stats') || '{}');
-  if(!stats.modules) stats.modules = {};
-  stats.modules[nom] = (stats.modules[nom] || 0) + 1;
-  localStorage.setItem('praxisveto_stats', JSON.stringify(stats));
-}
-
-function ouvrirModule(fichier){
-  var frame = document.getElementById('module-frame');
-  var btnRetour = document.getElementById('btn-retour');
-  var home = document.getElementById('home');
-  var nomModule = fichier.replace('.html','').replace(/-Veto$/,'').replace(/Sim/,'Sim');
-  trackModule(nomModule);
-  _moduleStart = Date.now();
-  _moduleNom = nomModule;
-  var codeEtudiant = sessionStorage.getItem('praxisveto_code');
-  fetch(SUPABASE_URL + "/rest/v1/praxis", {
-    method: "POST",
-    headers: {"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY},
-    body: JSON.stringify({student_code:codeEtudiant,app:"praxisveto",module:nomModule,step:"ouverture",session_id:codeEtudiant+"_"+Date.now()})
-  });
-  frame.src = fichier;
-  frame.style.display = 'block';
-  btnRetour.style.display = 'block';
-  home.style.display = 'none';
-  window.scrollTo(0,0);
-}
-
-function envoyerTempsModule(){
-  if(_moduleStart && _moduleNom){
-    var codeEtudiant = sessionStorage.getItem('praxisveto_code');
-    fetch(SUPABASE_URL + "/rest/v1/praxis", {
-      method: "POST",
-      headers: {"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY},
-      body: JSON.stringify({student_code:codeEtudiant,app:"praxisveto",module:_moduleNom,step:"fermeture",time_spent_ms:Date.now()-_moduleStart,session_id:codeEtudiant+"_"+_moduleStart})
-    });
-    _moduleStart = null; _moduleNom = null;
-  }
-}
-
-function retourAccueil(){
-  document.getElementById('module-frame').style.display='none';
-  envoyerTempsModule();
-  document.getElementById('module-frame').src='about:blank';
-  document.getElementById('btn-retour').style.display='none';
-  document.getElementById('home').style.display='flex';
-}
-
-window.addEventListener('message', function(e){
-  if(e.data && e.data.type==='navigate') ouvrirModule(e.data.url);
-  if(e.data && e.data.type==='retour') retourAccueil();
-  if(e.data && e.data.type==='activite') resetInactivityTimer();
-});
-
-document.getElementById('module-frame').addEventListener('load', function(){
-  try{var u=this.contentWindow.location.href;if(u&&u!=='about:blank')document.getElementById('btn-retour').style.display='block';}catch(e){}
-});
-
-if('serviceWorker' in navigator)navigator.serviceWorker.getRegistrations().then(function(r){r.forEach(function(x){x.unregister();});});
-if('caches' in window)caches.keys().then(function(k){k.forEach(function(x){caches.delete(x);});});
-
-var _inactivityTimer = null;
-function resetInactivityTimer(){
-  clearTimeout(_inactivityTimer);
-  _inactivityTimer = setTimeout(function(){
-    envoyerTempsModule();
-    sessionStorage.removeItem('praxisveto_code');
-    sessionStorage.removeItem('praxisveto_promo');
-    window.location.replace('acces-veto.html');
-  }, 5*60*1000);
-}
-document.addEventListener('click', resetInactivityTimer);
-document.addEventListener('touchstart', resetInactivityTimer);
-document.addEventListener('keypress', resetInactivityTimer);
-resetInactivityTimer();
-
-function lierBinome(){
-  var monCode=sessionStorage.getItem('praxisveto_code');
-  var cb=document.getElementById('binome-input').value.trim().toUpperCase();
-  var msg=document.getElementById('binome-msg');
-  if(!cb){msg.style.color='#e84040';msg.textContent='Entrez un code binome.';return;}
-  if(cb===monCode){msg.style.color='#e84040';msg.textContent='Vous ne pouvez pas vous lier a vous-meme !';return;}
-  msg.style.color='#4a6840';msg.textContent='Verification...';
-  fetch('https://fvrfiikrasezlzpaxpqz.supabase.co/functions/v1/verifier-acces',{method:'POST',headers:{'Content-Type':'application/json','apikey':'sb_publishable_TNksbociGaWCY53M4wCAXg_faOxEqKt','Authorization':'Bearer sb_publishable_TNksbociGaWCY53M4wCAXg_faOxEqKt'},body:JSON.stringify({code:cb,app:'SimVeto'})})
-  .then(function(r){return r.json();}).then(function(data){
-    if(!data.valide){msg.style.color='#e84040';msg.textContent='Ce code n\'est pas un abonne actif.';return;}
-    localStorage.setItem('praxisveto_binome',cb);
-    fetch(SUPABASE_URL+"/rest/v1/praxis",{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY},body:JSON.stringify({student_code:monCode,app:"praxisveto",module:"binome",step:cb,session_id:monCode+"_binome_"+Date.now()})}).catch(function(){});
-    msg.style.color='#78d840';msg.textContent='Binome '+cb+' lie avec succes !';
-    document.getElementById('binome-actuel').textContent='Binome actuel : '+cb;
-  }).catch(function(){msg.style.color='#e84040';msg.textContent='Erreur de verification, reessayez.';});
-}
-</script>
-</body>
-</html>
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Que doit préparer l\'ASV sur l\'animal avant une intervention chirurgicale ?', opts:['Rien, seul le vétérinaire s\'en charge', 'La tonte et la désinfection de la zone opératoire', 'Uniquement le pesage de l\'animal', 'Le jeûne pré-opératoire uniquement'], rep:1, expl:'L\'ASV prépare l\'animal par la **tonte et la désinfection** de la zone concernée, avant l\'intervention.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Quel est le rôle de l\'ASV pendant le déroulement d\'une opération ?', opts:['Il n\'a aucun rôle une fois l\'opération commencée', 'Surveiller les signes vitaux et garantir un environnement stérile', 'Uniquement nettoyer après l\'intervention', 'Uniquement tenir les instruments sans autre surveillance'], rep:1, expl:'L\'ASV **surveille les signes vitaux** de l\'animal et veille au maintien d\'un **environnement stérile**.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Que comprend le suivi post-opératoire assuré par l\'ASV ?', opts:['Le suivi s\'arrête dès la fin de la chirurgie', 'La gestion du réveil et le suivi de l\'animal après l\'intervention', 'Uniquement la facturation de l\'acte', 'Uniquement le nettoyage du bloc opératoire'], rep:1, expl:'L\'ASV gère le **réveil** de l\'animal et assure son **suivi post-opératoire**.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Pourquoi la vérification du matériel avant chaque opération est-elle essentielle ?', opts:['Ce n\'est pas une tâche de l\'ASV', 'Pour éviter les erreurs et garantir le bon fonctionnement pendant l\'intervention', 'Uniquement pour des raisons esthétiques', 'Le matériel n\'a jamais besoin d\'être vérifié'], rep:1, expl:'La vérification du matériel **prévient les erreurs** et garantit son bon fonctionnement pendant l\'acte.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Quelles connaissances sont nécessaires à l\'ASV pour optimiser la sécurité de l\'anesthésie ?', opts:['Aucune connaissance spécifique n\'est requise', 'Une connaissance approfondie des médicaments anesthésiques et des appareils', 'Seul le vétérinaire a besoin de ces connaissances', 'Uniquement savoir allumer les appareils'], rep:1, expl:'L\'ASV doit avoir une **connaissance approfondie des médicaments anesthésiques et des appareils** utilisés.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Que permettent les contrôles préopératoires d\'hygiène et de stérilisation ?', opts:['Ils sont facultatifs et sans réel impact', 'La prévention des infections du site opératoire', 'Uniquement de gagner du temps', 'Ils ne concernent que le matériel, jamais la zone opératoire'], rep:1, expl:'Ces contrôles visent la **prévention des infections du site opératoire**, un enjeu de sécurité majeur.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'L\'ASV participe-t-il au suivi des animaux hospitalisés ?', opts:['Non, cela ne concerne que le vétérinaire', 'Oui, cela fait partie de ses missions d\'assistance technique', 'Uniquement les week-ends', 'Uniquement pour les animaux en soins intensifs'], rep:1, expl:'Le **suivi des animaux hospitalisés** fait partie des missions d\'assistance technique de l\'ASV.' },
+    { module:'UC4 - Assister le vétérinaire en soins/chirurgie', q:'Quel principe guide la préparation du matériel médico-chirurgical par l\'ASV ?', opts:['Improviser selon les besoins du moment', 'Maintenir la qualité et la fiabilité du matériel, en évitant les erreurs classiques', 'Le matériel est toujours prêt sans vérification nécessaire', 'Cette tâche revient exclusivement au fournisseur'], rep:1, expl:'L\'objectif est de **maintenir qualité et fiabilité** du matériel, en évitant les erreurs les plus classiques.' },
+  ],
+};
