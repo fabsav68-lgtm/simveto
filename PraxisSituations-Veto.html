@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PraxisSituations · SimVeto</title>
+<style>
+:root{
+  --bg:#0a0d08; --bg2:#121810; --card:rgba(255,255,255,.03); --bdr:rgba(255,255,255,.08);
+  --txt:#d8e8d0; --txt2:#4a6840; --em:#78d840; --amber:#fbbf24; --red:#f87171;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 55%,var(--bg) 100%);color:var(--txt);min-height:100vh;padding-bottom:40px}
+.wrap{max-width:600px;margin:0 auto;padding:0 20px}
+header{padding:24px 0 16px;text-align:center}
+.badge{display:inline-block;background:rgba(120,216,64,.1);border:1px solid rgba(120,216,64,.25);color:var(--em);padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:2px;font-family:monospace;margin-bottom:12px}
+h1{font-family:Georgia,serif;font-size:26px;font-weight:300}
+h1 em{font-style:italic;color:var(--em)}
+.sub{color:var(--txt2);font-size:12px;margin-top:8px;line-height:1.6;text-align:center}
+
+.uc-filter{display:flex;gap:8px;overflow-x:auto;margin:16px 0}
+.uc-chip{background:var(--card);border:1px solid var(--bdr);border-radius:20px;padding:7px 14px;font-size:12px;color:var(--txt2);cursor:pointer;white-space:nowrap;flex-shrink:0}
+.uc-chip.active{background:var(--em);color:#04120a;font-weight:700;border-color:var(--em)}
+
+.sit-card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:18px;margin-bottom:14px;cursor:pointer}
+.sit-uc{display:inline-block;font-size:10px;color:var(--em);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.sit-titre{font-size:15px;font-weight:700;margin-bottom:6px}
+.sit-preview{font-size:12.5px;color:var(--txt2);line-height:1.5}
+
+.back-btn{background:none;border:1px solid var(--bdr);color:var(--txt2);padding:6px 14px;border-radius:16px;font-size:12.5px;cursor:pointer;margin-bottom:14px}
+.section{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:18px;margin-bottom:14px}
+.section h2{font-size:14px;font-weight:800;margin-bottom:10px}
+.contexte-box{background:rgba(120,216,64,.06);border:1px solid rgba(120,216,64,.2)}
+.contexte-box h2{color:var(--em)}
+.reveal-btn{width:100%;padding:12px;border-radius:12px;border:1px solid var(--bdr);background:rgba(255,255,255,.04);color:var(--txt);font-weight:700;font-size:13.5px;cursor:pointer;margin-bottom:14px}
+.attendus-box{display:none}
+.attendus-box.show{display:block}
+.attendus-box ul{margin-left:18px;font-size:13.5px;line-height:1.8}
+.piege-box{background:rgba(248,113,113,.06);border:1px solid rgba(248,113,113,.25);display:none}
+.piege-box.show{display:block}
+.piege-box h2{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div id="liste">
+  <header>
+    <div class="badge">SITUATIONS PROFESSIONNELLES</div>
+    <h1>Praxis<em>Situations</em></h1>
+    <p class="sub">L'examen ASV GIPSA se déroule par entretiens oraux basés sur des situations vécues. Entraîne-toi à structurer ta réponse comme devant un jury.</p>
+  </header>
+  <div class="uc-filter" id="uc-filter"></div>
+  <div id="situations-list"></div>
+</div>
+
+<div id="detail" style="display:none">
+  <button class="back-btn" onclick="retourListe()">← Retour à la liste</button>
+  <div class="section contexte-box">
+    <h2>📋 Situation</h2>
+    <p id="det-contexte" style="font-size:13.5px;line-height:1.6"></p>
+  </div>
+  <button class="reveal-btn" onclick="afficherAttendus()">✅ Comparer ma réponse aux points attendus par le jury</button>
+  <div class="section attendus-box" id="attendus-section">
+    <h2>Ce que le jury attend</h2>
+    <ul id="det-attendus"></ul>
+  </div>
+  <button class="reveal-btn" onclick="afficherPiege()">⚠️ Voir le piège classique à éviter</button>
+  <div class="section piege-box" id="piege-section">
+    <h2>⚠️ Piège classique</h2>
+    <p id="det-piege" style="font-size:13.5px;line-height:1.6"></p>
+  </div>
+</div>
+
+</div>
+
+<script>
+const SITUATIONS = [{"uc": "UC1", "titre": "Un client insiste pour acheter un antiparasitaire sans passer par le vétérinaire", "contexte": "Un client de passage, pressé, demande un antiparasitaire externe pour son chat. Il n'a pas de rendez-vous et ne souhaite pas attendre de voir le vétérinaire.", "attendus": ["Identifier si le produit demandé est un APE dérogatoire (sans ordonnance, usage externe)", "Si oui : conseiller et vendre directement, dans le respect du cadre réglementaire", "Si non (médicament soumis à prescription) : expliquer poliment que seul le vétérinaire peut le délivrer", "Adapter le conseil au poids, à l'âge et à l'état de santé connu de l'animal", "Ne jamais improviser une délivrance hors de son champ de compétence, même sous la pression du client"], "piege": "Céder à la pression commerciale en délivrant un produit qui ne relève pas des APE dérogatoires, pensant 'rendre service' au client."}, {"uc": "UC1", "titre": "Un client mécontent conteste une facture à l'accueil", "contexte": "Un client revient à l'accueil, visiblement énervé, en affirmant qu'on lui a facturé un acte qu'il n'a pas demandé.", "attendus": ["Rester calme et à l'écoute, sans se justifier immédiatement", "Reformuler la demande du client pour s'assurer de bien comprendre le problème", "Vérifier le dossier et la facture avant de répondre", "Ne jamais s'engager seul sur un geste commercial (remboursement, geste) sans en référer au vétérinaire ou responsable", "Garder une posture professionnelle même face à un ton agressif"], "piege": "Répondre sur la défensive ou promettre un remboursement immédiat sans vérification ni accord de la structure."}, {"uc": "UC2", "titre": "Deux rendez-vous sont accidentellement pris au même créneau", "contexte": "En consultant le planning en fin de matinée, vous réalisez que deux consultations ont été programmées à la même heure par erreur.", "attendus": ["Identifier l'erreur le plus tôt possible, avant l'arrivée des clients si possible", "Contacter l'un des deux clients pour proposer un nouveau créneau, avec tact", "Prioriser selon l'urgence si les deux motifs de consultation sont connus", "Informer le vétérinaire de la situation et du réajustement effectué", "Documenter l'incident pour éviter qu'il ne se reproduise"], "piege": "Laisser la situation se résoudre d'elle-même à l'arrivée des clients, sans anticipation ni communication préalable."}, {"uc": "UC2", "titre": "Une rupture de stock est détectée sur un produit couramment prescrit", "contexte": "En préparant une délivrance, vous constatez qu'un antiparasitaire fréquemment prescrit n'est plus en stock.", "attendus": ["Vérifier immédiatement si une commande est déjà en cours", "Informer le vétérinaire avant que le client ne reparte sans solution", "Proposer une alternative équivalente si le vétérinaire valide ce choix", "Passer ou relancer la commande sans attendre", "Noter l'incident pour ajuster les seuils de réapprovisionnement futurs"], "piege": "Dire simplement au client 'on n'en a plus' sans proposer de solution ni alerter qui que ce soit."}, {"uc": "UC3", "titre": "Une trousse d'instruments semble avoir été mal stérilisée", "contexte": "Juste avant une intervention, vous remarquez que l'indicateur de stérilisation sur une trousse d'instruments n'a pas viré à la couleur attendue.", "attendus": ["Ne jamais utiliser le matériel malgré le délai serré avant l'intervention", "Alerter immédiatement le vétérinaire de l'anomalie constatée", "Rechercher une trousse alternative correctement stérilisée", "Comprendre qu'un échec de stérilisation n'est pas toujours visible à l'œil nu sans l'indicateur", "Documenter l'incident et vérifier le cycle de l'autoclave utilisé"], "piege": "Utiliser le matériel en se disant que 'ça doit être bon quand même' pour ne pas retarder l'intervention."}, {"uc": "UC4", "titre": "Un animal se réveille de façon agitée après une anesthésie", "contexte": "Pendant le suivi post-opératoire, un chien commence à se réveiller de manière agitée, avec des mouvements brusques.", "attendus": ["Assurer la sécurité de l'animal en priorité (éviter chute, blessure, arrachage de perfusion)", "Surveiller les signes vitaux (fréquence cardiaque, respiration, coloration des muqueuses)", "Alerter le vétérinaire si l'agitation est inhabituelle ou prolongée", "Maintenir un environnement calme (lumière tamisée, bruit réduit) pour favoriser un réveil serein", "Ne jamais laisser l'animal sans surveillance pendant cette phase"], "piege": "Considérer l'agitation au réveil comme automatiquement normale sans évaluer sa durée ni son intensité."}];
+let filtreUC = 'Toutes';
+
+function afficherFiltres(){
+  const ucs = ['Toutes', ...new Set(SITUATIONS.map(s => s.uc))];
+  document.getElementById('uc-filter').innerHTML = ucs.map(uc =>
+    `<div class="uc-chip ${uc === filtreUC ? 'active' : ''}" onclick="filtrer('${uc}')">${uc}</div>`
+  ).join('');
+}
+
+function filtrer(uc){
+  filtreUC = uc;
+  afficherFiltres();
+  afficherListe();
+}
+
+function afficherListe(){
+  const situations = filtreUC === 'Toutes' ? SITUATIONS : SITUATIONS.filter(s => s.uc === filtreUC);
+  document.getElementById('situations-list').innerHTML = situations.map((s, i) => `
+    <div class="sit-card" onclick="ouvrirSituation(${SITUATIONS.indexOf(s)})">
+      <div class="sit-uc">${s.uc}</div>
+      <div class="sit-titre">${s.titre}</div>
+      <div class="sit-preview">${s.contexte.substring(0, 90)}...</div>
+    </div>
+  `).join('');
+}
+
+function ouvrirSituation(i){
+  const s = SITUATIONS[i];
+  document.getElementById('liste').style.display = 'none';
+  document.getElementById('detail').style.display = 'block';
+  document.getElementById('det-contexte').textContent = s.contexte;
+  document.getElementById('det-attendus').innerHTML = s.attendus.map(a => `<li>${a}</li>`).join('');
+  document.getElementById('det-piege').textContent = s.piege;
+  document.getElementById('attendus-section').classList.remove('show');
+  document.getElementById('piege-section').classList.remove('show');
+  window.scrollTo(0, 0);
+}
+
+function afficherAttendus(){
+  document.getElementById('attendus-section').classList.add('show');
+}
+function afficherPiege(){
+  document.getElementById('piege-section').classList.add('show');
+}
+
+function retourListe(){
+  document.getElementById('detail').style.display = 'none';
+  document.getElementById('liste').style.display = 'block';
+}
+
+afficherFiltres();
+afficherListe();
+</script>
+</body>
+</html>
