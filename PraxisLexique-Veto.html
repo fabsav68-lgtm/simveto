@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PraxisLexique · SimVeto</title>
+<style>
+:root{
+  --bg:#0a0d08; --bg2:#121810; --card:rgba(255,255,255,.03); --bdr:rgba(255,255,255,.08);
+  --txt:#d8e8d0; --txt2:#4a6840; --em:#78d840;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 55%,var(--bg) 100%);color:var(--txt);min-height:100vh;padding-bottom:40px}
+.wrap{max-width:600px;margin:0 auto;padding:0 20px}
+header{padding:24px 0 16px;text-align:center}
+.badge{display:inline-block;background:rgba(120,216,64,.1);border:1px solid rgba(120,216,64,.25);color:var(--em);padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:2px;font-family:monospace;margin-bottom:12px}
+h1{font-family:Georgia,serif;font-size:26px;font-weight:300}
+h1 em{font-style:italic;color:var(--em)}
+.sub{color:var(--txt2);font-size:12.5px;margin-top:6px}
+
+.search-box{position:sticky;top:0;background:var(--bg);padding:12px 0;z-index:10}
+.search-input{width:100%;padding:12px 16px;border-radius:14px;border:1px solid var(--bdr);background:var(--card);color:var(--txt);font-size:14px}
+.search-input::placeholder{color:var(--txt2)}
+.search-input:focus{outline:none;border-color:var(--em)}
+
+.count{font-size:12px;color:var(--txt2);margin:10px 0}
+
+.terme-card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:16px;margin-bottom:10px}
+.terme-nom{font-size:15px;font-weight:700;color:var(--em);margin-bottom:6px}
+.terme-def{font-size:13.5px;line-height:1.6;color:var(--txt)}
+
+.no-result{text-align:center;color:var(--txt2);padding:40px 20px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge">GLOSSAIRE</div>
+    <h1>Praxis<em>Lexique</em></h1>
+    <p class="sub">Vocabulaire auxiliaire spécialisé vétérinaire — 23 termes essentiels</p>
+  </header>
+
+  <div class="search-box">
+    <input type="text" class="search-input" id="search" placeholder="Rechercher un terme..." oninput="filtrer()">
+  </div>
+  <div class="count" id="count"></div>
+  <div id="liste"></div>
+</div>
+
+<script>
+const TERMES = [{"terme": "Ambulatoire", "def": "Se dit d'une consultation ou d'un soin ne nécessitant pas d'hospitalisation de l'animal."}, {"terme": "APE (Antiparasitaire Externe)", "def": "Produit appliqué sur la peau contre puces, tiques, etc. Certains APE dérogatoires peuvent être vendus par l'ASV sans intervention du vétérinaire."}, {"terme": "Asepsie", "def": "Ensemble des pratiques visant à prévenir la contamination microbienne, à distinguer de la stérilisation qui détruit les micro-organismes déjà présents."}, {"terme": "ASV GIPSA", "def": "Nom usuel du titre d'Auxiliaire Spécialisé Vétérinaire, délivré par APFORM en partenariat avec le SNVEL."}, {"terme": "Autoclave", "def": "Appareil de stérilisation par chaleur humide sous pression, utilisé pour le matériel chirurgical."}, {"terme": "Ayant droit du médicament", "def": "Professionnel habilité à délivrer un médicament vétérinaire : vétérinaire ou pharmacien."}, {"terme": "Biosécurité", "def": "Ensemble des mesures visant à protéger les animaux patients et l'équipe soignante contre les agents infectieux."}, {"terme": "Champ opératoire", "def": "Zone stérile délimitée autour du site d'intervention chirurgicale."}, {"terme": "Chatterie", "def": "Zone d'hébergement dédiée aux chats au sein d'un établissement de soins vétérinaires."}, {"terme": "Chenil", "def": "Zone d'hébergement dédiée aux chiens au sein d'un établissement de soins vétérinaires."}, {"terme": "CHV", "def": "Centre Hospitalier Vétérinaire — structure de soins vétérinaires de plus grande taille, souvent avec spécialités."}, {"terme": "Contention", "def": "Technique permettant de maintenir un animal immobile et en sécurité pendant un soin ou un examen."}, {"terme": "DASRI", "def": "Déchets d'Activités de Soins à Risques Infectieux — réglementés par l'arrêté du 7 septembre 1999."}, {"terme": "Décubitus", "def": "Position du corps allongé de l'animal (dorsal, latéral ou ventral)."}, {"terme": "Ectoparasite", "def": "Parasite vivant à la surface du corps de l'animal (puces, tiques, poux)."}, {"terme": "Fréquence cardiaque (FC)", "def": "Nombre de battements du cœur par minute, variable selon l'espèce et la taille de l'animal."}, {"terme": "Fréquence respiratoire (FR)", "def": "Nombre de cycles respiratoires par minute."}, {"terme": "Omnivore/Herbivore/Carnivore", "def": "Classification du régime alimentaire, déterminante pour les conseils nutritionnels donnés au client."}, {"terme": "SNVEL", "def": "Syndicat National des Vétérinaires en Exercice Libéral, co-certificateur du titre ASV GIPSA."}, {"terme": "Stérilisation (animal)", "def": "Intervention chirurgicale rendant un animal incapable de se reproduire (à ne pas confondre avec la stérilisation du matériel)."}, {"terme": "Stérilisation (matériel)", "def": "Procédé détruisant tous les micro-organismes présents sur un instrument, généralement par autoclave."}, {"terme": "TRC (Temps de Recoloration Capillaire)", "def": "Délai de retour de la couleur rose après pression sur une muqueuse — indicateur de perfusion périphérique, normal < 2 secondes."}, {"terme": "Zoonose", "def": "Maladie transmissible de l'animal à l'homme."}];
+
+function filtrer(){
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const filtres = q ? TERMES.filter(t => t.terme.toLowerCase().includes(q) || t.def.toLowerCase().includes(q)) : TERMES;
+  afficher(filtres);
+}
+
+function afficher(liste){
+  document.getElementById('count').textContent = liste.length + ' terme' + (liste.length > 1 ? 's' : '');
+  if(liste.length === 0){
+    document.getElementById('liste').innerHTML = '<div class="no-result">Aucun terme trouvé</div>';
+    return;
+  }
+  document.getElementById('liste').innerHTML = liste.map(t => `
+    <div class="terme-card">
+      <div class="terme-nom">${t.terme}</div>
+      <div class="terme-def">${t.def}</div>
+    </div>
+  `).join('');
+}
+
+afficher(TERMES);
+</script>
+</body>
+</html>
