@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiche technique · Préparation du champ opératoire</title>
+<style>
+:root{
+  --bg:#0f1410; --bg2:#182018; --card:rgba(255,255,255,.038); --bdr:rgba(255,255,255,.09);
+  --txt:#e4ece2; --txt2:#8fa08c; --lime:#8fd14f; --amber:#f0a030; --red:#ef4444; --teal:#3fb98c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',system-ui,sans-serif;background:linear-gradient(160deg,var(--bg) 0%,var(--bg2) 55%,var(--bg) 100%);color:var(--txt);min-height:100vh;padding-bottom:60px}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{padding:24px 0 16px;text-align:center}
+.badge{display:inline-block;background:rgba(240,160,48,.1);border:1px solid rgba(240,160,48,.3);color:var(--amber);padding:4px 14px;border-radius:20px;font-size:11px;letter-spacing:1.5px;font-weight:700;margin-bottom:12px}
+h1{font-size:24px;font-weight:800}
+.sub{color:var(--txt2);font-size:13px;margin-top:6px}
+
+.section{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:18px;margin-bottom:14px}
+.section h2{font-size:15px;font-weight:800;color:var(--amber);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+
+.materiel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:420px){.materiel-grid{grid-template-columns:1fr}}
+.materiel-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt);background:rgba(255,255,255,.03);padding:8px 10px;border-radius:8px}
+
+.precaution{background:rgba(240,160,48,.08);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13px;color:var(--txt);margin-bottom:8px}
+.precaution:last-child{margin-bottom:0}
+
+.etapes-scroll{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(min-width:560px){.etapes-scroll{grid-template-columns:1fr 1fr 1fr}}
+.etape-card{background:rgba(255,255,255,.03);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;position:relative}
+.etape-num{position:absolute;top:8px;left:8px;background:var(--amber);color:#1a1200;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;z-index:2}
+.etape-img{width:100%;height:100px;background:#1c1710;display:flex;align-items:center;justify-content:center}
+.etape-img svg{width:55%;height:55%}
+.etape-txt{padding:8px 10px;font-size:11.5px;line-height:1.45;color:var(--txt)}
+
+.tip-item{background:rgba(240,160,48,.08);border-left:3px solid var(--amber);border-radius:0 10px 10px 0;padding:10px 14px;font-size:13px;color:var(--txt);margin-bottom:8px}
+.tip-item:last-child{margin-bottom:0}
+
+.surveil-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;margin-bottom:10px}
+.surveil-item:last-child{margin-bottom:0}
+.surveil-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);margin-top:5px;flex-shrink:0}
+
+.erreur-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;margin-bottom:10px;color:var(--txt)}
+.erreur-item:last-child{margin-bottom:0}
+
+.notice{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:12px 14px;font-size:12.5px;color:var(--txt2);margin-bottom:14px;line-height:1.6}
+.notice strong{color:var(--red)}
+
+.lexique-mini{background:rgba(0,0,0,.2);border:1px solid var(--bdr);border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:8px}
+.lexique-mini strong{color:var(--amber)}
+
+footer{text-align:center;padding:20px;color:var(--txt2);font-size:11px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="badge">FICHE TECHNIQUE · GESTE ASV</div>
+    <h1>Préparation du champ opératoire</h1>
+    <p class="sub">Assistance à la préparation pré-chirurgicale — chien, chat, NAC</p>
+  </header>
+
+  <div class="notice">⚠️ <strong>Illustrations provisoires</strong> — icônes simples en attendant les illustrations définitives (même pipeline que les autres fiches).</div>
+
+  <div class="section">
+    <h2>🧰 Matériel nécessaire</h2>
+    <div class="materiel-grid">
+      <div class="materiel-item">✂️ Tondeuse chirurgicale (jamais de rasoir simple lame)</div>
+      <div class="materiel-item">🧴 Antiseptique cutané (selon protocole de la clinique)</div>
+      <div class="materiel-item">🧼 Compresses stériles</div>
+      <div class="materiel-item">🧤 Gants (non stériles pour la tonte, stériles pour la pose des champs)</div>
+      <div class="materiel-item">🩹 Champs opératoires stériles</div>
+      <div class="materiel-item">🌡️ Tapis chauffant / source de chaleur</div>
+      <div class="materiel-item">🗑️ Sac de récupération des poils</div>
+      <div class="materiel-item">📋 Fiche de suivi pré-opératoire</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📖 Trois notions à ne pas confondre</h2>
+    <div class="lexique-mini"><strong>Asepsie :</strong> ensemble des mesures visant à empêcher l'introduction de micro-organismes dans une zone (organisation, matériel stérile, comportement de l'équipe).</div>
+    <div class="lexique-mini"><strong>Désinfection :</strong> destruction des agents pathogènes sur une surface ou un objet inerte (table, instruments).</div>
+    <div class="lexique-mini"><strong>Antisepsie :</strong> application d'un produit sur la peau vivante de l'animal pour réduire la flore bactérienne avant l'incision.</div>
+  </div>
+
+  <div class="section">
+    <h2>⚠️ Indications & précautions</h2>
+    <div class="precaution"><strong>Moment de la tonte :</strong> toujours réalisée en dehors de la salle d'opération elle-même, pour ne pas y disperser les poils.</div>
+    <div class="precaution"><strong>Matériel de tonte :</strong> jamais de rasoir jetable simple lame — le risque de micro-abrasions cutanées constitue une porte d'entrée infectieuse. La tondeuse électrique est l'outil de référence.</div>
+    <div class="precaution"><strong>Étendue de la zone :</strong> le champ tondu doit être suffisamment large pour permettre l'incision et la suture sans inclusion de poils dans la plaie, mais sans excès afin de limiter le risque d'hypothermie peropératoire, particulièrement chez le NAC.</div>
+    <div class="precaution"><strong>Chez le NAC :</strong> la surface corporelle rapportée au poids étant plus importante, le risque d'hypothermie lié à une tonte excessive ou à un séjour prolongé à peau nue est majoré — vigilance renforcée sur l'étendue tondue et le maintien thermique.</div>
+  </div>
+
+  <div class="section">
+    <h2>📋 Étapes de la préparation</h2>
+    <div class="etapes-scroll" id="etapes"></div>
+  </div>
+
+  <div class="section">
+    <h2>💡 Astuces pratiques</h2>
+    <div class="tip-item"><strong>Sens de tonte :</strong> tondre dans le sens du poil puis à rebrousse-poil pour une coupe nette, en évitant toute pression excessive source d'irritation cutanée.</div>
+    <div class="tip-item"><strong>Désinfection en spirale :</strong> appliquer l'antiseptique du centre du site opératoire vers la périphérie, jamais l'inverse — repartir du centre à chaque nouvelle compresse pour ne pas ramener de germes vers la zone d'incision.</div>
+    <div class="tip-item"><strong>Trois zones distinctes :</strong> préopératoire (contention, tonte), opératoire (asepsie stricte) et postopératoire doivent rester séparées pour limiter la contamination croisée.</div>
+    <div class="tip-item"><strong>Maintien thermique :</strong> un tapis chauffant est mis en place dès la phase préopératoire et maintenu pendant toute la procédure, pas seulement après la tonte.</div>
+    <div class="tip-item"><strong>Récupération des poils :</strong> les poils tondus sont immédiatement récupérés et éliminés — laissés sur place, ils compromettent l'asepsie de la zone.</div>
+  </div>
+
+  <div class="section">
+    <h2>👁️ Points de surveillance</h2>
+    <div class="surveil-item"><div class="surveil-dot"></div><div>État cutané après la tonte : rougeur, micro-coupure, irritation à signaler avant la poursuite de la préparation.</div></div>
+    <div class="surveil-item"><div class="surveil-dot"></div><div>Température corporelle de l'animal pendant toute la phase de préparation, particulièrement chez les petits gabarits et les NAC.</div></div>
+    <div class="surveil-item"><div class="surveil-dot"></div><div>Propreté et intégrité des champs stériles une fois posés — tout champ souillé ou déplacé doit être signalé avant le début de l'incision.</div></div>
+    <div class="surveil-item"><div class="surveil-dot"></div><div>Temps de contact de l'antiseptique respecté avant la pose des champs, selon le protocole du produit utilisé.</div></div>
+  </div>
+
+  <div class="section">
+    <h2>🚫 Erreurs et pièges à éviter</h2>
+    <div class="erreur-item">❌ <div>Utiliser un rasoir simple lame plutôt qu'une tondeuse électrique.</div></div>
+    <div class="erreur-item">❌ <div>Désinfecter de la périphérie vers le centre, à l'inverse du principe d'asepsie.</div></div>
+    <div class="erreur-item">❌ <div>Tondre une surface excessive « pour être large », sans tenir compte du risque d'hypothermie.</div></div>
+    <div class="erreur-item">❌ <div>Réaliser la tonte directement dans la salle d'opération plutôt que dans une zone dédiée.</div></div>
+    <div class="erreur-item">❌ <div>Négliger le maintien thermique pendant la phase de préparation, avant même le début de la chirurgie.</div></div>
+  </div>
+
+  <footer>MedExpert · Praxis · SimVeto — base de données des gestes techniques</footer>
+</div>
+
+<script>
+const ETAPES = [
+  { titre: "Contention & installation", txt: "Animal installé sur tapis chauffant, contention douce pour la phase de tonte.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="55" width="70" height="10" rx="5" fill="none" stroke="#f0a030" stroke-width="4"/><circle cx="50" cy="40" r="18" fill="none" stroke="#f0a030" stroke-width="4"/></svg>` },
+  { titre: "Tonte", txt: "Tondeuse électrique, zone suffisamment large mais raisonnée, poils immédiatement récupérés.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="40" width="40" height="16" rx="4" fill="none" stroke="#f0a030" stroke-width="4"/><line x1="70" y1="48" x2="85" y2="48" stroke="#f0a030" stroke-width="4" stroke-linecap="round"/></svg>` },
+  { titre: "Élimination des poils", txt: "Aspiration ou brossage des poils tondus avant toute étape de désinfection.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="none" stroke="#f0a030" stroke-width="4"/><path d="M40 45 L45 55 M50 42 L52 58 M60 45 L58 55" stroke="#f0a030" stroke-width="3" stroke-linecap="round"/></svg>` },
+  { titre: "Désinfection en spirale", txt: "Antiseptique appliqué du centre vers la périphérie, compresse neuve à chaque reprise du centre.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 50 m0 0 a5 5 0 1 1 10 3 a12 12 0 1 1 -18 6 a20 20 0 1 1 26 -12" fill="none" stroke="#f0a030" stroke-width="4" stroke-linecap="round"/></svg>` },
+  { titre: "Pose des champs stériles", txt: "Champs posés en respectant l'asepsie, délimitant strictement la zone opératoire.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="30" width="60" height="45" rx="4" fill="none" stroke="#f0a030" stroke-width="4"/><rect x="35" y="45" width="30" height="15" fill="none" stroke="#f0a030" stroke-width="3" stroke-dasharray="4 3"/></svg>` },
+  { titre: "Vérification finale", txt: "Contrôle de l'intégrité des champs, de la température corporelle et de l'état cutané avant l'incision.",
+    svg: `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="none" stroke="#f0a030" stroke-width="4"/><path d="M38 50 L47 60 L64 40" fill="none" stroke="#f0a030" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>` },
+];
+
+document.getElementById('etapes').innerHTML = ETAPES.map((e,i) => `
+  <div class="etape-card">
+    <div class="etape-num">${i+1}</div>
+    <div class="etape-img">${e.svg}</div>
+    <div class="etape-txt"><strong>${e.titre}</strong><br>${e.txt}</div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
